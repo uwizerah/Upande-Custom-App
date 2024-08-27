@@ -4,6 +4,11 @@ app_publisher = "Upande Ltd"
 app_description = "Upande Customizations app for Victory Farms"
 app_email = "dev@upande.com"
 app_license = "mit"
+
+
+
+
+
 # required_apps = []
 
 # Includes in <head>
@@ -114,9 +119,9 @@ app_license = "mit"
 # ---------------
 # Override standard doctype classes
 
-# override_doctype_class = {
-#	"ToDo": "custom_app.overrides.CustomToDo"
-# }
+override_doctype_class = {
+	"Asset Value Adjustment": "upande_vf_custom.custom_asset_value_adjustment.custom_asset_value_adjustment.CustomAssetValueAdjustment"
+}
 
 # Document Events
 # ---------------
@@ -160,7 +165,7 @@ app_license = "mit"
 # ------------------------------
 #
 # override_whitelisted_methods = {
-#	"frappe.desk.doctype.event.event.get_events": "upande_vf_custom.event.get_events"
+# 	"frappe.desk.doctype.event.event.get_events": "upande_vf_custom.event.get_events"
 # }
 #
 # each overriding function accepts a `data` argument;

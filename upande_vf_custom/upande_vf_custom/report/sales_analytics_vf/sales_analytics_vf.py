@@ -37,7 +37,7 @@ class Analytics(object):
     def run(self):
         self.get_columns()
         self.get_data()
-        self.get_chart_data()
+        # self.get_chart_data()
 
         # Skipping total row for tree-view reports
         skip_total_row = 0
@@ -45,7 +45,7 @@ class Analytics(object):
         if self.filters.tree_type in ["Territory"]:
             skip_total_row = 1
 
-        return self.columns, self.data, None, self.chart, None, skip_total_row
+        return self.columns, self.data, None, None, None, skip_total_row
 
     def get_columns(self):
         self.columns = [

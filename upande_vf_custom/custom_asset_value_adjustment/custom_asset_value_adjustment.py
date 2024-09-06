@@ -5,41 +5,16 @@
 import frappe
 from frappe import _
 from frappe.model.document import Document
-from frappe.utils import flt, formatdate, get_link_to_form, getdate
+from frappe.utils import flt, formatdate, getdate
 
 from erpnext.accounts.doctype.accounting_dimension.accounting_dimension import (
     get_checks_for_pl_and_bs_accounts,
 )
 from erpnext.assets.doctype.asset.asset import get_asset_value_after_depreciation
 from erpnext.assets.doctype.asset.depreciation import get_depreciation_accounts
-from erpnext.assets.doctype.asset_activity.asset_activity import add_asset_activity
-from erpnext.assets.doctype.asset_depreciation_schedule.asset_depreciation_schedule import (
-    make_new_active_asset_depr_schedules_and_cancel_current_ones,
-)
 
 
-class CustomAssetValueAdjustment(Document):
-    # begin: auto-generated types
-    # This code is auto-generated. Do not modify anything in this block.
-
-    from typing import TYPE_CHECKING
-
-    if TYPE_CHECKING:
-        from frappe.types import DF
-
-        amended_from: DF.Link | None
-        asset: DF.Link
-        asset_category: DF.ReadOnly | None
-        company: DF.Link | None
-        cost_center: DF.Link | None
-        current_asset_value: DF.Currency
-        date: DF.Date
-        difference_amount: DF.Currency
-        finance_book: DF.Link | None
-        journal_entry: DF.Link | None
-        new_asset_value: DF.Currency
-    # end: auto-generated types
-
+class AssetValueAdjustment(Document):
     def validate(self):
         self.validate_date()
         self.set_current_asset_value()
@@ -48,21 +23,9 @@ class CustomAssetValueAdjustment(Document):
     def on_submit(self):
         self.make_depreciation_entry()
         self.update_asset(self.new_asset_value)
-        add_asset_activity(
-            self.asset,
-            _("Asset's value adjusted after submission of Asset Value Adjustment {0}").format(
-                get_link_to_form("Asset Value Adjustment", self.name)
-            ),
-        )
 
     def on_cancel(self):
         self.update_asset(self.current_asset_value)
-        add_asset_activity(
-            self.asset,
-            _("Asset's value adjusted after cancellation of Asset Value Adjustment {0}").format(
-                get_link_to_form("Asset Value Adjustment", self.name)
-            ),
-        )
 
     def validate_date(self):
         asset_purchase_date = frappe.db.get_value("Asset", self.asset, "purchase_date")
@@ -159,35 +122,12 @@ class CustomAssetValueAdjustment(Document):
 
         self.db_set("journal_entry", je.name)
 
+
     def update_asset(self, asset_value):
         asset = frappe.get_doc("Asset", self.asset)
 
-        if not asset.calculate_depreciation:
-            asset.value_after_depreciation = asset_value
-            asset.save()
-            return
-
         asset.flags.decrease_in_asset_value_due_to_value_adjustment = True
 
-        if self.docstatus == 1:
-            notes = _(
-                "This schedule was created when Asset {0} was adjusted through Asset Value Adjustment {1}."
-            ).format(
-                get_link_to_form("Asset", asset.name),
-                get_link_to_form(self.get("doctype"), self.get("name")),
-            )
-        elif self.docstatus == 2:
-            notes = _(
-                "This schedule was created when Asset {0}'s Asset Value Adjustment {1} was cancelled."
-            ).format(
-                get_link_to_form("Asset", asset.name),
-                get_link_to_form(self.get("doctype"), self.get("name")),
-            )
-
-        make_new_active_asset_depr_schedules_and_cancel_current_ones(
-            asset, notes, value_after_depreciation=asset_value, ignore_booked_entry=True
-        )
+        asset.prepare_depreciation_data(value_after_depreciation=asset_value, ignore_booked_entry=True)
         asset.flags.ignore_validate_update_after_submit = True
         asset.save()
-
-

@@ -1,0 +1,91 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-09-08 23:14:49.442880",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "company",
+  "column_break_vjy95",
+  "consolidation_account",
+  "accounts_section",
+  "mpesa_parent_account",
+  "fetch_mpesa_accounts",
+  "section_break_3b1y8",
+  "items"
+ ],
+ "fields": [
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_vjy95",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "consolidation_account",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Consolidation Account",
+   "options": "Account",
+   "reqd": 1
+  },
+  {
+   "fieldname": "accounts_section",
+   "fieldtype": "Section Break",
+   "label": "Accounts"
+  },
+  {
+   "fieldname": "mpesa_parent_account",
+   "fieldtype": "Link",
+   "label": "Mpesa Parent Account",
+   "options": "Account"
+  },
+  {
+   "depends_on": "eval:doc.mpesa_parent_account",
+   "fieldname": "fetch_mpesa_accounts",
+   "fieldtype": "Button",
+   "label": "Fetch Mpesa Accounts"
+  },
+  {
+   "fieldname": "section_break_3b1y8",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "Mpesa To Bank Sweep Item",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-09-08 23:23:35.523456",
+ "modified_by": "Administrator",
+ "module": "Upande Vf Custom",
+ "name": "Mpesa Consolidation",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

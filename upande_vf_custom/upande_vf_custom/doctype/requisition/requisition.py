@@ -19,7 +19,7 @@ from erpnext.stock.stock_balance import get_indented_qty, update_bin_qty
 form_grid_templates = {"items": "templates/form_grid/material_request_grid.html"}
 
 
-class MaterialRequistion(BuyingController):
+class Requisition(BuyingController):
 	def check_if_already_pulled(self):
 		pass
 

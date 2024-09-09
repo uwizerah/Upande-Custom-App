@@ -5,7 +5,7 @@
 frappe.provide("erpnext.accounts.dimensions");
 erpnext.buying.setup_buying_controller();
 
-frappe.ui.form.on('Material Requistion', {
+frappe.ui.form.on('Requisition', {
 	setup: function(frm) {
 		frm.custom_make_buttons = {
 			'Stock Entry': 'Issue Material',

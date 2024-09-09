@@ -360,7 +360,7 @@
  "modified": "2024-09-08 20:27:32.819942",
  "modified_by": "Administrator",
  "module": "Upande Vf Custom",
- "name": "Material Requistion",
+ "name": "Requisition",
  "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [

@@ -7,11 +7,7 @@ frappe.ui.form.on('Driver Consignment Note', {
 	        frm.add_custom_button(__('Delivery Note'), function(){
             frappe.call({
                 method: 'create_delivery_note',
-                args: {
-                    message: {
-                        doc: frm.doc
-                    }
-                },
+                doc: frm.doc,
                 btn: $('.primary-action'),
                 freeze: true,
                 callback: (r) => {

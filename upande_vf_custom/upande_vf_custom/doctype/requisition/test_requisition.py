@@ -16,7 +16,7 @@ from erpnext.stock.doctype.material_request.material_request import (
 )
 
 
-class TestMaterialRequistion(FrappeTestCase):
+class TestRequisition(FrappeTestCase):
 	def test_make_purchase_order(self):
 		mr = frappe.copy_doc(test_records[0]).insert()
 

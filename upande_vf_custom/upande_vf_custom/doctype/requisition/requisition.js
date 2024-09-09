@@ -5,7 +5,7 @@
 frappe.provide("erpnext.accounts.dimensions");
 erpnext.buying.setup_buying_controller();
 
-frappe.ui.form.on('Material Requistion', {
+frappe.ui.form.on('Requisition', {
 	setup: function(frm) {
 		frm.custom_make_buttons = {
 			'Stock Entry': 'Issue Material',
@@ -266,7 +266,7 @@ frappe.ui.form.on('Material Requistion', {
 						} else {
 							erpnext.utils.remove_empty_first_row(frm, "items");
 							$.each(r.message, function(i, item) {
-								var d = frappe.model.add_child(cur_frm.doc, "Material Request Item", "items");
+								var d = frappe.model.add_child(cur_frm.doc, "Requisition Item", "items");
 								d.item_code = item.item_code;
 								d.item_name = item.item_name;
 								d.description = item.description;
@@ -298,14 +298,14 @@ frappe.ui.form.on('Material Requistion', {
 				description: __('Select a Supplier from the Default Suppliers of the items below. On selection, a Purchase Order will be made against items belonging to the selected Supplier only.'),
 				get_query: () => {
 					return{
-						query: "erpnext.stock.doctype.material_request.material_request.get_default_supplier_query",
+						query: "upande_vf_custom.upande_vf_custom.doctype.requisition.requisition.get_default_supplier_query",
 						filters: {'doc': frm.doc.name}
 					}
 				}
 			},
 			(values) => {
 				frappe.model.open_mapped_doc({
-					method: "erpnext.stock.doctype.material_request.material_request.make_purchase_order",
+					method: "upande_vf_custom.upande_vf_custom.doctype.requisition.requisition.make_purchase_order",
 					frm: frm,
 					args: { default_supplier: values.default_supplier },
 					run_link_triggers: true
@@ -318,7 +318,7 @@ frappe.ui.form.on('Material Requistion', {
 
 	make_request_for_quotation: function(frm) {
 		frappe.model.open_mapped_doc({
-			method: "erpnext.stock.doctype.material_request.material_request.make_request_for_quotation",
+			method: "upande_vf_custom.upande_vf_custom.doctype.requisition.requisition.make_request_for_quotation",
 			frm: frm,
 			run_link_triggers: true
 		});
@@ -409,7 +409,7 @@ frappe.ui.form.on('Material Requistion', {
 
 });
 
-frappe.ui.form.on("Material Request Item", {
+frappe.ui.form.on("Requisition Item", {
 	qty: function (frm, doctype, name) {
 		const item = locals[doctype][name];
 		if (flt(item.qty) < flt(item.min_order_qty)) {
@@ -434,6 +434,7 @@ frappe.ui.form.on("Material Request Item", {
 	},
 
 	item_code: function(frm, doctype, name) {
+		console.log("item")
 		const item = locals[doctype][name];
 		item.rate = 0;
 		item.uom = '';

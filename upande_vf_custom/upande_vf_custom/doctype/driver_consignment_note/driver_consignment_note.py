@@ -23,7 +23,6 @@ class DriverConsignmentNote(Document):
                 new_stck_entry.append("items", {
                     "item_code": item.item_code,
                     "qty": item.qty,
-                    "transfer_qty":item.transfer_qty,
                     "vf_crate_no": item.idx
                 })
                 

@@ -18,6 +18,7 @@
   "transaction_date",
   "schedule_date",
   "amended_from",
+  "ignore_pricing_rule",
   "warehouse_section",
   "scan_barcode",
   "column_break_13",
@@ -197,7 +198,7 @@
    "label": "Items",
    "oldfieldname": "indent_details",
    "oldfieldtype": "Table",
-   "options": "Material Requistion Item",
+   "options": "Requisition Item",
    "reqd": 1
   },
   {
@@ -352,15 +353,21 @@
    "fieldtype": "Tab Break",
    "label": "Connections",
    "show_dashboard": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "ignore_pricing_rule",
+   "fieldtype": "Check",
+   "label": "Ignore Pricing Rule"
   }
  ],
  "icon": "fa fa-ticket",
  "is_submittable": 1,
  "links": [],
- "modified": "2024-09-08 20:27:32.819942",
+ "modified": "2024-09-09 12:44:49.410751",
  "modified_by": "Administrator",
  "module": "Upande Vf Custom",
- "name": "Material Requistion",
+ "name": "Requisition",
  "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [

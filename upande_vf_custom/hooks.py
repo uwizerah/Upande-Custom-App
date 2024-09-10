@@ -31,12 +31,18 @@ app_license = "mit"
 
 # include js in page
 # page_js = {"page" : "public/js/file.js"}
+doctype_js = {
+    "Asset" : "custom_asset_scripts/asset.js",
+    "Project" : "custom_asset_scripts/project.js",
+
+}
 
 # include js in doctype views
 # doctype_js = {"doctype" : "public/js/doctype.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
+
 
 # Svg Icons
 # ------------------
@@ -120,12 +126,17 @@ app_license = "mit"
 # Override standard doctype classes
 
 override_doctype_class = {
-	"Asset Value Adjustment": "upande_vf_custom.custom_asset_value_adjustment.custom_asset_value_adjustment.CustomAssetValueAdjustment"
+    "Asset Value Adjustment": "upande_vf_custom.custom_asset_scripts.custom_asset_value_adjustment.CustomAssetValueAdjustment"
 }
 
 # Document Events
 # ---------------
 # Hook on document methods and events
+doc_events = {
+    "Asset Movement": {
+        "before_submit": "upande_vf_custom.custom_asset_scripts.asset_movement.before_submit"
+    }
+}
 
 # doc_events = {
 #	"*": {

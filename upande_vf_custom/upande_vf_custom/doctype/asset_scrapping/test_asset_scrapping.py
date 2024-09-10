@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestVFAssetScrap(FrappeTestCase):
+class TestAssetScrapping(FrappeTestCase):
 	pass

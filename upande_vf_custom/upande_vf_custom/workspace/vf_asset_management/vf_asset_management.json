@@ -13,7 +13,7 @@
  "is_hidden": 0,
  "label": "VF Asset Management",
  "links": [],
- "modified": "2024-09-09 12:35:02.000914",
+ "modified": "2024-09-10 11:51:41.089975",
  "modified_by": "Administrator",
  "module": "Upande Vf Custom",
  "name": "VF Asset Management",
@@ -25,6 +25,14 @@
  "roles": [],
  "sequence_id": 63.0,
  "shortcuts": [
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "VF Asset Scrap",
+   "link_to": "Asset Scrapping",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
   {
    "color": "Green",
    "doc_view": "List",
@@ -47,14 +55,6 @@
    "label": "Fixed Asset Register",
    "link_to": "Fixed Asset Register",
    "type": "Report"
-  },
-  {
-   "color": "Green",
-   "doc_view": "List",
-   "label": "VF Asset Scrap",
-   "link_to": "Asset Scrap",
-   "stats_filter": "[]",
-   "type": "DocType"
   },
   {
    "color": "Grey",

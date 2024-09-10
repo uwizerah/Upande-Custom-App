@@ -2,7 +2,7 @@
  "actions": [],
  "allow_rename": 1,
  "autoname": "naming_series:",
- "creation": "2024-09-09 15:47:29.986389",
+ "creation": "2024-09-10 11:50:45.171954",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -16,7 +16,6 @@
   "naming_series",
   "section_break_qk29r",
   "scrap_reason",
-  "amended_from",
   "amended_from"
  ],
  "fields": [
@@ -76,7 +75,7 @@
    "fieldtype": "Link",
    "label": "Amended From",
    "no_copy": 1,
-   "options": "Asset Scrap",
+   "options": "Asset Scrapping",
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
@@ -86,7 +85,7 @@
    "fieldtype": "Link",
    "label": "Amended From",
    "no_copy": 1,
-   "options": "VF Asset Scrap",
+   "options": "Asset Scrapping",
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
@@ -95,10 +94,10 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-09-09 15:47:29.986389",
+ "modified": "2024-09-10 14:53:10.068442",
  "modified_by": "Administrator",
  "module": "Upande Vf Custom",
- "name": "VF Asset Scrap",
+ "name": "Asset Scrapping",
  "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [

@@ -1,0 +1,40 @@
+{
+ "add_total_row": 0,
+ "columns": [],
+ "creation": "2024-09-10 10:52:55.824121",
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [
+  {
+   "default": "k97k7169ru",
+   "fieldname": "parent",
+   "fieldtype": "Link",
+   "label": "Bank Bulk Upload Record",
+   "mandatory": 1,
+   "options": "Bank Bulk Upload",
+   "wildcard_filter": 0
+  }
+ ],
+ "idx": 0,
+ "is_standard": "Yes",
+ "json": "{\"filters\":[],\"fields\":[[\"name\",\"Bank Bulk Upload\"],[\"docstatus\",\"Bank Bulk Upload\"],[\"payment_reference\",\"Bank Bulk Upload Item\"],[\"beneficiary_name\",\"Bank Bulk Upload Item\"],[\"account_number\",\"Bank Bulk Upload Item\"],[\"bank_code\",\"Bank Bulk Upload Item\"],[\"branch_code\",\"Bank Bulk Upload Item\"],[\"amount\",\"Bank Bulk Upload Item\"]],\"order_by\":\"`tabBank Bulk Upload`.`modified` desc\",\"add_totals_row\":true,\"page_length\":20,\"column_widths\":{\"name\":120,\"docstatus\":120,\"Bank Bulk Upload Item:payment_reference\":120,\"Bank Bulk Upload Item:beneficiary_name\":120,\"Bank Bulk Upload Item:account_number\":120,\"Bank Bulk Upload Item:bank_code\":203,\"Bank Bulk Upload Item:branch_code\":148,\"Bank Bulk Upload Item:amount\":120},\"group_by\":null}",
+ "letter_head": "Standard",
+ "letterhead": null,
+ "modified": "2024-09-10 11:14:36.600667",
+ "modified_by": "Administrator",
+ "module": "Upande Vf Custom",
+ "name": "Bank Bulk Upload",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "query": "",
+ "ref_doctype": "Bank Bulk Upload",
+ "report_name": "Bank Bulk Upload",
+ "report_script": "data1 = frappe.db.sql(\"\"\"\n            SELECT\n                payment_reference,\n                beneficiary_name,\n                bank_account,\n                account_number,\n                bank_code,\n                branch_code,\n                amount\n            FROM\n                `tabBank Bulk Upload Item`\n            WHERE\n                `tabBank Bulk Upload Item`.parent = %(parent)s\n            \"\"\", filters, as_dict=True)\n\ncolumns = [\n    {\"label\": \"Payment Reference\", \"fieldname\": \"payment_reference\", \"fieldtype\": \"Data\", \"width\": 150},\n    {\"label\": \"Beneficiary Name\", \"fieldname\": \"beneficiary_name\", \"fieldtype\": \"Data\", \"width\": 200},\n    {\"label\": \"Bank Name\", \"fieldname\": \"bank_account\", \"fieldtype\": \"Data\", \"width\": 180},\n    {\"label\": \"Account Number\", \"fieldname\": \"account_number\", \"fieldtype\": \"Data\", \"width\": 80},\n    {\"label\": \"Bank Code\", \"fieldname\": \"bank_code\", \"fieldtype\": \"Data\", \"width\": 120},\n    {\"label\": \"Branch Code\", \"fieldname\": \"branch_code\", \"fieldtype\": \"Data\", \"width\": 120},\n    {\"label\": \"Amount\", \"fieldname\": \"amount\", \"fieldtype\": \"Currency\", \"width\": 150}\n]\n\ndata =  columns, data1",
+ "report_type": "Script Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  }
+ ]
+}

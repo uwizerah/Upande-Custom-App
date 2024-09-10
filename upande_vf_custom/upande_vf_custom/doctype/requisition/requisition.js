@@ -3,7 +3,8 @@
 
 // eslint-disable-next-line
 frappe.provide("erpnext.accounts.dimensions");
-erpnext.buying.setup_buying_controller();
+// erpnext.buying.setup_buying_controller();
+{% include 'erpnext/public/js/controllers/buying.js' %};
 
 frappe.ui.form.on('Requisition', {
 	setup: function(frm) {

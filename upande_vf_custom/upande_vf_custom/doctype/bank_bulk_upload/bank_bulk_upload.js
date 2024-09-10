@@ -3,18 +3,13 @@
 
 frappe.ui.form.on('Bank Bulk Upload', {
 	get_draft_payments(frm) {
-	    console.log("hello")
         frappe.call({
             method: 'get_pending_payments',
-            args: {
-                doc: frm.doc.name
-            },
+            doc: frm.doc,
             btn: $('.primary-action'),
             freeze: true,
             callback: (r) => {
                 if (r.message) {
-                    console.log(r.message)
-
                     processDraftPayments(frm, r.message.draft_payments, r.message.total_grand_total);
                     
                 } else {
@@ -31,12 +26,7 @@ frappe.ui.form.on('Bank Bulk Upload', {
     download(frm) {
         frappe.call({
             method: 'download_report',
-            args: {
-                message:{
-                    record: frm.doc
-                    // file_path: frappe.get_site_path('private', 'files', frm.doc.name + '.csv')
-                }
-            },
+            doc: frm.doc,
             callback: function(r) {
                 if(r.message) {
                     console.log(r.message)

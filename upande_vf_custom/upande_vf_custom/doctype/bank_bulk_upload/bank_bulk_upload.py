@@ -42,18 +42,11 @@ class BankBulkUpload(Document):
         
         frappe.response['message'] = response_data
         
-    def report_download(self):
-        if frappe.form_dict.message:
-            data = json.loads(frappe.form_dict.message) # Parsing JSON to a dictionary
-            doc = data.get("record")
-           
-                    
-            report_url = f"https://127.0.0.1:8000/app/query-report/Bank%20Bulk%20Upload2?parent={doc.get('name')}"
-            
-            frappe.response['message'] = report_url
-                
-        else:
-            frappe.response['message'] = "not ok"
+    @frappe.whitelist()
+    def download_report(self):         
+        report_url = f"http://127.0.0.1:8000/app/query-report/Bank%20Bulk%20Upload?parent={self.get('name')}"
+        
+        frappe.response['message'] = report_url
 
 
 

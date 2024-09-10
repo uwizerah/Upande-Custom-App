@@ -16,12 +16,10 @@
   "lc_manager",
   "delivery_date",
   "sales_order_number",
-  "amended_from",
+  "cost_center",
   "section_break_3",
   "driver",
   "driver_name",
-  "driver_email",
-  "driver_address",
   "column_break_4",
   "vehicle",
   "warehouses_section",
@@ -29,7 +27,8 @@
   "column_break_yrk1v",
   "truck_warehouse",
   "section_break_zpntz",
-  "items"
+  "items",
+  "amended_from"
  ],
  "fields": [
   {
@@ -103,29 +102,17 @@
    "fieldtype": "Link",
    "label": "Driver",
    "mandatory_depends_on": "eval:!doc.__islocal",
-   "options": "Driver"
+   "options": "Driver",
+   "permlevel": 2
   },
   {
    "fetch_from": "driver.full_name",
+   "fetch_if_empty": 1,
    "fieldname": "driver_name",
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Driver Name",
    "read_only": 1
-  },
-  {
-   "fieldname": "driver_email",
-   "fieldtype": "Data",
-   "label": "Driver Email",
-   "read_only": 1
-  },
-  {
-   "fetch_from": "driver.address",
-   "fetch_if_empty": 1,
-   "fieldname": "driver_address",
-   "fieldtype": "Link",
-   "label": "Driver Address",
-   "options": "Address"
   },
   {
    "fieldname": "column_break_4",
@@ -136,7 +123,8 @@
    "fieldtype": "Link",
    "label": "Vehicle",
    "mandatory_depends_on": "eval:!doc.__islocal",
-   "options": "Vehicle"
+   "options": "Vehicle",
+   "permlevel": 2
   },
   {
    "fieldname": "warehouses_section",
@@ -155,11 +143,14 @@
    "fieldtype": "Column Break"
   },
   {
+   "fetch_from": "vehicle.custom_warehouse",
+   "fetch_if_empty": 1,
    "fieldname": "truck_warehouse",
    "fieldtype": "Link",
    "label": "Truck Warehouse",
    "mandatory_depends_on": "eval:!doc.__islocal",
-   "options": "Warehouse"
+   "options": "Warehouse",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_zpntz",
@@ -169,7 +160,8 @@
    "fieldname": "items",
    "fieldtype": "Table",
    "label": "Items",
-   "options": "Consignment Note Item"
+   "options": "Consignment Note Item",
+   "permlevel": 1
   },
   {
    "fieldname": "amended_from",
@@ -180,11 +172,17 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
+  },
+  {
+   "fieldname": "cost_center",
+   "fieldtype": "Link",
+   "label": "Cost Center",
+   "options": "Cost Center"
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2024-09-08 23:23:35.015739",
+ "modified": "2024-09-10 19:53:46.258880",
  "modified_by": "Administrator",
  "module": "Upande Vf Custom",
  "name": "Driver Consignment Note",
@@ -192,8 +190,39 @@
  "owner": "Administrator",
  "permissions": [
   {
-   "amend": 1,
-   "cancel": 1,
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Mombasa Region Manager",
+   "select": 1,
+   "share": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Nairobi Region Manager",
+   "select": 1,
+   "share": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Western Region Manager",
+   "select": 1,
+   "share": 1
+  },
+  {
    "create": 1,
    "delete": 1,
    "email": 1,
@@ -201,14 +230,13 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Fulfillment User",
+   "role": "Warehouse Manager",
+   "select": 1,
    "share": 1,
    "submit": 1,
    "write": 1
   },
   {
-   "amend": 1,
-   "cancel": 1,
    "create": 1,
    "delete": 1,
    "email": 1,
@@ -216,9 +244,40 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Stock User",
+   "role": "Fleet Manager",
+   "select": 1,
+   "share": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "permlevel": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Fleet Manager",
+   "share": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "permlevel": 2,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Fleet Manager",
    "share": 1,
-   "submit": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "permlevel": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Warehouse Manager",
+   "share": 1,
    "write": 1
   }
  ],

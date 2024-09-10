@@ -128,7 +128,13 @@ doctype_js = {
 doc_events = {
 	"Payment Entry": {
 		"before_insert": "upande_vf_custom.custom_scripts.server_scripts.payment_entry.before_insert",
-		"before_save": "upande_vf_custom.custom_scripts.server_scripts.payment_entry.before_save",
+		"before_save": "upande_vf_custom.custom_scripts.server_scripts.payment_entry.before_save"
+	},
+ 	"Sales Order": {
+		"on_submit": "upande_vf_custom.custom_scripts.server_scripts.sales_order.on_submit"
+	},
+ 	"Delivery Note": {
+		"on_submit": "upande_vf_custom.custom_scripts.server_scripts.delivery_note.on_submit"
 	}
 }
 

@@ -134,6 +134,8 @@ override_doctype_class = {
 # Hook on document methods and events
 doc_events = {
     "Asset Movement": {
+
+        "after_save": "upande_vf_custom.custom_asset_scripts.asset_movement.after_save",
         "before_submit": "upande_vf_custom.custom_asset_scripts.asset_movement.before_submit"
     }
 }

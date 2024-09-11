@@ -182,46 +182,13 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2024-09-10 19:53:46.258880",
+ "modified": "2024-09-11 09:38:47.889279",
  "modified_by": "Administrator",
  "module": "Upande Vf Custom",
  "name": "Driver Consignment Note",
  "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
-  {
-   "create": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "Mombasa Region Manager",
-   "select": 1,
-   "share": 1
-  },
-  {
-   "create": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "Nairobi Region Manager",
-   "select": 1,
-   "share": 1
-  },
-  {
-   "create": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "Western Region Manager",
-   "select": 1,
-   "share": 1
-  },
   {
    "create": 1,
    "delete": 1,
@@ -237,6 +204,27 @@
    "write": 1
   },
   {
+   "email": 1,
+   "export": 1,
+   "permlevel": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Warehouse Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "permlevel": 2,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Warehouse Manager",
+   "share": 1
+  },
+  {
    "create": 1,
    "delete": 1,
    "email": 1,
@@ -246,7 +234,8 @@
    "report": 1,
    "role": "Fleet Manager",
    "select": 1,
-   "share": 1
+   "share": 1,
+   "write": 1
   },
   {
    "email": 1,
@@ -272,11 +261,22 @@
   {
    "email": 1,
    "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Regional Supervisor",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
    "permlevel": 1,
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Warehouse Manager",
+   "role": "Regional Supervisor",
    "share": 1,
    "write": 1
   }

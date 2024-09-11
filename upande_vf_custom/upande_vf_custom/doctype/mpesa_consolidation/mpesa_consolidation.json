@@ -62,13 +62,13 @@
    "fieldname": "items",
    "fieldtype": "Table",
    "label": "Items",
-   "options": "Mpesa To Bank Sweep Item",
+   "options": "Mpesa Consolidation Item",
    "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-09-08 23:23:35.523456",
+ "modified": "2024-09-09 19:11:54.222506",
  "modified_by": "Administrator",
  "module": "Upande Vf Custom",
  "name": "Mpesa Consolidation",

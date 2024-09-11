@@ -1,0 +1,36 @@
+{
+ "add_total_row": 0,
+ "columns": [],
+ "creation": "2024-09-10 12:34:03.222950",
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "json": "{\"filters\":[],\"fields\":[[\"name\",\"Bank Bulk Upload\"],[\"docstatus\",\"Bank Bulk Upload\"],[\"payment_reference\",\"Bank Bulk Upload Item\"],[\"beneficiary_name\",\"Bank Bulk Upload Item\"],[\"account_number\",\"Bank Bulk Upload Item\"],[\"bank_code\",\"Bank Bulk Upload Item\"],[\"branch_code\",\"Bank Bulk Upload Item\"],[\"amount\",\"Bank Bulk Upload Item\"]],\"order_by\":\"`tabBank Bulk Upload`.`modified` desc\",\"add_totals_row\":true,\"page_length\":20,\"column_widths\":{\"name\":120,\"docstatus\":120,\"Bank Bulk Upload Item:payment_reference\":120,\"Bank Bulk Upload Item:beneficiary_name\":120,\"Bank Bulk Upload Item:account_number\":120,\"Bank Bulk Upload Item:bank_code\":203,\"Bank Bulk Upload Item:branch_code\":148,\"Bank Bulk Upload Item:amount\":120},\"group_by\":null}",
+ "letter_head": "Standard",
+ "letterhead": null,
+ "modified": "2024-09-10 12:34:24.736512",
+ "modified_by": "Administrator",
+ "module": "Upande Vf Custom",
+ "name": "Bank Bulk Upload",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "query": "SELECT\n  `tabBank Bulk Upload Item`.payment_reference AS \"Payment Reference:200\",\n  `tabBank Bulk Upload Item`.beneficiary_name AS \"Beneficiary Name:200\",\n  `tabBank Bulk Upload Item`.account_number AS \"Account Number:120\",\n  `tabBank Bulk Upload Item`.bank_code AS \"Bank Code:120\",\n  `tabBank Bulk Upload Item`.branch_code AS \"Branch Code:120\",\n  `tabBank Bulk Upload Item`.amount AS \"Amount:120\"\nFROM\n  `tabBank Bulk Upload Item`\nWHERE\n    `tabBank Bulk Upload Item`.parent = \"k97k7169ru\";\n",
+ "ref_doctype": "Bank Bulk Upload",
+ "report_name": "Bank Bulk Upload",
+ "report_script": "",
+ "report_type": "Script Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Accounts User"
+  },
+  {
+   "role": "Accounts Manager"
+  }
+ ]
+}

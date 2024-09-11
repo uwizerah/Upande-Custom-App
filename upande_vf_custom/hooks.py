@@ -30,7 +30,10 @@ app_license = "mit"
 # webform_include_css = {"doctype": "public/css/doctype.css"}
 
 # include js in page
-# page_js = {"page" : "public/js/file.js"}
+doctype_js = {
+	"Payment Entry" : "custom_scripts/client_scripts/payment_entry.js",
+}
+
 
 # include js in doctype views
 # doctype_js = {"doctype" : "public/js/doctype.js"}
@@ -127,13 +130,18 @@ override_doctype_class = {
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-#	"*": {
-#		"on_update": "method",
-#		"on_cancel": "method",
-#		"on_trash": "method"
-#	}
-# }
+doc_events = {
+	"Payment Entry": {
+		"before_insert": "upande_vf_custom.custom_scripts.server_scripts.payment_entry.before_insert",
+		"before_save": "upande_vf_custom.custom_scripts.server_scripts.payment_entry.before_save"
+	},
+ 	"Sales Order": {
+		"on_submit": "upande_vf_custom.custom_scripts.server_scripts.sales_order.on_submit"
+	},
+ 	"Delivery Note": {
+		"on_submit": "upande_vf_custom.custom_scripts.server_scripts.delivery_note.on_submit"
+	}
+}
 
 # Scheduled Tasks
 # ---------------

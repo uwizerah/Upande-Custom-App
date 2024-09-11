@@ -31,9 +31,16 @@ app_license = "mit"
 
 # include js in page
 # page_js = {"page" : "public/js/file.js"}
+page_js = {
+    "page": "public/js/file.js"
+}
+
+
 doctype_js = {
     "Asset" : "custom_asset_scripts/asset.js",
     "Project" : "custom_asset_scripts/project.js",
+    "Payment Entry": "custom_scripts/client_scripts/payment_entry.js",
+
 
 }
 

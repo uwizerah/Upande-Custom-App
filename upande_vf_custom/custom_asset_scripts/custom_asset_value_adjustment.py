@@ -14,7 +14,7 @@ from erpnext.assets.doctype.asset.asset import get_asset_value_after_depreciatio
 from erpnext.assets.doctype.asset.depreciation import get_depreciation_accounts
 
 
-class AssetValueAdjustment(Document):
+class CustomAssetValueAdjustment(Document):
     def validate(self):
         self.validate_date()
         self.set_current_asset_value()
@@ -122,12 +122,11 @@ class AssetValueAdjustment(Document):
 
         self.db_set("journal_entry", je.name)
 
-
     def update_asset(self, asset_value):
         asset = frappe.get_doc("Asset", self.asset)
 
         asset.flags.decrease_in_asset_value_due_to_value_adjustment = True
 
-        asset.prepare_depreciation_data(value_after_depreciation=asset_value, ignore_booked_entry=True)
+        # asset.prepare_depreciation_data(value_after_depreciation=asset_value, ignore_booked_entry=True)
         asset.flags.ignore_validate_update_after_submit = True
         asset.save()

@@ -30,8 +30,16 @@ app_license = "mit"
 # webform_include_css = {"doctype": "public/css/doctype.css"}
 
 # include js in page
+
+# include js in page
+page_js = {
+    "page": "public/js/file.js"
+}
+
 doctype_js = {
-	"Payment Entry" : "custom_scripts/client_scripts/payment_entry.js",
+    "Asset": "custom_asset_scripts/asset.js",
+    "Project": "custom_asset_scripts/project.js",
+    "Payment Entry": "custom_scripts/client_scripts/payment_entry.js",
 }
 
 

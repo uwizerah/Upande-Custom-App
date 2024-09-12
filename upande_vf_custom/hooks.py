@@ -30,8 +30,16 @@ app_license = "mit"
 # webform_include_css = {"doctype": "public/css/doctype.css"}
 
 # include js in page
+
+# include js in page
+page_js = {
+    "page": "public/js/file.js"
+}
+
 doctype_js = {
-	"Payment Entry" : "custom_scripts/client_scripts/payment_entry.js",
+    "Asset": "custom_asset_scripts/asset.js",
+    "Project": "custom_asset_scripts/project.js",
+    "Payment Entry": "custom_scripts/client_scripts/payment_entry.js",
 }
 
 
@@ -131,6 +139,13 @@ override_doctype_class = {
 # Hook on document methods and events
 
 doc_events = {
+
+    "Asset Movement": {
+
+        "after_save": "upande_vf_custom.custom_asset_scripts.asset_movement.after_save",
+        "before_submit": "upande_vf_custom.custom_asset_scripts.asset_movement.before_submit"
+    },
+
 	"Payment Entry": {
 		"before_insert": "upande_vf_custom.custom_scripts.server_scripts.payment_entry.before_insert",
 		"before_save": "upande_vf_custom.custom_scripts.server_scripts.payment_entry.before_save"

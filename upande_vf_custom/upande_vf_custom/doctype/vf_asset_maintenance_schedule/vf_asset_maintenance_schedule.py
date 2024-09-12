@@ -18,7 +18,7 @@ class VFAssetMaintenanceSchedule(Document):
             self.save()
 
     @frappe.whitelist()
-    def asset_maintenance_tasks(self):
+    def create_asset_maintenance_task_record(self):
         if frappe.form_dict.message:
             data = json.loads(frappe.form_dict.message)
             doc = self

@@ -131,7 +131,8 @@ doctype_js = {
 # Override standard doctype classes
 
 override_doctype_class = {
-	"Asset Value Adjustment": "upande_vf_custom.custom_asset_value_adjustment.custom_asset_value_adjustment.CustomAssetValueAdjustment"
+		"Asset Value Adjustment": "upande_vf_custom.custom_asset_scripts.custom_asset_value_adjustment.CustomAssetValueAdjustment"
+
 }
 
 # Document Events

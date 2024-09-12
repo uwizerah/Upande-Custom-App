@@ -23,7 +23,7 @@ frappe.ui.form.on('VF Asset Maintenance Schedule', {
                 // const unique_id = `${frm.doc.asset_name}-${frm.doc.asset_maintenance_schedule_name}`;
                 
                 frappe.call({
-                    method: "asset_maintenance_tasks",
+                    method: "create_asset_maintenance_task_record",
                     doc: frm.doc,
                     args: {
                         message: {

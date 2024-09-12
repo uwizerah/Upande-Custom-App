@@ -55,6 +55,13 @@ class AssetScrapping(Document):
             
             je.insert()
             je.submit()
+
+             # Commit the transaction to ensure changes are saved
+            frappe.db.commit()
+            
+            # Refresh the Asset and Asset Scrapping records
+            asset = frappe.get_doc("Asset", self.asset)
+            self.reload()
             
             # Update Asset and Asset Scrapping records
             frappe.db.set_value("Asset", asset.name, "journal_entry_for_scrap", je.name)

@@ -7,6 +7,157 @@ from frappe.model.document import Document
 
 
 class DriverConsignmentNote(Document):
+    # def before_save(self):
+    #     items_dict = {}
+    #     if self.items:
+    #         for item in self.items:
+    #             if not item.get("item_code") in items_dict.keys():
+    #                 items_dict[item.get("item_code")] = {}
+                
+    #             items_dict[item.get("item_code")] = {
+    #                 "item_code": item.get("item_code"),
+    #                 "qty": item.get("qty"),
+    #                 "uom": item.get("uom")
+    #             }
+       
+    #     self.convert_to_crates(items_dict)
+    
+    # def convert_to_crates(self, items_dict):
+    #     for key, value in items_dict.items():
+    #         conv_factor = frappe.db.get_value("UOM Conversion Factor", {"category": "Mass","from_uom": value.get("uom"), "to_uom":"Crate"}, "value")
+    #         value["crates_qty"] = value["qty"]*conv_factor
+       
+    #         value["full_crate_qty"] = value["crates_qty"]//1
+    #         value["half_crate_qty"] = value["crates_qty"]%1
+
+    #     # List to store the new entries
+    #     crate_list = []
+
+    #     # Initialize a global crate number
+    #     global_crate_number = 1
+
+    #     # Loop through each item in the dictionary
+    #     for item_name, details in items_dict.items():
+    #         total_qty = details['qty']
+    #         full_crates = int(total_qty // 25)  # Calculate full crates (25 kgs per crate)
+    #         remaining_qty = total_qty % 25  # Calculate remaining quantity for half crate
+
+    #         # Create entries for each full crate
+    #         for i in range(full_crates):
+    #             crate_entry = {
+    #                 'item_code': details['item_code'],
+    #                 'crate_number': global_crate_number,
+    #                 'uom': details['uom'],
+    #                 'qty': 25,  # Each full crate holds 25 kgs
+    #                 'crate_type': 'Full Crate'
+    #             }
+    #             crate_list.append(crate_entry)
+    #             global_crate_number += 1  # Increment the global crate number
+
+    #         # If there is remaining quantity (half crate), add that as well
+    #         if remaining_qty > 0:
+    #             crate_entry = {
+    #                 'item_code': details['item_code'],
+    #                 'crate_number': global_crate_number,
+    #                 'uom': details['uom'],
+    #                 'qty': remaining_qty,  # Remaining quantity for half crate
+    #                 'crate_type': 'Half Crate'
+    #             }
+    #             crate_list.append(crate_entry)
+    #             global_crate_number += 1  # Increment the global crate number
+
+    #     self.append_crates(crate_list)
+            
+    # def append_crates(self, crate_list):
+    #     for crate in crate_list:
+    #         self.append("crates",{
+    #             'item_code': crate['item_code'],
+    #             'crate_number': crate["crate_number"],
+    #             'uom': crate['uom'],
+    #             'qty': crate["qty"],  # Remaining quantity for half crate
+    #             # 'crate_type': 'Half Crate'
+    #         })
+    def before_save(self):
+        if not len(self.crates):
+            items_dict = {}
+            if self.items:
+                for item in self.items:
+                    if not item.get("item_code") in items_dict.keys():
+                        items_dict[item.get("item_code")] = {}
+                    
+                    items_dict[item.get("item_code")] = {
+                        "item_code": item.get("item_code"),
+                        "qty": item.get("qty"),
+                        "uom": item.get("uom")
+                    }
+        
+            self.convert_to_crates(items_dict)
+
+    def convert_to_crates(self, items_dict):
+        for key, value in items_dict.items():
+            conv_factor = frappe.db.get_value("UOM Conversion Factor", {"category": "Mass", "from_uom": value.get("uom"), "to_uom": "Crate"}, "value")
+            value["crates_qty"] = value["qty"] * conv_factor
+    
+            value["full_crate_qty"] = value["crates_qty"] // 1
+            value["half_crate_qty"] = value["crates_qty"] % 1
+
+        # List to store the new entries
+        crate_list = []
+
+        # Initialize a global crate number
+        global_crate_number = 1
+
+        # Loop through each item in the dictionary
+        for item_name, details in items_dict.items():
+            total_qty = details['qty']
+            full_crates = int(total_qty // 25)  # Calculate full crates (25 kgs per crate)
+            remaining_qty = total_qty % 25  # Calculate remaining quantity for half crate
+
+            # Create entries for each full crate
+            for i in range(full_crates):
+                crate_entry = {
+                    'item_code': details['item_code'],
+                    'crate_number': global_crate_number,
+                    'uom': details['uom'],
+                    'qty': 25,  # Each full crate holds 25 kgs
+                    'crate_type': 'Full Crate'
+                }
+                crate_list.append(crate_entry)
+                global_crate_number += 1  # Increment the global crate number
+
+            # If there is remaining quantity (half crate), add that as well
+            if remaining_qty > 0:
+                crate_entry = {
+                    'item_code': details['item_code'],
+                    'crate_number': global_crate_number,
+                    'uom': details['uom'],
+                    'qty': remaining_qty,  # Remaining quantity for half crate
+                    'crate_type': 'Half Crate'
+                }
+                crate_list.append(crate_entry)
+                global_crate_number += 1  # Increment the global crate number
+
+        self.append_crates(crate_list)
+        
+    def append_crates(self, crate_list):
+        for crate in crate_list:
+            # Check if the crate already exists
+            existing_crate = next((c for c in self.crates if c.item_code == crate['item_code'] and c.crate_number == crate['crate_number']), None)
+
+            if existing_crate:
+                # If the crate exists, update the quantity
+                existing_crate.qty = crate['qty']
+            else:
+                # If the crate does not exist, create a new entry
+                self.append("crates", {
+                    'item_code': crate['item_code'],
+                    'crate_number': crate['crate_number'],
+                    'uom': crate['uom'],
+                    'qty': crate['qty'],
+                    # 'crate_type': crate['crate_type']
+                })
+
+                    
     def on_submit(self):
         if self.from_warehouse and self.sales_order_number:
             new_stck_entry = frappe.new_doc("Stock Entry")

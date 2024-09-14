@@ -83,16 +83,6 @@
    "read_only": 1
   },
   {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Driver Consignment Note",
-   "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
-  },
-  {
    "fieldname": "section_break_3",
    "fieldtype": "Section Break",
    "label": "Delivery Details"
@@ -164,25 +154,24 @@
    "permlevel": 1
   },
   {
+   "fieldname": "cost_center",
+   "fieldtype": "Link",
+   "label": "Cost Center",
+   "options": "Cost Center"
+  },
+  {
    "fieldname": "amended_from",
    "fieldtype": "Link",
    "label": "Amended From",
    "no_copy": 1,
    "options": "Driver Consignment Note",
    "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
-  },
-  {
-   "fieldname": "cost_center",
-   "fieldtype": "Link",
-   "label": "Cost Center",
-   "options": "Cost Center"
+   "read_only": 1
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2024-09-11 09:46:41.009214",
+ "modified": "2024-09-14 10:21:30.786620",
  "modified_by": "Administrator",
  "module": "Upande Vf Custom",
  "name": "Driver Consignment Note",
@@ -259,6 +248,7 @@
    "write": 1
   },
   {
+   "create": 1,
    "email": 1,
    "export": 1,
    "print": 1,

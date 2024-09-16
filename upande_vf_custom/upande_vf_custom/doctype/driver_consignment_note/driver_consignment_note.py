@@ -79,19 +79,28 @@ class DriverConsignmentNote(Document):
     #         })
     def before_save(self):
         if not len(self.crates):
-            items_dict = {}
-            if self.items:
-                for item in self.items:
-                    if not item.get("item_code") in items_dict.keys():
-                        items_dict[item.get("item_code")] = {}
-                    
-                    items_dict[item.get("item_code")] = {
-                        "item_code": item.get("item_code"),
-                        "qty": item.get("qty"),
-                        "uom": item.get("uom")
-                    }
+            self.adjust_crates()
+    
+    @frappe.whitelist()     
+    def updated_child_table(self):
+        self.adjust_crates()
         
-            self.convert_to_crates(items_dict)
+        frappe.response['message'] = "Table Adjusted1" 
+    
+    def adjust_crates(self):
+        items_dict = {}
+        if self.items:
+            for item in self.items:
+                if not item.get("item_code") in items_dict.keys():
+                    items_dict[item.get("item_code")] = {}
+                
+                items_dict[item.get("item_code")] = {
+                    "item_code": item.get("item_code"),
+                    "qty": item.get("qty"),
+                    "uom": item.get("uom")
+                }
+    
+        self.convert_to_crates(items_dict)
 
     def convert_to_crates(self, items_dict):
         for key, value in items_dict.items():

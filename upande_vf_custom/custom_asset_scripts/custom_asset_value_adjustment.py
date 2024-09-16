@@ -50,14 +50,14 @@ class CustomAssetValueAdjustment(Document):
         # Fetch fixed asset account and revaluation account from the Asset Category's child table "Asset Category Account"
         accounts = frappe.get_all(
             "Asset Category Account",
-            filters={"parent": asset.asset_category},  # parent links to Asset Category
+            filters={"parent": asset.asset_category}, 
             fields=["fixed_asset_account", "custom_revaluation_account"]
         )
         
         if not accounts:
             frappe.throw(_("No accounts found for Asset Category {0}.").format(asset.asset_category))
         
-        # Assume the first entry in the child table is the relevant one (adjust as per your needs)
+        
         fixed_asset_account = accounts[0].get("fixed_asset_account")
         revaluation_account = accounts[0].get("custom_revaluation_account")
 

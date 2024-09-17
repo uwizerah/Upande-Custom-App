@@ -21,7 +21,7 @@ class AssetScrapping(Document):
             # Fixed Asset Account
             fixed_asset_account = frappe.db.get_value("Asset Category Account", {"parent": asset.asset_category}, "fixed_asset_account")
             
-            gain_loss_account = "Gain/Loss on Asset Disposal - VF"
+            gain_loss_account = "110002 - Profit/Loss On Sale Of Assets - VFL"
             
             # Calculate accumulated depreciation
             accumulated_depreciation = 0

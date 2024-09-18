@@ -22,11 +22,13 @@
   "driver_name",
   "column_break_4",
   "vehicle",
+  "delivered",
   "warehouses_section",
   "from_warehouse",
   "column_break_yrk1v",
   "truck_warehouse",
   "section_break_zpntz",
+  "pack_to_crates",
   "items",
   "break_down",
   "crates",
@@ -180,11 +182,26 @@
    "fieldtype": "Table",
    "label": "Crates",
    "options": "Order Break Down"
+  },
+  {
+   "depends_on": "eval:doc.docstatus==0",
+   "fieldname": "pack_to_crates",
+   "fieldtype": "Button",
+   "label": "Pack To Crates",
+   "permlevel": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "0",
+   "fieldname": "delivered",
+   "fieldtype": "Check",
+   "label": "Delivered",
+   "read_only": 1
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2024-09-14 15:47:21.810628",
+ "modified": "2024-09-18 23:10:10.786527",
  "modified_by": "Administrator",
  "module": "Upande Vf Custom",
  "name": "Driver Consignment Note",

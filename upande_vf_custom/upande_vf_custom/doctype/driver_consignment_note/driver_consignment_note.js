@@ -21,15 +21,7 @@ frappe.ui.form.on('Driver Consignment Note', {
             }, __("Create"));
 	    }
     },
-    items(frm){
-        console.log("items")
-    }
-})
-
-frappe.ui.form.on('Consignment Note Item', {
-    qty(frm, cdt, cdn) { // "links" is the name of the table field in ToDo, "_add" is the event
-        let row = frappe.get_doc(cdt, cdn);
-        
+    pack_to_crates(frm){
         frappe.call({
             method: 'updated_child_table',
             doc: frm.doc,
@@ -38,24 +30,8 @@ frappe.ui.form.on('Consignment Note Item', {
             callback: (r) => {
                 let response = r.message
                 console.log(response)
-                
+                refresh_field("crates")
             }
         })
-        
-
-    }
-})
-
-frappe.ui.form.on('Order Break Down', {
-    crates_delete(frm, cdt, cdn) { // "links" is the name of the table field in ToDo, "_add" is the event
-        let row = frappe.get_doc(cdt, cdn);
-        
-        // if (frm.doc.default_account_paid_to) {
-        //     frappe.model.set_value(cdt, cdn, 'account_paid_to', frm.doc.default_account_paid_to);
-        // }
-        
-        // set_mode_of_payment(frm, cdt, cdn, row.account_paid_from, frm.doc.company);
-
-        console.log('A row has been deleted to the links table 🎉');
     }
 })

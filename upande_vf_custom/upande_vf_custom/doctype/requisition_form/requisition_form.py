@@ -300,7 +300,7 @@ def update_completed_and_requested_qty(stock_entry, method):
 
 		for d in stock_entry.get("items"):
 			if d.material_request:
-				material_request_map.setdefault(d.material_request, []).append(d.material_request_item)
+				material_request_map.setdefault(d.material_request, []).append(d.requisition_form_item)
 
 		for mr, mr_item_rows in material_request_map.items():
 			if mr and mr_item_rows:

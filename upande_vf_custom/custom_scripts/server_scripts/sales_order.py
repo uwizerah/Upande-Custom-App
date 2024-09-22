@@ -1,5 +1,9 @@
 import frappe
 
+def before_save(doc, method):
+    if not doc.customer_address:
+        frappe.msgprint("Customer address is missing, provide it to System Admin to enable smooth delivery.")
+    
 def on_submit(doc, method):
     create_consignment_note(doc)
 
@@ -9,6 +13,7 @@ def create_consignment_note(doc):
         new_stck_entry.company = doc.company
         new_stck_entry.customer = doc.customer
         new_stck_entry.customer_name = doc.customer_name
+        new_stck_entry.customer_address = doc.customer_address
         new_stck_entry.from_warehouse = doc.set_warehouse
         new_stck_entry.cost_center = doc.cost_center
         new_stck_entry.delivery_date = doc.delivery_date

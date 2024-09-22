@@ -1,0 +1,32 @@
+{
+ "attach_print": 1,
+ "channel": "Email",
+ "condition": "doc.status == \"Unpaid\" or doc.status == \"Partly Paid\" or doc.status == \"Overdue\"",
+ "creation": "2024-09-21 13:05:27.917571",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Sales Invoice",
+ "enabled": 1,
+ "event": "Submit",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<h5>Hi {{doc.customer_name}},</h5>\n<p>Please find attached the sales invoice {{doc.name}}</p>\n<p>If you have any questions, please let us know.</p>\n<p><span>Thanks</span><br><br><span>Victory Farms</span></p>",
+ "modified": "2024-09-21 13:15:44.607622",
+ "modified_by": "Administrator",
+ "module": "Upande Vf Custom",
+ "name": "Sales Invoice - VF",
+ "owner": "Administrator",
+ "print_format": "Sales Invoice VF",
+ "recipients": [
+  {
+   "receiver_by_document_field": "contact_email"
+  },
+  {
+   "receiver_by_document_field": "owner"
+  }
+ ],
+ "send_system_notification": 0,
+ "send_to_all_assignees": 0,
+ "subject": "{{ doc.name }}"
+}

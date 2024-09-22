@@ -1,12 +1,9 @@
 frappe.ui.form.on('Payment Entry', {
     onload(frm){
         if(frm.doc.status=='Submitted'){
-            // frm.add_custom_button('Refresh', () => frm.refresh(), 'octicon octicon-sync', 'btn-secondary');
             frm.add_custom_button(__('Send Remittance Advice'), function(){
                 
-                    console.log("Doing")
-                    frappe.db.set_value("Payment Entry", frm.doc.name, 'custom_company_abbr', 'VFu')
-                    console.log("Done")   
+                    frappe.db.set_value("Payment Entry", frm.doc.name, 'custom_remittance_sent', 1)
                 
                 
             }, __("Actions"));

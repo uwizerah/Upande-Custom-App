@@ -1,0 +1,30 @@
+{
+ "attach_print": 1,
+ "channel": "Email",
+ "condition": "doc.status == \"Unpaid\" or doc.status == \"Partly Paid\" or doc.status == \"Overdue\"",
+ "creation": "2024-08-27 23:18:18.062211",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Sales Invoice",
+ "enabled": 1,
+ "event": "Submit",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<p>Transaction {{ doc.name }} has been created. Please take necessary action.</p>\n\n<p>You can view the record <a href=\"{{ frappe.utils.get_url_to_form(doc.doctype, doc.name) }}\">here</a>.</p>",
+ "modified": "2024-09-21 13:20:14.420265",
+ "modified_by": "Administrator",
+ "module": "Upande Vf Custom",
+ "name": "Sales Invoice Internal - VF",
+ "owner": "kariuki@upande.com",
+ "print_format": "Sales Invoice VF",
+ "recipients": [
+  {
+   "receiver_by_document_field": "",
+   "receiver_by_role": "Accounts User"
+  }
+ ],
+ "send_system_notification": 0,
+ "send_to_all_assignees": 0,
+ "subject": "Credit Invoice {{ doc.name }} Has Been Created."
+}

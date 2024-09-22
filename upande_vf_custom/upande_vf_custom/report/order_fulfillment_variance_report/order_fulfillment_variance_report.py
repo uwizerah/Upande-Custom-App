@@ -63,12 +63,15 @@ def get_data(conditions, filters):
 			soi.delivery_date as delivery_date,
 			so.name as sales_order,
 			so.status, so.customer, soi.item_code,
+			so.customer_name as cust_name,
 			DATEDIFF(CURRENT_DATE, soi.delivery_date) as delay_days,
 			IF(so.status in ('Completed','To Bill'), 0, (SELECT delay_days)) as delay,
 			soi.qty, soi.delivered_qty,
-			(soi.qty - cni.qty) AS missed_qty,
+			soi.uom as uom,
+			(cni.qty) AS missed_qty,
 			(cni.qty - dni.qty) AS lost_qty,
 			IFNULL(SUM(sii.qty), 0) as billed_qty,
+   			(soi.qty - dni.qty) as missing_qty,
 			soi.base_amount as amount,
 			(soi.delivered_qty * soi.base_rate) as delivered_qty_amount,
 			(soi.billed_amt * IFNULL(so.conversion_rate, 1)) as billed_amount,
@@ -205,7 +208,7 @@ def prepare_data(data, so_elapsed_time, filters):
 
 
 def prepare_chart_data(delivered, missed, lost):
-	labels = ["Delivered Qty", "Missed Qty", "Lost Qty"]
+	labels = ["Delivered Qty", "Unassigned Qty", "Delivery Variance"]
 
 	return {
 		"data": {"labels": labels, "datasets": [{"values": [delivered, missed, lost]}]},
@@ -222,6 +225,12 @@ def get_columns(filters):
 			"fieldname": "sales_order",
 			"fieldtype": "Link",
 			"options": "Sales Order",
+			"width": 120,
+		},
+		{
+			"label": _("Customer Name"),
+			"fieldname": "cust_name",
+			"fieldtype": "Data",
 			"width": 180,
 		}
 	]
@@ -239,9 +248,23 @@ def get_columns(filters):
 
 	columns.extend(
 		[
+   			{
+				"label": _("UOM"),
+				"fieldname": "uom",
+				"fieldtype": "Link",
+				"options": "UOM",
+				"width": 80
+			},
 			{
-				"label": _("Qty"),
+				"label": _("Ordered Qty"),
 				"fieldname": "qty",
+				"fieldtype": "Float",
+				"width": 120,
+				"convertible": "qty",
+			},
+			{
+				"label": _("Packed Qty"),
+				"fieldname": "missed_qty",
 				"fieldtype": "Float",
 				"width": 120,
 				"convertible": "qty",
@@ -253,18 +276,18 @@ def get_columns(filters):
 				"width": 120,
 				"convertible": "qty",
 			},
-   			{
-				"label": _("Missed Opportunity"),
-				"fieldname": "missed_qty",
+			{
+				"label": _("Delivery VAR"),
+				"fieldname": "lost_qty",
 				"fieldtype": "Float",
-				"width": 160,
+				"width": 120,
 				"convertible": "qty",
 			},
 			{
-				"label": _("Loss During Delivery"),
-				"fieldname": "lost_qty",
+				"label": _("Qty Outstanding"),
+				"fieldname": "missing_qty",
 				"fieldtype": "Float",
-				"width": 180,
+				"width": 120,
 				"convertible": "qty",
 			}
 		]

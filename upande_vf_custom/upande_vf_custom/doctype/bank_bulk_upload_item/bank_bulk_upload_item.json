@@ -8,6 +8,7 @@
  "engine": "InnoDB",
  "field_order": [
   "payment_reference",
+  "reference",
   "supplier_invoice",
   "beneficiary_name",
   "account_number",
@@ -21,7 +22,7 @@
    "fieldname": "payment_reference",
    "fieldtype": "Link",
    "in_standard_filter": 1,
-   "label": "Payment Reference",
+   "label": "Reference",
    "options": "Payment Entry",
    "read_only": 1
   },
@@ -85,12 +86,19 @@
    "in_standard_filter": 1,
    "label": "Amount",
    "read_only": 1
+  },
+  {
+   "fetch_from": "payment_reference.reference_no",
+   "fetch_if_empty": 1,
+   "fieldname": "reference",
+   "fieldtype": "Data",
+   "label": "Payment Reference"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-09-08 23:23:37.506549",
+ "modified": "2024-09-21 12:30:01.745282",
  "modified_by": "Administrator",
  "module": "Upande Vf Custom",
  "name": "Bank Bulk Upload Item",

@@ -3,8 +3,8 @@
 
 
 frappe.provide("erpnext.accounts.dimensions");
-erpnext.buying.setup_buying_controller();
-// {% include 'erpnext/public/js/controllers/buying.js' %};
+// erpnext.buying.setup_buying_controller();
+{% include 'erpnext/public/js/controllers/buying.js' %};
 
 frappe.ui.form.on('Requisition Form', {
 	setup: function(frm) {

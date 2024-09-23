@@ -1,0 +1,32 @@
+{
+ "attach_print": 1,
+ "channel": "Email",
+ "creation": "2024-09-21 12:57:33.985869",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Payment Entry",
+ "enabled": 1,
+ "event": "Value Change",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<h5>Hi {{doc.party_name}},</h5>\n\n<p>Here's your remittance advice for payment of KES {{doc.paid_amount}}</p>  \n\n<p>If you have any questions, please let us know.</p>\n\n<p><span>Thanks</span><br><b><span>Victory Farms</span></p>",
+ "modified": "2024-09-21 13:22:59.779024",
+ "modified_by": "Administrator",
+ "module": "Upande Vf Custom",
+ "name": "Payment Remittance VF",
+ "owner": "Administrator",
+ "print_format": "Bank Remittance VF",
+ "recipients": [
+  {
+   "receiver_by_document_field": "contact_email"
+  },
+  {
+   "receiver_by_document_field": "owner"
+  }
+ ],
+ "send_system_notification": 0,
+ "send_to_all_assignees": 0,
+ "subject": "REMITTANCE ADVICE",
+ "value_changed": "custom_remittance_sent"
+}

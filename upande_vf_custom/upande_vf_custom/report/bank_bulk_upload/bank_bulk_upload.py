@@ -14,7 +14,7 @@ def get_data(filters):
     parent = filters.get("parent")
     query = """
             SELECT
-                payment_reference,
+                reference,
                 beneficiary_name,
                 bank_account,
                 account_number,
@@ -34,7 +34,7 @@ def get_data(filters):
 
 def get_columns(filters=None):
     columns = [
-        {"label": "Payment Reference", "fieldname": "payment_reference", "fieldtype": "Data", "width": 150},
+        {"label": "Payment Reference", "fieldname": "reference", "fieldtype": "Data", "width": 150},
         {"label": "Beneficiary Name", "fieldname": "beneficiary_name", "fieldtype": "Data", "width": 200},
         {"label": "Bank Name", "fieldname": "bank_account", "fieldtype": "Data", "width": 180},
         {"label": "Account Number", "fieldname": "account_number", "fieldtype": "Data", "width": 80},

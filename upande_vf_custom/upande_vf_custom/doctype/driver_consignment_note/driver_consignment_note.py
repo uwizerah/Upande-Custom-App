@@ -7,15 +7,47 @@ from frappe.model.document import Document
 
 
 class DriverConsignmentNote(Document):
+    # def before_save(self):
+    #     self.validate_crates()
+    
+    def validate_crates(self):
+        items = self.get_items()
+        crates = self.get_crates()
+        
+        for i, q in items.items():
+            for c, cq in crates.items():
+                if i == c:
+                    if not q == cq:
+                        frappe.throw("Quantity {} for {} does not match quantity of {} in crates!".format(q,i,cq))
+        
+        
+    def get_items(self):
+        items = {}
+        if self.items:
+            for item in self.items:
+                if not item.get("item_code") in items.keys():
+                    items[item.get("item_code")] = 0
+                items[item.get("item_code")] += item.get("qty")
+                
+        return items
+           
+    def get_crates(self):
+        crates = {}
+        if self.crates:
+            for item in self.crates:
+                if not item.get("item_code") in crates.keys():
+                    crates[item.get("item_code")] = 0
+                crates[item.get("item_code")] += item.get("qty")
+                
+        return crates
+         
     @frappe.whitelist()     
     def updated_child_table(self):
         self.crates = []
         self.save()
         
         self.adjust_crates()
-        
-        frappe.response['message'] = "Table Adjusted1" 
-    
+            
     def adjust_crates(self):
         items_dict = {}
         if self.items:
@@ -100,6 +132,8 @@ class DriverConsignmentNote(Document):
     def on_submit(self):
         if not self.crates:
             frappe.throw("Crates table is mandatory!")
+            
+        self.validate_crates()
             
         if self.from_warehouse and self.sales_order_number:
             new_stck_entry = frappe.new_doc("Stock Entry")

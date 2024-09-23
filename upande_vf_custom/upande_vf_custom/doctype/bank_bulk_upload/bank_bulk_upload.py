@@ -20,6 +20,7 @@ class BankBulkUpload(Document):
     @frappe.whitelist()        
     def get_pending_payments(self):
         pymnts_list = []
+        self.items = []
 
         draft_payments = frappe.db.get_all('Payment Entry', filters={
             'status': ['in', ['Draft']],

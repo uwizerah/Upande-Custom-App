@@ -12,6 +12,7 @@
   "company",
   "customer",
   "customer_name",
+  "customer_address",
   "column_break_5f3hx",
   "lc_manager",
   "delivery_date",
@@ -197,11 +198,18 @@
    "fieldtype": "Check",
    "label": "Delivered",
    "read_only": 1
+  },
+  {
+   "fieldname": "customer_address",
+   "fieldtype": "Link",
+   "label": "Customer Address",
+   "options": "Address",
+   "read_only": 1
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2024-09-18 23:10:10.786527",
+ "modified": "2024-09-20 14:48:10.963136",
  "modified_by": "Administrator",
  "module": "Upande Vf Custom",
  "name": "Driver Consignment Note",

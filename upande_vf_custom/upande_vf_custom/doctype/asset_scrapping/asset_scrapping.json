@@ -1,0 +1,111 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2024-09-10 11:50:45.171954",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "asset",
+  "asset_name",
+  "column_break_nfcln",
+  "scrap_date",
+  "journal_entry_for_scrap",
+  "naming_series",
+  "section_break_qk29r",
+  "scrap_reason",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "asset",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Asset",
+   "options": "Asset",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "asset.asset_name",
+   "fetch_if_empty": 1,
+   "fieldname": "asset_name",
+   "fieldtype": "Data",
+   "label": "Asset Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_nfcln",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "scrap_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Scrap Date",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "asset.journal_entry_for_scrap",
+   "fieldname": "journal_entry_for_scrap",
+   "fieldtype": "Link",
+   "label": "Journal Entry for Scrap",
+   "options": "Journal Entry",
+   "read_only": 1
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "SCRP-.YYYY.-"
+  },
+  {
+   "fieldname": "section_break_qk29r",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "scrap_reason",
+   "fieldtype": "Small Text",
+   "label": "Scrap Reason",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Asset Scrapping",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-09-10 14:53:10.068442",
+ "modified_by": "Administrator",
+ "module": "Upande Vf Custom",
+ "name": "Asset Scrapping",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -20,5 +20,18 @@ frappe.ui.form.on('Driver Consignment Note', {
             
             }, __("Create"));
 	    }
+    },
+    pack_to_crates(frm){
+        frappe.call({
+            method: 'updated_child_table',
+            doc: frm.doc,
+            btn: $('.primary-action'),
+            freeze: true,
+            callback: (r) => {
+                let response = r.message
+                console.log(response)
+                refresh_field("crates")
+            }
+        })
     }
 })

@@ -40,6 +40,7 @@ doctype_js = {
     "Asset": "custom_asset_scripts/asset.js",
     "Project": "custom_asset_scripts/project.js",
     "Payment Entry": "custom_scripts/client_scripts/payment_entry.js",
+    "Purchase Invoice": "custom_scripts/client_scripts/purchase_invoice.js",
 }
 
 
@@ -142,7 +143,6 @@ override_doctype_class = {
 doc_events = {
 
     "Asset Movement": {
-
         "after_save": "upande_vf_custom.custom_asset_scripts.asset_movement.after_save",
         "before_submit": "upande_vf_custom.custom_asset_scripts.asset_movement.before_submit"
     },
@@ -152,11 +152,17 @@ doc_events = {
 		"before_save": "upande_vf_custom.custom_scripts.server_scripts.payment_entry.before_save"
 	},
  	"Sales Order": {
-		"on_submit": "upande_vf_custom.custom_scripts.server_scripts.sales_order.on_submit"
+		"on_submit": "upande_vf_custom.custom_scripts.server_scripts.sales_order.on_submit",
+  		"before_save": "upande_vf_custom.custom_scripts.server_scripts.sales_order.before_save"
 	},
  	"Delivery Note": {
-		"on_submit": "upande_vf_custom.custom_scripts.server_scripts.delivery_note.on_submit"
-	}
+		"on_submit": "upande_vf_custom.custom_scripts.server_scripts.delivery_note.on_submit",
+		# "before_save": "upande_vf_custom.custom_scripts.server_scripts.delivery_note.on_save"
+	},
+	# "Purchase Invoice": {
+	# 	"before_save": "upande_vf_custom.custom_scripts.server_scripts.purchase_invoice.before_save"
+	# }
+	
 }
 
 # Scheduled Tasks

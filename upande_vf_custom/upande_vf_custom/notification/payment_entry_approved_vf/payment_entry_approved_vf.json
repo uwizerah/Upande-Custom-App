@@ -1,0 +1,27 @@
+{
+ "attach_print": 0,
+ "channel": "Email",
+ "creation": "2024-09-21 13:02:22.013317",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Payment Entry",
+ "enabled": 1,
+ "event": "Submit",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<p>Transaction {{ doc.name }} has been approved. Please take necessary action.</p>\n\n<p>You can view the record <a href=\"{{ frappe.utils.get_url_to_form(doc.doctype, doc.name) }}\">here</a>.</p>",
+ "modified": "2024-09-21 13:02:30.771757",
+ "modified_by": "Administrator",
+ "module": "Upande Vf Custom",
+ "name": "Payment Entry Approved VF",
+ "owner": "Administrator",
+ "recipients": [
+  {
+   "receiver_by_document_field": "owner"
+  }
+ ],
+ "send_system_notification": 0,
+ "send_to_all_assignees": 0,
+ "subject": "{{ doc.name }} Has been aproved"
+}

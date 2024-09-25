@@ -12,6 +12,7 @@
   "company",
   "customer",
   "customer_name",
+  "customer_address",
   "column_break_5f3hx",
   "lc_manager",
   "delivery_date",
@@ -22,12 +23,16 @@
   "driver_name",
   "column_break_4",
   "vehicle",
+  "delivered",
   "warehouses_section",
   "from_warehouse",
   "column_break_yrk1v",
   "truck_warehouse",
   "section_break_zpntz",
+  "pack_to_crates",
   "items",
+  "break_down",
+  "crates",
   "amended_from"
  ],
  "fields": [
@@ -81,16 +86,6 @@
    "label": "Sales Order Number",
    "options": "Sales Order",
    "read_only": 1
-  },
-  {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Driver Consignment Note",
-   "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
   },
   {
    "fieldname": "section_break_3",
@@ -164,25 +159,57 @@
    "permlevel": 1
   },
   {
+   "fieldname": "cost_center",
+   "fieldtype": "Link",
+   "label": "Cost Center",
+   "options": "Cost Center"
+  },
+  {
    "fieldname": "amended_from",
    "fieldtype": "Link",
    "label": "Amended From",
    "no_copy": 1,
    "options": "Driver Consignment Note",
    "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
+   "read_only": 1
   },
   {
-   "fieldname": "cost_center",
+   "fieldname": "break_down",
+   "fieldtype": "Section Break",
+   "label": "Break Down"
+  },
+  {
+   "fieldname": "crates",
+   "fieldtype": "Table",
+   "label": "Crates",
+   "options": "Order Break Down"
+  },
+  {
+   "depends_on": "eval:doc.docstatus==0",
+   "fieldname": "pack_to_crates",
+   "fieldtype": "Button",
+   "label": "Pack To Crates",
+   "permlevel": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "0",
+   "fieldname": "delivered",
+   "fieldtype": "Check",
+   "label": "Delivered",
+   "read_only": 1
+  },
+  {
+   "fieldname": "customer_address",
    "fieldtype": "Link",
-   "label": "Cost Center",
-   "options": "Cost Center"
+   "label": "Customer Address",
+   "options": "Address",
+   "read_only": 1
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2024-09-11 09:46:41.009214",
+ "modified": "2024-09-20 14:48:10.963136",
  "modified_by": "Administrator",
  "module": "Upande Vf Custom",
  "name": "Driver Consignment Note",
@@ -259,6 +286,7 @@
    "write": 1
   },
   {
+   "create": 1,
    "email": 1,
    "export": 1,
    "print": 1,

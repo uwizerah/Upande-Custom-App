@@ -13,7 +13,7 @@ frappe.ui.form.on('Bank Bulk Upload', {
                     processDraftPayments(frm, r.message.draft_payments, r.message.total_grand_total);
                     
                 } else {
-                    console.log("No message received");
+                    console.log("No data received");
                 }
             },
             error: (r) => {
@@ -41,11 +41,6 @@ frappe.ui.form.on('Bank Bulk Upload', {
 
 function processDraftPayments(frm, draftPymnts, grand_totals) {
     const childTableField = 'items'; // Update this with the actual field name of your child table
-    // const existingOrders = new Set(frm.doc[childTableField].map(row => row.purchase_order)); // Assuming 'purchase_order' is a field in the child table
-     // Initialize an array if the child table field is not present
-    if (!frm.doc[childTableField]) {
-        frm.doc[childTableField] = [];
-    }
 
     // Create a set of existing entries to check for duplicates
     const existingPymnts = new Set(frm.doc[childTableField].map(row => row.payment_reference)); // Assuming 'payment_reference' is a field in the child table

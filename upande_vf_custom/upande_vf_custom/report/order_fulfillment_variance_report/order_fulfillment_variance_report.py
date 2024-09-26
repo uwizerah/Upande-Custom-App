@@ -107,7 +107,7 @@ def prepare_data(data, filters):
 	for row in data:
 		# sum data for chart
 		delivered += row["delivered_qty"] or 0
-		missed += row["missed_qty"] or 0
+		missed += row["missing_qty"] or 0
 		lost += row["lost_qty"] or 0
 
 		# prepare data for report view

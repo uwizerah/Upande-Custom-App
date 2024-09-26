@@ -41,6 +41,7 @@ doctype_js = {
     "Project": "custom_asset_scripts/project.js",
     "Payment Entry": "custom_scripts/client_scripts/payment_entry.js",
     "Purchase Invoice": "custom_scripts/client_scripts/purchase_invoice.js",
+	"Sales Order": "custom_scripts/client_scripts/sales_order.js"
 }
 
 

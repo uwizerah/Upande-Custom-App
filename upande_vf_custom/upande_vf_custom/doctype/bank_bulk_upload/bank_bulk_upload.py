@@ -46,7 +46,7 @@ class BankBulkUpload(Document):
     @frappe.whitelist()
     def download_report(self):   
         site_url = frappe.utils.get_url()      
-        report_url = f"{site_url}/app/query-report/Bank%20Bulk%20Upload?parent={self.get('name')}"
+        report_url = f"{site_url}/app/query-report/Bank Bulk Upload?parent={self.get('name')}"
         
         frappe.response['message'] = report_url
 

@@ -22,12 +22,11 @@ def execute(filters=None):
 	data = get_data(conditions, filters)
 	# print("*"*80)
 	# print(data)
-	so_elapsed_time = get_so_elapsed_time(data)
 
 	if not data:
 		return [], [], None, []
 
-	data, chart_data = prepare_data(data, so_elapsed_time, filters)
+	data, chart_data = prepare_data(data, filters)
 
 	return columns, data, None, chart_data
 
@@ -60,11 +59,8 @@ def get_data(conditions, filters):
 		"""
 		SELECT
 			so.transaction_date as date,
-			soi.delivery_date as delivery_date,
 			so.name as sales_order,
-			so.status, so.customer, soi.item_code,
 			so.customer_name as cust_name,
-			DATEDIFF(CURRENT_DATE, soi.delivery_date) as delay_days,
 			IF(so.status in ('Completed','To Bill'), 0, (SELECT delay_days)) as delay,
 			soi.qty, soi.delivered_qty,
 			soi.uom as uom,
@@ -76,9 +72,7 @@ def get_data(conditions, filters):
 			(soi.delivered_qty * soi.base_rate) as delivered_qty_amount,
 			(soi.billed_amt * IFNULL(so.conversion_rate, 1)) as billed_amount,
 			(soi.base_amount - (soi.billed_amt * IFNULL(so.conversion_rate, 1))) as pending_amount,
-			soi.warehouse as warehouse,
 			so.company, soi.name,
-			soi.description as description
 		FROM
 			`tabSales Order` so,
 			`tabSales Order Item` soi
@@ -104,49 +98,7 @@ def get_data(conditions, filters):
 
 	return data
 
-
-def get_so_elapsed_time(data):
-	"""
-	query SO's elapsed time till latest delivery note
-	"""
-	so_elapsed_time = OrderedDict()
-	if data:
-		sales_orders = [x.sales_order for x in data]
-
-		so = qb.DocType("Sales Order")
-		soi = qb.DocType("Sales Order Item")
-		dn = qb.DocType("Delivery Note")
-		dni = qb.DocType("Delivery Note Item")
-
-		to_seconds = CustomFunction("TO_SECONDS", ["date"])
-
-		query = (
-			qb.from_(so)
-			.inner_join(soi)
-			.on(soi.parent == so.name)
-			.left_join(dni)
-			.on(dni.so_detail == soi.name)
-			.left_join(dn)
-			.on(dni.parent == dn.name)
-			.select(
-				so.name.as_("sales_order"),
-				soi.item_code.as_("so_item_code"),
-				(to_seconds(Max(dn.posting_date)) - to_seconds(so.transaction_date)).as_("elapsed_seconds"),
-			)
-			.where((so.name.isin(sales_orders)) & (dn.docstatus == 1))
-			.orderby(so.name, soi.name)
-			.groupby(soi.name)
-		)
-		dn_elapsed_time = query.run(as_dict=True)
-
-		for e in dn_elapsed_time:
-			key = (e.sales_order, e.so_item_code)
-			so_elapsed_time[key] = e.elapsed_seconds
-
-	return so_elapsed_time
-
-
-def prepare_data(data, so_elapsed_time, filters):
+def prepare_data(data, filters):
 	delivered, missed, lost = 0, 0, 0
 
 	if filters.get("group_by_so"):
@@ -163,11 +115,7 @@ def prepare_data(data, so_elapsed_time, filters):
 
 		row["delay"] = 0 if row["delay"] and row["delay"] < 0 else row["delay"]
 
-		row["time_taken_to_deliver"] = (
-			so_elapsed_time.get((row.sales_order, row.item_code))
-			if row["status"] in ("To Bill", "Completed")
-			else 0
-		)
+		
 
 		if filters.get("group_by_so"):
 			so_name = row["sales_order"]

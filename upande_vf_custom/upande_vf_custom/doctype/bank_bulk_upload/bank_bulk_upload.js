@@ -48,7 +48,7 @@ function processDraftPayments(frm, draftPymnts, grand_totals) {
          if (!existingPymnts.has(dp.name)) {
             let newRow = frm.add_child(childTableField);
             newRow.payment_reference = dp.name; // Assuming 'payment_reference' is a field in the child table
-            newRow.beneficiary_name = dp.party_name; // Assuming 'beneficiary_name' is a field in the child table
+            newRow.beneficiary_name = dp.party; // Assuming 'beneficiary_name' is a field in the child table
             newRow.bank_account = dp.bank_name;
             newRow.amount = dp.paid_amount; // Assuming 'amount' is a field in the child table
             existingPymnts.add(dp.name); // Add the new purchase order to the set of existing orders

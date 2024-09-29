@@ -1,3 +1,5 @@
+import json
+
 import frappe
 
 def before_save(doc, method):
@@ -9,35 +11,71 @@ def on_submit(doc, method):
 
 def create_consignment_note(doc):
     if doc.set_warehouse:
-        new_stck_entry = frappe.new_doc("Driver Consignment Note")
-        new_stck_entry.company = doc.company
-        new_stck_entry.customer = doc.customer
-        new_stck_entry.customer_name = doc.customer_name
-        new_stck_entry.customer_address = doc.customer_address
-        new_stck_entry.from_warehouse = doc.set_warehouse
-        new_stck_entry.cost_center = doc.cost_center
-        new_stck_entry.delivery_date = doc.delivery_date
-        new_stck_entry.sales_order_number = doc.name
-        new_stck_entry.lc_manager = doc.custom_lc_manager
+        create_so_onsubmit(doc)
+         
+def create_so_onsubmit(doc):
+    new_so = frappe.new_doc("Driver Consignment Note")
+    new_so.company = doc.company
+    new_so.customer = doc.customer
+    new_so.customer_name = doc.customer_name
+    new_so.customer_address = doc.customer_address
+    new_so.from_warehouse = doc.set_warehouse
+    new_so.cost_center = doc.cost_center
+    new_so.delivery_date = doc.delivery_date
+    new_so.sales_order_number = doc.name
+    new_so.lc_manager = doc.custom_lc_manager
+    
+    for item in doc.items:
+        new_so.append("items", {
+            "item_code": item.item_code,
+            "qty": item.qty,
+            "item_name":item.item_name,
+            "description":item.description,
+            "cost_center": doc.get("cost_center"),
+            "uom":item.uom,
+            "delivery_date": item.delivery_date,
+            "rate": item.rate,
+            "so_detail": item.name,
+            "amount": item.amount,
+        })
         
-        for item in doc.items:
-            new_stck_entry.append("items", {
-                "item_code": item.item_code,
-                "qty": item.qty,
-                "item_name":item.item_name,
-                "description":item.description,
-                "cost_center": doc.get("cost_center"),
-                "uom":item.uom,
-                "delivery_date": item.delivery_date,
-                "rate": item.rate,
-                "so_detail": item.name,
-                "amount": item.amount,
-            })
-            
-        new_stck_entry.save()
-        # doc.custom_consignment_number = new_stck_entry.name
+    new_so.save()
+    frappe.db.commit()
         
-        new_stck_entry.save()
+@frappe.whitelist()
+def create_so():
+    data = json.loads(frappe.form_dict.message) # Parsing JSON to a dictionary
+    doc_name = data.get("doc_name")
+    doc = frappe.db.get("Sales Order", doc_name)
+    
+    # dcn_exists = frappe.db.exists()
+
+    
+    new_so = frappe.new_doc("Driver Consignment Note")
+    new_so.company = doc.company
+    new_so.customer = doc.customer
+    new_so.customer_name = doc.customer_name
+    new_so.customer_address = doc.customer_address
+    new_so.from_warehouse = doc.set_warehouse
+    new_so.cost_center = doc.cost_center
+    new_so.delivery_date = doc.delivery_date
+    new_so.sales_order_number = doc.name
+    new_so.lc_manager = doc.custom_lc_manager
+    
+    for item in doc.items:
+        new_so.append("items", {
+            "item_code": item.item_code,
+            "qty": item.qty,
+            "item_name":item.item_name,
+            "description":item.description,
+            "cost_center": doc.get("cost_center"),
+            "uom":item.uom,
+            "delivery_date": item.delivery_date,
+            "rate": item.rate,
+            "so_detail": item.name,
+            "amount": item.amount,
+        })
         
-    else:
-        frappe.throw("Check Sales Order Info!")
+    new_so.save()    
+    frappe.db.commit()
+

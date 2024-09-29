@@ -44,7 +44,8 @@
   "reference",
   "job_card",
   "column_break_35",
-  "work_order"
+  "work_order",
+  "amended_from"
  ],
  "fields": [
   {
@@ -75,6 +76,7 @@
    "print_hide": 1
   },
   {
+   "default": "Material Issue",
    "fieldname": "material_request_type",
    "fieldtype": "Select",
    "in_list_view": 1,
@@ -339,12 +341,21 @@
    "hidden": 1,
    "label": "Ignore Pricing Rule",
    "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Requisition Form",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "icon": "fa fa-ticket",
  "is_submittable": 1,
  "links": [],
- "modified": "2024-09-21 09:21:11.381811",
+ "modified": "2024-09-29 17:13:27.606322",
  "modified_by": "Administrator",
  "module": "Upande Vf Custom",
  "name": "Requisition Form",

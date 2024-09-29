@@ -25,7 +25,7 @@ class BankBulkUpload(Document):
         draft_payments = frappe.db.get_all('Payment Entry', filters={
             'status': ['in', ['Draft']],
             'payment_type': 'Pay'
-        }, fields=['name', 'party_name', 'paid_amount', 'party_bank_account'])
+        }, fields=['name', 'party', 'paid_amount', 'party_bank_account'])
         
         if draft_payments:
             for pymnt in draft_payments:

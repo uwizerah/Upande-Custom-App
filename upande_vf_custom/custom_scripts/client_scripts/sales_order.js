@@ -4,7 +4,7 @@ frappe.ui.form.on('Sales Order', {
             frm.add_custom_button(__('Consignment Note'), function(){
                 
                 // frappe.call({
-                //         method: 'upande_vf_custom.custom_scripts.server_scripts.purchase_invoice.update_taxes',
+                //         method: 'upande_vf_custom.custom_scripts.server_scripts.sales_order.create_so',
                 //         args: {
                 //             message: {
                 //                 doc_name: frm.doc.name
@@ -16,14 +16,14 @@ frappe.ui.form.on('Sales Order', {
                 //             // if(r.message){
                 //             //     console.log(r.message)
                 //             //     frm.doc.reference_no = r.message
-                //                 console.log(frm.doc.taxes)
-                //                 frm.refresh_field("taxes")
+                //                 // console.log(frm.doc.taxes)
+                //                 // frm.refresh_field("taxes")
                 //                 // frm.save()
                 //             // }
                             
                 //         }
                 //     })
-                    // frappe.db.set_value("Payment Entry", frm.doc.name, 'custom_remittance_sent', 1)
+                //     frappe.db.set_value("Payment Entry", frm.doc.name, 'custom_remittance_sent', 1)
                 
                 
             }, __("Create"));

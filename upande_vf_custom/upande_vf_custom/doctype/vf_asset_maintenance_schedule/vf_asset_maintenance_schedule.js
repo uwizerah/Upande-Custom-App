@@ -55,12 +55,13 @@ frappe.ui.form.on('VF Asset Maintenance Schedule', {
                             checked_tasks.forEach(task => {
                                 frappe.model.set_value(task.doctype, task.name, 'checked', 0);
                                 frappe.model.set_value(task.doctype, task.name, 'maintenance_status', 'Pending');
-                                // frappe.model.set_value(task.doctype, task.name, 'description', 0);
                             });
                             
-                            // Refresh the task table in the form
+                            // Reset the signature field to empty
+                            frappe.model.set_value(frm.doc.doctype, frm.doc.name, 'signature', '');
+                    
                             frm.refresh_field('asset_maintenance_tasks');
-                            
+                            frm.refresh_field('signature');
                             
                             frm.save().then(() => {
                                     frappe.msgprint(__('Maintenance Record Created: <a href="/app/vf-asset-maintenance-record/{0}" target="_blank">{0}</a>', [response.message]));

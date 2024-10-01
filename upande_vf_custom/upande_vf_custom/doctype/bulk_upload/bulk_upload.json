@@ -16,8 +16,8 @@
   "mpesa_bulk_upload_items",
   "eft_bulk_upload_items",
   "rtgs_bulk_upload_items",
-  "download",
   "international_payments_bulk_upload_items",
+  "download",
   "amended_from"
  ],
  "fields": [
@@ -95,7 +95,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-10-01 20:32:58.513122",
+ "modified": "2024-10-02 01:26:49.123378",
  "modified_by": "Administrator",
  "module": "Upande Vf Custom",
  "name": "Bulk Upload",

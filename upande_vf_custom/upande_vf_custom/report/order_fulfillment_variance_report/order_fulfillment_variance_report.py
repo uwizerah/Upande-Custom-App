@@ -59,20 +59,19 @@ def get_data(conditions, filters):
 		"""
 		SELECT
 			so.transaction_date as date,
+			soi.delivery_date as delivery_date,
 			so.name as sales_order,
+			so.status, so.customer, soi.item_code,
 			so.customer_name as cust_name,
+			DATEDIFF(CURRENT_DATE, soi.delivery_date) as delay_days,
 			IF(so.status in ('Completed','To Bill'), 0, (SELECT delay_days)) as delay,
 			soi.qty, soi.delivered_qty,
 			soi.uom as uom,
-			(cni.qty) AS missed_qty,
+			(cni.qty) AS assigned_qty,
 			(cni.qty - dni.qty) AS lost_qty,
 			IFNULL(SUM(sii.qty), 0) as billed_qty,
-   			(soi.qty - dni.qty) as missing_qty,
-			soi.base_amount as amount,
-			(soi.delivered_qty * soi.base_rate) as delivered_qty_amount,
-			(soi.billed_amt * IFNULL(so.conversion_rate, 1)) as billed_amount,
-			(soi.base_amount - (soi.billed_amt * IFNULL(so.conversion_rate, 1))) as pending_amount,
-			so.company, soi.name,
+   			(soi.qty - dni.qty) as missing_qty
+			
 		FROM
 			`tabSales Order` so,
 			`tabSales Order Item` soi
@@ -107,15 +106,8 @@ def prepare_data(data, filters):
 	for row in data:
 		# sum data for chart
 		delivered += row["delivered_qty"] or 0
-		missed += row["missing_qty"] or 0
+		missed += row["assigned_qty"] or 0
 		lost += row["lost_qty"] or 0
-
-		# prepare data for report view
-		row["qty_to_bill"] = flt(row["qty"]) - flt(row["billed_qty"])
-
-		row["delay"] = 0 if row["delay"] and row["delay"] < 0 else row["delay"]
-
-		
 
 		if filters.get("group_by_so"):
 			so_name = row["sales_order"]
@@ -128,18 +120,14 @@ def prepare_data(data, filters):
 				# update existing entry
 				so_row = sales_order_map[so_name]
 				so_row["required_date"] = max(getdate(so_row["delivery_date"]), getdate(row["delivery_date"]))
-				so_row["delay"] = (
-					min(so_row["delay"], row["delay"]) if row["delay"] and so_row["delay"] else so_row["delay"]
-				)
+			
 
 				# sum numeric columns
 				fields = [
 					"qty",
 					"delivered_qty",
-					"missed_qty",
-					"lost_qty",
-					"billed_amount",
-					"pending_amount",
+					"assigned_qty",
+					"lost_qty"
 				]
 				for field in fields:
 					so_row[field] = flt(row[field]) + flt(so_row[field])
@@ -156,10 +144,10 @@ def prepare_data(data, filters):
 
 
 def prepare_chart_data(delivered, missed, lost):
-	labels = ["Delivered Qty", "Unassigned Qty", "Delivery Variance"]
+	labels = ["Delivered Qty", "Delivery Variance"]
 
 	return {
-		"data": {"labels": labels, "datasets": [{"values": [delivered, missed, lost]}]},
+		"data": {"labels": labels, "datasets": [{"values": [delivered, lost]}]},
 		"type": "donut",
 		"height": 300,
 	}
@@ -212,7 +200,7 @@ def get_columns(filters):
 			},
 			{
 				"label": _("Packed Qty"),
-				"fieldname": "missed_qty",
+				"fieldname": "assigned_qty",
 				"fieldtype": "Float",
 				"width": 120,
 				"convertible": "qty",

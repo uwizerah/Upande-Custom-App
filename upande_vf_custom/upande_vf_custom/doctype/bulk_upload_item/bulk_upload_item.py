@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class BankBulkUploadItem(Document):
+class BulkUploadItem(Document):
 	pass

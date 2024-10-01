@@ -1,0 +1,108 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{cash_flow_period}",
+ "creation": "2024-09-08 23:18:49.957836",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "type",
+  "get_draft_payments",
+  "column_break_pbon",
+  "cash_flow_period",
+  "section_break_lfkk2",
+  "download",
+  "mpesa_bulk_upload_items",
+  "eft_bulk_upload_items",
+  "rtgs_bulk_upload_items",
+  "international_payments_bulk_upload_items",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "cash_flow_period",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Cash Flow Period",
+   "reqd": 1
+  },
+  {
+   "fieldname": "get_draft_payments",
+   "fieldtype": "Button",
+   "label": "Get Draft Payments"
+  },
+  {
+   "fieldname": "section_break_lfkk2",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:doc.docstatus==1",
+   "fieldname": "download",
+   "fieldtype": "Button",
+   "label": "Download"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Bulk Upload",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "label": "Type",
+   "options": "\nMpesa\nEFT\nRTGS\nInternational Payments",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_pbon",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.type==\"Mpesa\"",
+   "fieldname": "mpesa_bulk_upload_items",
+   "fieldtype": "Table",
+   "label": "Mpesa Bulk Upload Items",
+   "options": "Mpesa Bulk Upload Item"
+  },
+  {
+   "depends_on": "eval:doc.type==\"RTGS\"",
+   "fieldname": "rtgs_bulk_upload_items",
+   "fieldtype": "Table",
+   "label": "RTGS Bulk Upload Items",
+   "options": "RTGS Bulk Upload Item"
+  },
+  {
+   "depends_on": "eval:doc.type==\"EFT\"",
+   "fieldname": "eft_bulk_upload_items",
+   "fieldtype": "Table",
+   "label": "EFT Bulk Upload Items",
+   "options": "EFT Bulk Upload Item"
+  },
+  {
+   "depends_on": "eval:doc.type==\"International Payments\"",
+   "fieldname": "international_payments_bulk_upload_items",
+   "fieldtype": "Table",
+   "label": "International Payments Bulk Upload Items",
+   "options": "International Payments Bulk Upload Item"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-09-30 20:44:12.615550",
+ "modified_by": "Administrator",
+ "module": "Upande Vf Custom",
+ "name": "Bulk Upload",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -308,7 +308,7 @@
    "report": 1,
    "role": "Stock Manager",
    "select": 0,
-   "set_user_permissions": 1,
+   "set_user_permissions": 0,
    "share": 1,
    "submit": 1,
    "write": 1

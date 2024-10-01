@@ -31,7 +31,10 @@ class BulkUpload(Document):
     @frappe.whitelist()        
     def get_pending_payments(self):
         pymnts_list = []
-        self.items = []
+        self.mpesa_bulk_upload_items = []
+        self.eft_bulk_upload_items = []
+        self.rtgs_bulk_upload_items = []
+        self.international_payments_bulk_upload_items = []
 
         draft_payments = frappe.db.get_all('Payment Entry', filters={
             'status': ['in', ['Draft']],

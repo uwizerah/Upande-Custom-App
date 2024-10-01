@@ -37,8 +37,7 @@ def get_columns(filters=None):
     columns = [
         {"label": "Payment Reference", "fieldname": "reference", "fieldtype": "Data", "width": 150, "align": "center"},
         {"label": "Beneficiary Name", "fieldname": "beneficiary_name", "fieldtype": "Data", "width": 200, "align": "center"},
-        {"label": "Bank Name", "fieldname": "bank_account", "fieldtype": "Data", "width": 180, "align": "center"},
-        {"label": "Account Number", "fieldname": "account_number", "fieldtype": "Data", "width": 80, "align": "center"},
+        {"label": "Account Number", "fieldname": "account_number", "fieldtype": "Data", "width": 180, "align": "center"},
         {"label": "Bank Code", "fieldname": "bank_code", "fieldtype": "Data", "width": 120, "align": "center"},
         {"label": "Branch Code", "fieldname": "branch_code", "fieldtype": "Data", "width": 120, "align": "center"},
         {"label": "Amount", "fieldname": "amount", "fieldtype": "Currency", "width": 150, "align": "center"},

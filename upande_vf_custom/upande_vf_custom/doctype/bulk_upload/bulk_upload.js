@@ -59,7 +59,7 @@ function processEFTDraftPayments(frm, draftPymnts) {
             newRow.payment_reference = dp.name; 
             newRow.beneficiary_name = dp.party;
             newRow.bank_account = dp.party_bank_account;
-            newRow.reference_no = dp.reference_no
+            newRow.reference = dp.reference_no
             newRow.bank = dp.bank_name
             newRow.amount = dp.paid_amount;
             existingPymnts.add(dp.name);
@@ -103,7 +103,7 @@ function processIPDraftPayments(frm, draftPymnts, grand_totals) {
             newRow.payment_reference = dp.name; // Assuming 'payment_reference' is a field in the child table
             newRow.beneficiary_name = dp.party; // Assuming 'beneficiary_name' is a field in the child table
             newRow.bank_account = dp.bank_name;
-            newRow.reference_no = dp.reference_no
+            newRow.reference = dp.reference_no
             newRow.amount = dp.paid_amount; // Assuming 'amount' is a field in the child table
             existingPymnts.add(dp.name); // Add the new purchase order to the set of existing orders
         }
@@ -126,7 +126,7 @@ function processMpesaDraftPayments(frm, draftPymnts, grand_totals) {
             newRow.payment_reference = dp.name; // Assuming 'payment_reference' is a field in the child table
             newRow.beneficiary_name = dp.party; // Assuming 'beneficiary_name' is a field in the child table
             newRow.bank_account = dp.bank_name;
-            newRow.reference_no = dp.reference_no
+            newRow.reference = dp.reference_no
             newRow.amount = dp.paid_amount; // Assuming 'amount' is a field in the child table
             existingPymnts.add(dp.name); // Add the new purchase order to the set of existing orders
         }

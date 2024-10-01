@@ -29,7 +29,6 @@
   },
   {
    "fetch_from": "payment_reference.reference_no",
-   "fetch_if_empty": 1,
    "fieldname": "reference",
    "fieldtype": "Data",
    "label": "Payment Reference",
@@ -113,7 +112,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-10-01 20:33:59.317068",
+ "modified": "2024-10-01 20:54:36.887915",
  "modified_by": "Administrator",
  "module": "Upande Vf Custom",
  "name": "EFT Bulk Upload Item",

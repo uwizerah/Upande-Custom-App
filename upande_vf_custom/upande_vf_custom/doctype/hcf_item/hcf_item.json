@@ -1,0 +1,78 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-10-01 23:00:22.819140",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "period",
+  "start_date",
+  "end_date",
+  "hcf",
+  "column_break_xhbt",
+  "company",
+  "lake_warehouse_name",
+  "hcf_item"
+ ],
+ "fields": [
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Start Date"
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "End Date"
+  },
+  {
+   "fieldname": "hcf",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "HCF"
+  },
+  {
+   "fieldname": "period",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Period"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company"
+  },
+  {
+   "fieldname": "lake_warehouse_name",
+   "fieldtype": "Link",
+   "label": "Lake Warehouse Name",
+   "options": "Warehouse"
+  },
+  {
+   "fieldname": "column_break_xhbt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "hcf_item",
+   "fieldtype": "Link",
+   "label": "HCF Item",
+   "options": "Item"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-10-01 23:59:13.606076",
+ "modified_by": "Administrator",
+ "module": "Upande Vf Custom",
+ "name": "HCF Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

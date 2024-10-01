@@ -1,0 +1,68 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-10-02 02:10:10.589567",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "start",
+  "end",
+  "expense_account",
+  "account_currency",
+  "description",
+  "amount"
+ ],
+ "fields": [
+  {
+   "fieldname": "start",
+   "fieldtype": "Data",
+   "label": "Start"
+  },
+  {
+   "fieldname": "end",
+   "fieldtype": "Data",
+   "label": "End"
+  },
+  {
+   "fieldname": "expense_account",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Expense Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Select",
+   "label": "Description",
+   "options": "Logistics Charges\nOffloading Costs\nHandling Fees"
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Amount"
+  },
+  {
+   "fetch_from": "expense_account.account_currency",
+   "fetch_if_empty": 1,
+   "fieldname": "account_currency",
+   "fieldtype": "Link",
+   "label": "Account Currency",
+   "options": "Currency"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-10-02 02:26:01.986404",
+ "modified_by": "Administrator",
+ "module": "Upande Vf Custom",
+ "name": "Costing Items",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

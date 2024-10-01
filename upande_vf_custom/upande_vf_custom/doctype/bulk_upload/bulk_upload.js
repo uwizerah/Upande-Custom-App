@@ -11,7 +11,7 @@ frappe.ui.form.on('Bulk Upload', {
             callback: (r) => {
                 if (r.message) {
                     if(frm.doc.type=="EFT"){
-                        processEFTDraftPayments(frm, r.message.draft_payments, r.message.total_grand_total);
+                        processEFTDraftPayments(frm, r.message.draft_payments);
                     }else if(frm.doc.type=="RTGS"){
                         processRTGSDraftPayments(frm, r.message.draft_payments, r.message.total_grand_total);
                     }
@@ -50,50 +50,47 @@ frappe.ui.form.on('Bulk Upload', {
 });
 
 
-function processEFTDraftPayments(frm, draftPymnts, grand_totals) {
-    const childTableField = 'eft_upload_items'; // Update this with the actual field name of your child table
+function processEFTDraftPayments(frm, draftPymnts) {
+    const childTableField = 'eft_bulk_upload_items';
 
-    // Create a set of existing entries to check for duplicates
-    const existingPymnts = new Set(frm.doc[childTableField].map(row => row.payment_reference)); // Assuming 'payment_reference' is a field in the child table
+    const existingPymnts = new Set(frm.doc[childTableField].map(row => row.payment_reference)); 
     draftPymnts.forEach(dp => {
          if (!existingPymnts.has(dp.name)) {
             let newRow = frm.add_child(childTableField);
-            newRow.payment_reference = dp.name; // Assuming 'payment_reference' is a field in the child table
-            newRow.beneficiary_name = dp.party; // Assuming 'beneficiary_name' is a field in the child table
-            newRow.bank_account = dp.bank_name;
-            newRow.amount = dp.paid_amount; // Assuming 'amount' is a field in the child table
-            existingPymnts.add(dp.name); // Add the new purchase order to the set of existing orders
+            newRow.payment_reference = dp.name; 
+            newRow.beneficiary_name = dp.party;
+            newRow.bank_account = dp.party_bank_account;
+            newRow.bank = dp.bank_name
+            newRow.amount = dp.paid_amount;
+            existingPymnts.add(dp.name);
         }
     });
-    
-    frm.doc.total_amount = grand_totals
-    
-    frm.refresh_field(childTableField); // Refresh the child table field to display the added rows
-    frm.refresh_field('total_amount')
+        
+    frm.refresh_field(childTableField); 
     frm.save()
 }
-function processRTGSDraftPayments(frm, draftPymnts, grand_totals) {
-    const childTableField = 'rtgs_bulk_upload_items'; // Update this with the actual field name of your child table
 
-    // Create a set of existing entries to check for duplicates
-    const existingPymnts = new Set(frm.doc[childTableField].map(row => row.payment_reference)); // Assuming 'payment_reference' is a field in the child table
+function processRTGSDraftPayments(frm, draftPymnts) {
+    const childTableField = 'rtgs_bulk_upload_items'; 
+
+    const existingPymnts = new Set(frm.doc[childTableField].map(row => row.payment_reference));
     draftPymnts.forEach(dp => {
          if (!existingPymnts.has(dp.name)) {
             let newRow = frm.add_child(childTableField);
-            newRow.payment_reference = dp.name; // Assuming 'payment_reference' is a field in the child table
-            newRow.beneficiary_name = dp.party; // Assuming 'beneficiary_name' is a field in the child table
-            newRow.bank_account = dp.bank_name;
-            newRow.amount = dp.paid_amount; // Assuming 'amount' is a field in the child table
-            existingPymnts.add(dp.name); // Add the new purchase order to the set of existing orders
+            newRow.payment_reference = dp.name; 
+            newRow.beneficiary_name = dp.party;
+            newRow.bank_account = dp.party_bank_account;
+            newRow.bank = dp.bank_name
+            newRow.amount = dp.paid_amount;
+            existingPymnts.add(dp.name);
         }
     });
     
-    frm.doc.total_amount = grand_totals
     
-    frm.refresh_field(childTableField); // Refresh the child table field to display the added rows
-    frm.refresh_field('total_amount')
+    frm.refresh_field(childTableField); 
     frm.save()
 }
+
 function processIPDraftPayments(frm, draftPymnts, grand_totals) {
     const childTableField = 'international_payments_bulk_upload_items'; // Update this with the actual field name of your child table
 

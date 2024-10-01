@@ -33,8 +33,8 @@ class BulkUpload(Document):
                 if pymnt.get("custom_upload_type") in ["EFT", "RTGS", "International Payments"]:
                     if pymnt.get("party_bank_account"):
                         
-                        bank_name = frappe.db.get_value("Bank Account", {"name": pymnt.get("party_bank_account")}, 'bank')
-                        pymnt["bank_name"] = bank_name
+                        bank = frappe.db.get_value("Bank Account", {"name": pymnt.get("party_bank_account")}, 'bank')
+                        pymnt["bank_name"] = bank
                         
                         if not pymnt in pymnts_list:
                             pymnts_list.append(pymnt)
@@ -47,7 +47,7 @@ class BulkUpload(Document):
         }
         print("*"*80)
         print(response_data)
-        # frappe.response['message'] = response_data
+        frappe.response['message'] = response_data
         
     @frappe.whitelist()
     def download_report(self):   

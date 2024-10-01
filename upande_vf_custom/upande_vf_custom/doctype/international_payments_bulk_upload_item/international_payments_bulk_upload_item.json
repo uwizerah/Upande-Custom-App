@@ -7,125 +7,153 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "payment_reference",
   "reference",
-  "supplier_invoice",
+  "debit_amount",
+  "payment_type",
   "beneficiary_name",
-  "bank",
-  "account_number",
-  "bank_code",
-  "column_break_61pj",
-  "branch_code",
-  "bank_account",
-  "amount",
+  "beneficiary_account",
+  "network_type",
   "swift_code",
-  "currency"
+  "beneficiary_email_id",
+  "column_break_61pj",
+  "beneficiary_address_1",
+  "beneficiary_address_2",
+  "beneficiary_address_3",
+  "beneficiary_address_4",
+  "charge_bearer",
+  "debit_narrative",
+  "credit_narrative",
+  "deal_reference_number"
  ],
  "fields": [
   {
-   "fieldname": "payment_reference",
-   "fieldtype": "Link",
+   "fieldname": "reference",
+   "fieldtype": "Data",
    "in_standard_filter": 1,
    "label": "Reference",
-   "options": "Payment Entry",
+   "read_only": 1
+  },
+  {
+   "fieldname": "beneficiary_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Beneficiary Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_61pj",
+   "fieldtype": "Column Break",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "bank_account.bank_account_no",
+   "fetch_if_empty": 1,
+   "fieldname": "swift_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Swift Code",
    "read_only": 1
   },
   {
    "fetch_from": "payment_reference.reference_no",
    "fetch_if_empty": 1,
-   "fieldname": "reference",
+   "fieldname": "debit_amount",
    "fieldtype": "Data",
-   "label": "Payment Reference"
-  },
-  {
-   "fieldname": "supplier_invoice",
-   "fieldtype": "Data",
-   "label": "Supplier Invoice",
+   "label": "Debit Amount",
    "read_only": 1
   },
   {
-   "fieldname": "beneficiary_name",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
-   "label": "Beneficiary Name",
-   "options": "Supplier",
+   "fieldname": "payment_type",
+   "fieldtype": "Data",
+   "label": "Payment Type",
    "read_only": 1
   },
   {
-   "fieldname": "bank",
-   "fieldtype": "Link",
-   "label": "Bank",
-   "options": "Bank"
+   "fieldname": "beneficiary_account",
+   "fieldtype": "Data",
+   "label": "Beneficiary Account",
+   "read_only": 1
   },
   {
-   "fetch_from": "bank_account.bank_account_no",
-   "fetch_if_empty": 1,
-   "fieldname": "account_number",
+   "fieldname": "network_type",
    "fieldtype": "Data",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
-   "label": "Account Number",
+   "label": "Network Type",
    "read_only": 1
   },
   {
    "fetch_from": "bank_account.custom_bank_code",
    "fetch_if_empty": 1,
-   "fieldname": "bank_code",
+   "fieldname": "beneficiary_email_id",
    "fieldtype": "Data",
    "in_list_view": 1,
    "in_standard_filter": 1,
-   "label": "Bank Code",
+   "label": "Beneficiary Email ID",
    "read_only": 1
-  },
-  {
-   "fieldname": "column_break_61pj",
-   "fieldtype": "Column Break"
   },
   {
    "fetch_from": "bank_account.custom_branch",
    "fetch_if_empty": 1,
-   "fieldname": "branch_code",
+   "fieldname": "beneficiary_address_1",
    "fieldtype": "Data",
    "in_list_view": 1,
    "in_standard_filter": 1,
-   "label": "Branch Code",
+   "label": "Beneficiary Address 1",
    "read_only": 1,
    "width": "40"
   },
   {
-   "fieldname": "bank_account",
-   "fieldtype": "Link",
-   "label": "Bank Account",
-   "options": "Bank Account",
+   "fieldname": "beneficiary_address_2",
+   "fieldtype": "Data",
+   "label": "Beneficiary Address 2",
    "read_only": 1
   },
   {
-   "fieldname": "amount",
-   "fieldtype": "Currency",
+   "fieldname": "beneficiary_address_3",
+   "fieldtype": "Data",
    "in_list_view": 1,
    "in_standard_filter": 1,
-   "label": "Amount",
+   "label": "Beneficiary Address 3",
    "read_only": 1
   },
   {
    "fetch_from": "bank.swift_number",
    "fetch_if_empty": 1,
-   "fieldname": "swift_code",
+   "fieldname": "beneficiary_address_4",
    "fieldtype": "Data",
-   "label": "SWIFT Code"
+   "label": "Beneficiary Address 4",
+   "read_only": 1
   },
   {
-   "fieldname": "currency",
-   "fieldtype": "Link",
-   "label": "Currency",
-   "options": "Currency"
+   "fieldname": "charge_bearer",
+   "fieldtype": "Data",
+   "label": "Charge Bearer",
+   "read_only": 1
+  },
+  {
+   "fieldname": "debit_narrative",
+   "fieldtype": "Data",
+   "label": "Debit Narrative",
+   "read_only": 1
+  },
+  {
+   "fieldname": "credit_narrative",
+   "fieldtype": "Data",
+   "label": "Credit Narrative",
+   "read_only": 1
+  },
+  {
+   "fieldname": "deal_reference_number",
+   "fieldtype": "Data",
+   "label": "Deal Reference Number",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-09-30 20:43:33.074726",
+ "modified": "2024-10-01 20:34:27.005057",
  "modified_by": "Administrator",
  "module": "Upande Vf Custom",
  "name": "International Payments Bulk Upload Item",

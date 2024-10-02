@@ -22,18 +22,21 @@ def before_insert(doc, method):
         
 def before_save(doc,method):
     outstanding_bal = 0
-
-    # if frappe.form_dict.message:
-    #     data = json.loads(frappe.form_dict.message) # Parsing JSON to a dictionary
-    #     doc = data.get("doc")
+    withh_tax = 0
+    
     if len(doc.get("references")):
         for item in doc.get("references"):
+            if item.get("reference_doctype")=="Purchase Invoice" and item.get("reference_name"):
+                tax_deducted = frappe.db.get_value("Purchase Invoice", item.get("reference_name"), "taxes_and_charges_deducted")
+                withh_tax += tax_deducted
+                
             outstanding_amount = float(item.get("total_amount") - item.get("allocated_amount"))
             
             if outstanding_amount > 0:
                 outstanding_bal = outstanding_bal+outstanding_amount
             
-        doc.custom_total_outstanding_amount = outstanding_bal        
+        doc.custom_total_outstanding_amount = outstanding_bal   
+        doc.custom_withholding_taxes = withh_tax     
     
 @frappe.whitelist()  
 def get_supplier_details():

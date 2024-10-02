@@ -8,14 +8,13 @@
  "engine": "InnoDB",
  "field_order": [
   "payment_reference",
+  "beneficiary_name",
   "mobilenumber",
   "documenttype",
-  "reference",
-  "column_break_61pj",
   "supplier_invoice",
+  "column_break_61pj",
   "amount",
-  "purposeofpayment",
-  "beneficiary_name"
+  "purposeofpayment"
  ],
  "fields": [
   {
@@ -26,15 +25,9 @@
    "read_only": 1
   },
   {
-   "fetch_from": ".reference_no",
-   "fieldname": "reference",
-   "fieldtype": "Data",
-   "label": "DocumentNumber",
-   "read_only": 1
-  },
-  {
    "fieldname": "supplier_invoice",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "DocumentNumber",
    "read_only": 1
   },
@@ -66,7 +59,6 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "PurposeOfPayment",
-   "read_only": 1,
    "width": "40"
   },
   {
@@ -78,6 +70,7 @@
   {
    "fieldname": "mobilenumber",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "MobileNumber",
    "read_only": 1
   }
@@ -85,7 +78,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-10-01 22:06:08.054337",
+ "modified": "2024-10-02 21:24:22.817199",
  "modified_by": "Administrator",
  "module": "Upande Vf Custom",
  "name": "Mpesa Bulk Upload Item",

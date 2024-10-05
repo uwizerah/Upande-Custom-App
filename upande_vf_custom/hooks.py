@@ -40,7 +40,7 @@ doctype_js = {
     "Asset": "custom_asset_scripts/asset.js",
     "Project": "custom_asset_scripts/project.js",
     "Payment Entry": "custom_scripts/client_scripts/payment_entry.js",
-    "Purchase Invoice": "custom_scripts/client_scripts/purchase_invoice.js",
+    # "Purchase Invoice": "custom_scripts/client_scripts/purchase_invoice.js",
     "Purchase Receipt": "custom_scripts/client_scripts/purchase_receipt.js",
 	"Sales Order": "custom_scripts/client_scripts/sales_order.js",
 	"Stock Entry": "custom_scripts/client_scripts/stock_entry.js"
@@ -166,7 +166,7 @@ doc_events = {
   	# 	"before_save": "upande_vf_custom.custom_scripts.server_scripts.stock_entry.before_save"
 	# },
 	# "Purchase Invoice": {
-	# 	"before_save": "upande_vf_custom.custom_scripts.server_scripts.purchase_invoice.before_save"
+	# 	"before_save": "upande_vf_custom.custom_scripts.server_scripts.purchase_invoice..."
 	# }
 	
 }

@@ -12,7 +12,7 @@
  "idx": 0,
  "is_standard": 1,
  "message": "<p>Transaction {{ doc.name }} has been created. Please take necessary action.</p>\n\n<p>You can view the record <a href=\"{{ frappe.utils.get_url_to_form(doc.doctype, doc.name) }}\">here</a>.</p>",
- "modified": "2024-09-21 13:20:14.420265",
+ "modified": "2024-10-07 14:49:21.111870",
  "modified_by": "Administrator",
  "module": "Upande Vf Custom",
  "name": "Sales Invoice Internal - VF",
@@ -21,7 +21,7 @@
  "recipients": [
   {
    "receiver_by_document_field": "",
-   "receiver_by_role": "Accounts User"
+   "receiver_by_role": "Sales Recon - VF"
   }
  ],
  "send_system_notification": 0,

@@ -37,10 +37,11 @@
  ],
  "fields": [
   {
+   "default": "DCN.YY.-",
    "fieldname": "naming_series",
    "fieldtype": "Select",
    "label": "Series",
-   "options": "MAT-DT-.YYYY.-"
+   "options": "DCN.YY.-"
   },
   {
    "fieldname": "company",
@@ -209,7 +210,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2024-09-20 14:48:10.963136",
+ "modified": "2024-10-03 20:49:51.670085",
  "modified_by": "Administrator",
  "module": "Upande Vf Custom",
  "name": "Driver Consignment Note",

@@ -9,6 +9,16 @@ frappe.ui.form.on('Payment Entry', {
             }, __("Actions"));
         }
     },
+    on_submit(frm){
+        if(frm.doc.status=='Submitted'){
+            frm.add_custom_button(__('Send Remittance Advice'), function(){
+                
+                    frappe.db.set_value("Payment Entry", frm.doc.name, 'custom_remittance_sent', 1)
+                
+                
+            }, __("Actions"));
+        }
+    },
     mode_of_payment(frm){
         if(frm.doc.mode_of_payment){
             frappe.call({

@@ -8,7 +8,6 @@ frappe.query_reports["Bank Bulk Upload"] = {
 			label: 'Parent',
 			fieldtype: 'Data',
 			read_only: 1,
-			// default: frappe.defaults.get_user_default('company')
 		},
 	]
 };

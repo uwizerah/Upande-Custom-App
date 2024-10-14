@@ -11,11 +11,15 @@
   "reference",
   "supplier_invoice",
   "beneficiary_name",
+  "bank",
   "account_number",
   "bank_code",
+  "column_break_61pj",
   "branch_code",
   "bank_account",
-  "amount"
+  "amount",
+  "swift_code",
+  "currency"
  ],
  "fields": [
   {
@@ -93,15 +97,38 @@
    "fieldname": "reference",
    "fieldtype": "Data",
    "label": "Payment Reference"
+  },
+  {
+   "fieldname": "column_break_61pj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "bank.swift_number",
+   "fetch_if_empty": 1,
+   "fieldname": "swift_code",
+   "fieldtype": "Data",
+   "label": "SWIFT Code"
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "bank",
+   "fieldtype": "Link",
+   "label": "Bank",
+   "options": "Bank"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-09-21 12:30:01.745282",
+ "modified": "2024-09-30 15:29:30.947342",
  "modified_by": "Administrator",
  "module": "Upande Vf Custom",
- "name": "Bank Bulk Upload Item",
+ "name": "Bulk Upload Item",
  "owner": "Administrator",
  "permissions": [],
  "sort_field": "modified",

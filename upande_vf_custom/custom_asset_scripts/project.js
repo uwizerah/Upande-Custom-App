@@ -161,7 +161,7 @@ function calculate_and_set_custom_total_project_cost(frm) {
                 doctype: "GL Entry",
                 filters: {
                     project: frm.doc.name,
-                    account: "CWIP Account - VF"  // Replace with your CWIP account
+                    account: "410010 - Capital Work in Progress - VFL"  // Replace with your CWIP account
                 },
                 fields: ["debit_in_account_currency", "credit_in_account_currency"]
             },

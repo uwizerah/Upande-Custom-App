@@ -3,9 +3,7 @@ import frappe
 
 def before_insert(doc, method):
     po_list = []
-    pe_ref = "Ref"
-
-    if doc.payment_type=="Pay" and len(doc.references)==1:
+    if doc.payment_type=="Pay" and len(doc.references):
         ref = doc.references[0]
         
         if ref.reference_doctype=="Purchase Invoice" and ref.reference_name:
@@ -18,7 +16,11 @@ def before_insert(doc, method):
         if len(po_list)==1:
             pe_ref = po_list[0]
         
-        doc.reference_no = pe_ref
+        if pe_ref:
+            doc.reference_no = pe_ref
+        else:
+            return
+            
         
 def before_save(doc,method):
     outstanding_bal = 0

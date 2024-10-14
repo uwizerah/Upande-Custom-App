@@ -1,9 +1,7 @@
 // Copyright (c) 2024, Upande Ltd and contributors
 // For license information, please see license.txt
-
 frappe.ui.form.on('VF Asset Maintenance Schedule', {
     refresh: function(frm) {
-        // Always add the button, but ensure it doesn't get added multiple times
         if (!frm.fields_dict['create_button']) {
             frm.add_custom_button(__('Maintenance Record'), function() {
                 let all_tasks = frm.doc.asset_maintenance_tasks || [];
@@ -20,15 +18,11 @@ frappe.ui.form.on('VF Asset Maintenance Schedule', {
                     return;
                 }
 
-                // const unique_id = `${frm.doc.asset_name}-${frm.doc.asset_maintenance_schedule_name}`;
-                
                 frappe.call({
                     method: "create_asset_maintenance_task_record",
                     doc: frm.doc,
                     args: {
                         message: {
-                            // asset: frm.doc.name,
-                            
                             maintenance_team: frm.doc.maintenance_team,
                             tasks: checked_tasks.map(task => {
                                 return {
@@ -43,7 +37,6 @@ frappe.ui.form.on('VF Asset Maintenance Schedule', {
                                     assign_to: task.assign_to,
                                     assign_to_name: task.assign_to_name,
                                     description: task.description
-                                    
                                 };
                             }),
                             log_date: frappe.datetime.now_date() 
@@ -51,23 +44,25 @@ frappe.ui.form.on('VF Asset Maintenance Schedule', {
                     },
                     callback: function(response) {
                         if (response.message) {
-                            // Reset the 'checked' status and update 'next_due_date' for each task
                             checked_tasks.forEach(task => {
                                 frappe.model.set_value(task.doctype, task.name, 'checked', 0);
                                 frappe.model.set_value(task.doctype, task.name, 'maintenance_status', 'Pending');
                             });
-                            
-                            // Reset the signature field to empty
-                            frappe.model.set_value(frm.doc.doctype, frm.doc.name, 'signature', '');
-                    
-                            frm.refresh_field('asset_maintenance_tasks');
-                            frm.refresh_field('signature');
-                            
+
+                            // Clear signature and checkdate fields
+                            frm.set_value('signature', ''); // Clear signature
+                            frm.set_value('checkdate', null); // Clear checkdate
+
+                            // Debugging logs
+                            console.log("Signature after clearing:", frm.doc.signature);
+                            console.log("Checkdate after clearing:", frm.doc.checkdate);
+
+                            // Save changes
                             frm.save().then(() => {
-                                    frappe.msgprint(__('Maintenance Record Created: <a href="/app/vf-asset-maintenance-record/{0}" target="_blank">{0}</a>', [response.message]));
-                                });
-                            } else {
-                                frappe.msgprint(__('Failed to create maintenance record.'));
+                                frappe.msgprint(__('Maintenance Record Created: <a href="/app/vf-asset-maintenance-record/{0}" target="_blank">{0}</a>', [response.message]));
+                            });
+                        } else {
+                            frappe.msgprint(__('Failed to create maintenance record.'));
                         }
                     }
                 });
@@ -75,6 +70,7 @@ frappe.ui.form.on('VF Asset Maintenance Schedule', {
         }
     }
 });
+
 
 frappe.ui.form.on('VF Asset Maintenance Task', {
     checked(frm, cdt, cdn) {

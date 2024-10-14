@@ -9,7 +9,6 @@
  "field_order": [
   "maintenance_task",
   "maintenance_type",
-  "checked",
   "column_break_2",
   "maintenance_status",
   "section_break_2",
@@ -20,6 +19,7 @@
   "certificate_required",
   "section_break_9",
   "assign_to",
+  "checked",
   "column_break_10",
   "assign_to_name",
   "section_break_10",
@@ -31,6 +31,7 @@
  ],
  "fields": [
   {
+   "columns": 3,
    "fieldname": "maintenance_task",
    "fieldtype": "Data",
    "in_filter": 1,
@@ -46,9 +47,11 @@
    "options": "Preventive Maintenance\nCalibration"
   },
   {
+   "columns": 1,
    "default": "0",
    "fieldname": "checked",
    "fieldtype": "Check",
+   "in_list_view": 1,
    "label": "Checked"
   },
   {
@@ -56,6 +59,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "columns": 1,
    "fieldname": "maintenance_status",
    "fieldtype": "Select",
    "in_list_view": 1,
@@ -75,6 +79,7 @@
    "reqd": 1
   },
   {
+   "columns": 1,
    "fieldname": "periodicity",
    "fieldtype": "Select",
    "in_list_view": 1,
@@ -106,7 +111,6 @@
   {
    "fieldname": "assign_to",
    "fieldtype": "Link",
-   "in_list_view": 1,
    "label": "Assign To",
    "options": "User"
   },
@@ -125,6 +129,7 @@
    "fieldtype": "Section Break"
   },
   {
+   "columns": 2,
    "fieldname": "next_due_date",
    "fieldtype": "Date",
    "in_list_view": 1,
@@ -137,7 +142,6 @@
   {
    "fieldname": "last_completion_date",
    "fieldtype": "Date",
-   "in_list_view": 1,
    "label": "Last Completion Date"
   },
   {
@@ -145,14 +149,16 @@
    "fieldtype": "Section Break"
   },
   {
+   "columns": 2,
    "fieldname": "description",
    "fieldtype": "Text Editor",
+   "in_list_view": 1,
    "label": "Comment"
   }
  ],
  "istable": 1,
  "links": [],
- "modified": "2024-09-09 15:50:43.342723",
+ "modified": "2024-10-01 12:50:39.376169",
  "modified_by": "Administrator",
  "module": "Upande Vf Custom",
  "name": "VF Asset Maintenance Task",

@@ -1,9 +1,22 @@
 // Copyright (c) 2024, Upande Ltd and contributors
 // For license information, please see license.txt
+
 frappe.ui.form.on('VF Asset Maintenance Schedule', {
     refresh: function(frm) {
+        // Add the button if not already present
         if (!frm.fields_dict['create_button']) {
             frm.add_custom_button(__('Maintenance Record'), function() {
+                // Ensure check_date and signature are provided
+                if (!frm.doc.check_date) {
+                    frappe.msgprint(__('Please indicate the check date before creating a maintenance record.'));
+                    return;
+                }
+                
+                if (!frm.doc.signature) {
+                    frappe.msgprint(__('Please provide a signature before creating a maintenance record.'));
+                    return;
+                }
+                
                 let all_tasks = frm.doc.asset_maintenance_tasks || [];
                 
                 if (all_tasks.length === 0) {
@@ -39,28 +52,28 @@ frappe.ui.form.on('VF Asset Maintenance Schedule', {
                                     description: task.description
                                 };
                             }),
-                            log_date: frappe.datetime.now_date() 
+                            log_date: frappe.datetime.now_date()
                         }
                     },
                     callback: function(response) {
                         if (response.message) {
+                            // Reset the 'checked' status and update 'maintenance_status' for each task
                             checked_tasks.forEach(task => {
                                 frappe.model.set_value(task.doctype, task.name, 'checked', 0);
                                 frappe.model.set_value(task.doctype, task.name, 'maintenance_status', 'Pending');
                             });
 
-                            // Clear signature and checkdate fields
                             frm.set_value('signature', ''); // Clear signature
-                            frm.set_value('checkdate', null); // Clear checkdate
+                            frm.set_value('check_date', null); // Clear checkdate
 
-                            // Debugging logs
-                            console.log("Signature after clearing:", frm.doc.signature);
-                            console.log("Checkdate after clearing:", frm.doc.checkdate);
+                            frm.refresh_field('signature');
+                            frm.refresh_field('check_date');
+                            frm.refresh_field('asset_maintenance_tasks');
 
-                            // Save changes
                             frm.save().then(() => {
                                 frappe.msgprint(__('Maintenance Record Created: <a href="/app/vf-asset-maintenance-record/{0}" target="_blank">{0}</a>', [response.message]));
                             });
+
                         } else {
                             frappe.msgprint(__('Failed to create maintenance record.'));
                         }

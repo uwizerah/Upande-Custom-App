@@ -78,8 +78,7 @@
   {
    "fieldname": "check_date",
    "fieldtype": "Date",
-   "label": "Check Date",
-   "reqd": 1
+   "label": "Check Date"
   },
   {
    "fieldname": "column_break_9",
@@ -89,8 +88,7 @@
    "fieldname": "signature",
    "fieldtype": "Signature",
    "label": "Signature",
-   "max_height": "1px",
-   "reqd": 1
+   "max_height": "1px"
   },
   {
    "fieldname": "prepared_by",
@@ -143,7 +141,7 @@
    "link_fieldname": "schedule"
   }
  ],
- "modified": "2024-10-03 15:37:32.749712",
+ "modified": "2024-10-15 12:57:14.134239",
  "modified_by": "Administrator",
  "module": "Upande Vf Custom",
  "name": "VF Asset Maintenance Schedule",

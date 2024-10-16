@@ -33,11 +33,14 @@ class MpesaConsolidation(Document):
                 doc_list.append(s_doc.get("account_paid_from"))
                 
         return doc_list
-                
+         
+def create_mpesa_to_cons_sweep_journal():  
+    sweep_items = "Mpesa Consolidation Item"
+    create_mpesa_sweep_journal(sweep_items)  
      
-def create_mpesa_sweep_journal():
+def create_mpesa_sweep_journal(sweep_items):
     # Fetch balances from the script
-    balances = get_account_balances()
+    balances = get_account_balances(sweep_items)
     
     if balances:
         comb_accs = balances[0]  # Dictionary of accounts
@@ -51,6 +54,7 @@ def create_mpesa_sweep_journal():
                 "doctype": "Journal Entry",
                 "company": company,
                 "posting_date": frappe.utils.today(),
+                "custom_mpesa_sweep": 1,
                 "voucher_type": "Journal Entry",  # Use the appropriate voucher type if different
                 "accounts": []
             })
@@ -71,19 +75,17 @@ def create_mpesa_sweep_journal():
                     if amount > 0:
                         je_doc.append("accounts", {
                             "account": credit_account,
-                            # "cost_cneter": "Main - VF",
                             "credit_in_account_currency": amount
                         })
-                print(je_doc.__dict__)
+                        
                 # Save and submit the Journal Entry
                 je_doc.save()
-                print(je_doc.__dict__)
                 frappe.db.commit()
-                # je_doc.submit()
+                je_doc.submit()
 
-def get_account_balances():
+def get_account_balances(sweep_items):
     # Fetch all Mpesa Consolidation Item records
-    s_docs = frappe.db.get_all("Mpesa Consolidation Item", filters=None, fields=["account_paid_from", "account_paid_to"])
+    s_docs = frappe.db.get_all(sweep_items, filters=None, fields=["account_paid_from", "account_paid_to"])
     bal_dict = {}
 
     # Construct the dictionary with balances

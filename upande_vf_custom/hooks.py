@@ -162,6 +162,9 @@ doc_events = {
 		"on_submit": "upande_vf_custom.custom_scripts.server_scripts.delivery_note.on_submit",
 		# "before_save": "upande_vf_custom.custom_scripts.server_scripts.delivery_note.on_save"
 	},
+	"Journal Entry": {
+		"on_submit": "upande_vf_custom.custom_scripts.server_scripts.journal_entry.on_submit"
+	},
   	# "Stock Entry": {
   	# 	"before_save": "upande_vf_custom.custom_scripts.server_scripts.stock_entry.before_save"
 	# },

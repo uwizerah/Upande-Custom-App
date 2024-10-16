@@ -8,13 +8,6 @@
  "engine": "InnoDB",
  "field_order": [
   "company",
-  "payment_type",
-  "accounts_section",
-  "default_account_paid_to",
-  "fetch_mpesa_accounts",
-  "sweep",
-  "column_break_uf9cm",
-  "parent_account_for_mpesa_accounts",
   "section_break_3b1y8",
   "items"
  ],
@@ -24,43 +17,6 @@
    "fieldtype": "Link",
    "label": "Company",
    "options": "Company"
-  },
-  {
-   "fieldname": "payment_type",
-   "fieldtype": "Data",
-   "label": "Payment Type",
-   "options": "Internal Transfer"
-  },
-  {
-   "fieldname": "accounts_section",
-   "fieldtype": "Section Break",
-   "label": "Accounts"
-  },
-  {
-   "fieldname": "default_account_paid_to",
-   "fieldtype": "Link",
-   "label": "Default Account Paid To",
-   "options": "Account"
-  },
-  {
-   "fieldname": "fetch_mpesa_accounts",
-   "fieldtype": "Button",
-   "label": "Fetch Mpesa Accounts"
-  },
-  {
-   "fieldname": "sweep",
-   "fieldtype": "Button",
-   "label": "Sweep"
-  },
-  {
-   "fieldname": "column_break_uf9cm",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "parent_account_for_mpesa_accounts",
-   "fieldtype": "Link",
-   "label": "Parent Account For Mpesa Accounts",
-   "options": "Account"
   },
   {
    "fieldname": "section_break_3b1y8",
@@ -76,7 +32,7 @@
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2024-09-08 23:23:35.978453",
+ "modified": "2024-10-15 00:19:18.025733",
  "modified_by": "Administrator",
  "module": "Upande Vf Custom",
  "name": "Mpesa To Bank Sweep",

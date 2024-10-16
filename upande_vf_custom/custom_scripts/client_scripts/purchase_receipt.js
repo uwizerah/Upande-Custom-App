@@ -1,10 +1,10 @@
 frappe.ui.form.on('Purchase Receipt', {
     on_submit: function(frm) {
         // Ensure custom_type is 'Feeds'
-        if (frm.doc.custom_type !== 'Feeds') {
-            frappe.msgprint(__('Landed Cost Voucher can only be created for Purchase Receipts with custom type "Feeds".'));
-            return;
-        }
+        // if (frm.doc.custom_type !== 'Feeds') {
+        //     frappe.msgprint(__('Landed Cost Voucher can only be created for Purchase Receipts with custom type "Feeds".'));
+        //     return;
+        // }
 
         // Call the server-side method to create the LCV
         frappe.call({

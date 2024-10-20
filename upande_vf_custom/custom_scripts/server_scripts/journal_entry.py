@@ -4,7 +4,9 @@ def on_submit(doc, method):
     if doc.custom_mpesa_sweep == 1:
         for item in doc.accounts:
             if item.get("debit_in_account_currency") > 0: 
-                create_mpesa_sweep_journal(item.get("account"))
+                print("*"*80)
+                print(item.get("account"), item.get("debit_in_account_currency"))
+                # create_mpesa_sweep_journal(item.get("account"))
      
 def create_mpesa_sweep_journal(account):
     # Fetch balances from the script

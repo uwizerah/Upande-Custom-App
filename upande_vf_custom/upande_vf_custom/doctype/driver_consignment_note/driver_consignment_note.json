@@ -18,6 +18,7 @@
   "delivery_date",
   "sales_order_number",
   "cost_center",
+  "variance_warehouse",
   "section_break_3",
   "driver",
   "driver_name",
@@ -206,11 +207,18 @@
    "label": "Customer Address",
    "options": "Address",
    "read_only": 1
+  },
+  {
+   "fieldname": "variance_warehouse",
+   "fieldtype": "Link",
+   "label": "Variance Warehouse",
+   "mandatory_depends_on": "eval:!doc.__islocal",
+   "options": "Warehouse"
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2024-10-03 20:49:51.670085",
+ "modified": "2024-10-21 01:06:38.099547",
  "modified_by": "Administrator",
  "module": "Upande Vf Custom",
  "name": "Driver Consignment Note",

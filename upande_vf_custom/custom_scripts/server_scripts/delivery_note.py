@@ -1,6 +1,13 @@
 import frappe
+from frappe import _
 
 def on_submit(doc, method):
+    # Check if there are any attachments linked to the document
+    attachments = frappe.get_all('File', filters={'attached_to_doctype': doc.doctype, 'attached_to_name': doc.name})
+    
+    if not attachments:
+        frappe.throw(_("Please attach a Driver Consignment Note before submitting the Delivery Note."))
+
     if doc.set_warehouse and doc.custom_driver_consignment_note_number:
         create_sales_invoice(doc)
         

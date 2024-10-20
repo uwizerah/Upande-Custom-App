@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:{consolidation_account}",
  "creation": "2024-09-08 23:14:49.442880",
  "default_view": "List",
  "doctype": "DocType",
@@ -68,10 +69,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-09-09 19:11:54.222506",
+ "modified": "2024-10-21 00:35:05.886771",
  "modified_by": "Administrator",
  "module": "Upande Vf Custom",
  "name": "Mpesa Consolidation",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

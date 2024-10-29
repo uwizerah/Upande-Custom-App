@@ -15,7 +15,8 @@
   "mpesa_parent_account",
   "fetch_mpesa_accounts",
   "section_break_3b1y8",
-  "items"
+  "items",
+  "sweep_accounts"
  ],
  "fields": [
   {
@@ -65,11 +66,17 @@
    "label": "Items",
    "options": "Mpesa Consolidation Item",
    "reqd": 1
+  },
+  {
+   "fieldname": "sweep_accounts",
+   "fieldtype": "Button",
+   "label": "Sweep Accounts",
+   "permlevel": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-21 00:35:05.886771",
+ "modified": "2024-10-28 20:41:23.339330",
  "modified_by": "Administrator",
  "module": "Upande Vf Custom",
  "name": "Mpesa Consolidation",

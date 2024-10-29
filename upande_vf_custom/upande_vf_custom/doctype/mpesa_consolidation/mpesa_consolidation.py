@@ -33,9 +33,15 @@ class MpesaConsolidation(Document):
                 doc_list.append(s_doc.get("account_paid_from"))
                 
         return doc_list
-         
+    
+    @frappe.whitelist()   
+    def create_mpesa_to_cons_sweep_journal(self):  
+        sweep_items = frappe.db.get_all("Mpesa Consolidation Item", filters={"account_paid_to": self.consolidation_account}, fields=["account_paid_from", "account_paid_to"])
+        create_mpesa_sweep_journal(sweep_items)  
+        
+    
 def create_mpesa_to_cons_sweep_journal():  
-    sweep_items = "Mpesa Consolidation Item"
+    sweep_items = frappe.db.get_all("Mpesa Consolidation Item", filters=None, fields=["account_paid_from", "account_paid_to"])
     create_mpesa_sweep_journal(sweep_items)  
      
 def create_mpesa_sweep_journal(sweep_items):
@@ -81,11 +87,22 @@ def create_mpesa_sweep_journal(sweep_items):
                 # Save and submit the Journal Entry
                 je_doc.save()
                 frappe.db.commit()
-                je_doc.submit()
+                
+                # je_doc.submit()
+                # enque_submit()
+            
+def enque_submit():
+    docs_to_submit = frappe.db.get_all("Journal Entry", filters={"custom_mpesa_sweep": 1, "docstatus": 0}, fields=["name"])
+    
+    if docs_to_submit:
+        for doc_name in docs_to_submit:
+            doc = frappe.get_doc("Journal Entry", doc_name.get("name"))
+            
+            doc.submit()
 
 def get_account_balances(sweep_items):
     # Fetch all Mpesa Consolidation Item records
-    s_docs = frappe.db.get_all(sweep_items, filters=None, fields=["account_paid_from", "account_paid_to"])
+    s_docs = sweep_items
     bal_dict = {}
 
     # Construct the dictionary with balances

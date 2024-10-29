@@ -24,6 +24,7 @@ def create_so_onsubmit(doc):
     new_so.delivery_date = doc.delivery_date
     new_so.sales_order_number = doc.name
     new_so.lc_manager = doc.custom_lc_manager
+    new_so.variance_warehouse = doc.custom_variance_warehouse
     
     for item in doc.items:
         new_so.append("items", {

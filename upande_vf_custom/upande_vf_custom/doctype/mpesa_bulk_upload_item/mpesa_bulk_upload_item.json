@@ -28,7 +28,7 @@
    "fieldname": "supplier_invoice",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "DocumentNumber",
+   "label": "Document Number",
    "read_only": 1
   },
   {
@@ -58,27 +58,27 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "in_standard_filter": 1,
-   "label": "PurposeOfPayment",
+   "label": "Purpose Of Payment",
    "width": "40"
   },
   {
    "fieldname": "documenttype",
    "fieldtype": "Data",
-   "label": "DocumentType",
+   "label": "Document Type",
    "read_only": 1
   },
   {
    "fieldname": "mobilenumber",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "MobileNumber",
+   "label": "Mobile Number",
    "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-10-02 21:24:22.817199",
+ "modified": "2024-10-21 00:44:19.028885",
  "modified_by": "Administrator",
  "module": "Upande Vf Custom",
  "name": "Mpesa Bulk Upload Item",

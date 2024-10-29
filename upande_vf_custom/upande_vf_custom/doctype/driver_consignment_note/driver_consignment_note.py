@@ -177,6 +177,7 @@ class DriverConsignmentNote(Document):
                 new_stck_entry.driver = self.get("driver")
                 new_stck_entry.vehicle_no = self.get("vehicle")
                 new_stck_entry.custom_driver_consignment_note_number = self.name
+                new_stck_entry.custom_variance_warehouse = self.variance_warehouse
                 
                 for item in self.get("items"):
                     new_stck_entry.append("items", {

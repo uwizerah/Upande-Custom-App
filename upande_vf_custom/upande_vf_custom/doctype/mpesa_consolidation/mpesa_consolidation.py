@@ -87,9 +87,6 @@ def create_mpesa_sweep_journal(sweep_items):
                 # Save and submit the Journal Entry
                 je_doc.save()
                 frappe.db.commit()
-                
-                # je_doc.submit()
-                # enque_submit()
             
 def enque_submit():
     docs_to_submit = frappe.db.get_all("Journal Entry", filters={"custom_mpesa_sweep": 1, "docstatus": 0}, fields=["name"])

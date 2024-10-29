@@ -25,15 +25,15 @@ frappe.ui.form.on('Mpesa Consolidation', {
             }
     	})
 	},
-// 	sweep(frm) {
-//         frappe.call({
-//                 method: 'sweep_account',
-//         		callback: function(response) {
-//                     console.log(response.message)
-//                     let accounts = response.message;
-//         		}
-//         })
-//     }
+	sweep_accounts(frm) {
+        frappe.call({
+                method: 'create_mpesa_to_cons_sweep_journal',
+                doc: frm.doc,
+        		callback: function(response) {
+                    return
+        		}
+        })
+    }
 })
 
 frappe.ui.form.on('Mpesa Consolidation Item', {

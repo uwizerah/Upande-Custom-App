@@ -11,6 +11,8 @@ from erpnext.accounts.utils import get_balance_on
 
 
 def execute(filters=None):
+	print("*"*80)
+	print("Executing")
 	if not filters:
 		filters = {}
 
@@ -108,18 +110,23 @@ def get_columns():
 
 
 def get_entries(filters):
+	print("*"*80)
+	print("filters")
 	entries = []
+	print(entries)
 
-	for method_name in frappe.get_hooks("get_entries_for_bank_reconciliation_statement"):
+	for method_name in frappe.get_hooks("get_entries_for_vf_bank_reconciliation_statement"):
 		entries += frappe.get_attr(method_name)(filters) or []
-
+	print(entries)
 	return sorted(
 		entries,
 		key=lambda k: getdate(k["posting_date"]),
 	)
 
 
-def get_entries_for_bank_reconciliation_statement(filters):
+def get_entries_for_vf_bank_reconciliation_statement(filters):
+	print("*"*80)
+	print(filters)
 	journal_entries = get_journal_entries(filters)
 
 	payment_entries = get_payment_entries(filters)
@@ -195,14 +202,14 @@ def get_amounts_not_reflected_in_system(filters):
 
 	# get amounts from all the apps
 	for method_name in frappe.get_hooks(
-		"get_amounts_not_reflected_in_system_for_bank_reconciliation_statement"
+		"get_amounts_not_reflected_in_system_for_vf_bank_reconciliation_statement"
 	):
 		amount += frappe.get_attr(method_name)(filters) or 0.0
 
 	return amount
 
 
-def get_amounts_not_reflected_in_system_for_bank_reconciliation_statement(filters):
+def get_amounts_not_reflected_in_system_for_vf_bank_reconciliation_statement(filters):
 	je_amount = frappe.db.sql(
 		"""
 		select sum(jvd.debit_in_account_currency - jvd.credit_in_account_currency)

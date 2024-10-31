@@ -17,7 +17,9 @@ class DriverConsignmentNote(Document):
         for i, q in items.items():
             for c, cq in crates.items():
                 if i == c:
-                    if not q == cq:
+                    var = q-cq
+            
+                    if var > 1 or var < -1:
                         frappe.throw("Quantity {} for {} does not match quantity of {} in crates!".format(q,i,cq))
         
         

@@ -6,7 +6,7 @@ def on_submit(doc, method):
     attachments = frappe.get_all('File', filters={'attached_to_doctype': doc.doctype, 'attached_to_name': doc.name})
     
     if not attachments:
-        frappe.throw(_("Please attach a Driver Consignment Note before submitting the Delivery Note."))
+        frappe.throw(_("Please Attach a Reference Document."))
 
     if doc.set_warehouse and doc.custom_driver_consignment_note_number:
         create_sales_invoice(doc)
@@ -16,16 +16,18 @@ def on_submit(doc, method):
         move_variance_to_wh(doc.custom_driver_consignment_note_number, doc.custom_variance_warehouse, doc.set_warehouse, doc.company, doc.cost_center, variance_list)
         
 def create_sales_invoice(doc):
-    new_stck_entry = frappe.new_doc("Sales Invoice")
-    new_stck_entry.company = doc.get("company")
-    new_stck_entry.customer = doc.get("customer")
-    new_stck_entry.cost_center = doc.get("cost_center")
+    new_sinv = frappe.new_doc("Sales Invoice")
+    new_sinv.company = doc.get("company")
+    new_sinv.customer = doc.get("customer")
+    new_sinv.pos_profile = doc.get("pos_profile")
+    new_sinv.cost_center = doc.get("cost_center")
     
     for item in doc.items:
-        new_stck_entry.append("items", {
+        new_sinv.append("items", {
             "item_code": item.get("item_code"),
             "qty": item.get("qty"),
             "item_name":item.get("item_name"),
+            "pos_profile": doc.get("pos_profile"),
             "description":item.get("description"),
             "cost_center": item.get("cost_center"),
             "sales_order": item.get("against_sales_order"),
@@ -33,9 +35,9 @@ def create_sales_invoice(doc):
             "delivery_note": doc.get("name")
         })
         
-    new_stck_entry.save()
+    new_sinv.save()
     
-    new_stck_entry.submit()
+    new_sinv.submit()
         
 def get_dn_items(doc):
     dn_items = []

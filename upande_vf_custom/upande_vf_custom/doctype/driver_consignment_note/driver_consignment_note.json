@@ -16,6 +16,7 @@
   "column_break_5f3hx",
   "lc_manager",
   "delivery_date",
+  "pos_profile",
   "sales_order_number",
   "cost_center",
   "variance_warehouse",
@@ -214,11 +215,22 @@
    "label": "Variance Warehouse",
    "mandatory_depends_on": "eval:!doc.__islocal",
    "options": "Warehouse"
+  },
+  {
+   "fieldname": "pos_profile",
+   "fieldtype": "Link",
+   "label": "POS Profile",
+   "options": "POS Profile"
   }
  ],
  "is_submittable": 1,
- "links": [],
- "modified": "2024-10-21 01:06:38.099547",
+ "links": [
+  {
+   "link_doctype": "Delivery Note",
+   "link_fieldname": "custom_driver_consignment_note_number"
+  }
+ ],
+ "modified": "2024-11-03 00:33:41.257699",
  "modified_by": "Administrator",
  "module": "Upande Vf Custom",
  "name": "Driver Consignment Note",

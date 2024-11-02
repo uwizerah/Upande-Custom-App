@@ -170,19 +170,20 @@ class DriverConsignmentNote(Document):
             dn_exists = frappe.db.exists("Delivery Note", {"custom_driver_consignment_note_number": self.name})
 
             if not dn_exists:
-                new_stck_entry = frappe.new_doc("Delivery Note")
-                new_stck_entry.company = self.get("company")
-                new_stck_entry.set_warehouse = self.get("truck_warehouse")
-                new_stck_entry.customer = self.get("customer")
-                new_stck_entry.customer_name = self.get("customer_name")
-                new_stck_entry.cost_center = self.get("cost_center")
-                new_stck_entry.driver = self.get("driver")
-                new_stck_entry.vehicle_no = self.get("vehicle")
-                new_stck_entry.custom_driver_consignment_note_number = self.name
-                new_stck_entry.custom_variance_warehouse = self.variance_warehouse
+                new_d_note = frappe.new_doc("Delivery Note")
+                new_d_note.company = self.get("company")
+                new_d_note.set_warehouse = self.get("truck_warehouse")
+                new_d_note.customer = self.get("customer")
+                new_d_note.pos_profile = self.pos_profile
+                new_d_note.customer_name = self.get("customer_name")
+                new_d_note.cost_center = self.get("cost_center")
+                new_d_note.driver = self.get("driver")
+                new_d_note.vehicle_no = self.get("vehicle")
+                new_d_note.custom_driver_consignment_note_number = self.name
+                new_d_note.custom_variance_warehouse = self.variance_warehouse
                 
                 for item in self.get("items"):
-                    new_stck_entry.append("items", {
+                    new_d_note.append("items", {
                         "item_code": item.get("item_code"),
                         "qty": item.get("qty"),
                         "description":item.get("description"),
@@ -196,12 +197,12 @@ class DriverConsignmentNote(Document):
                         "amount": item.get("amount"),
                     })
                     
-                new_stck_entry.save()
+                new_d_note.save()
                 
                 self.delivered = 1
                 self.save()
                 
-                frappe.response['message'] = new_stck_entry    
+                frappe.response['message'] = new_d_note 
             else:
                 frappe.throw("Delivery Note {} exists for {}".format(dn_exists, self.name))
         else:

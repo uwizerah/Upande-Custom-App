@@ -1,3 +1,4 @@
+
 // Copyright (c) 2024, Upande Ltd and contributors
 // For license information, please see license.txt
 
@@ -50,7 +51,7 @@ frappe.query_reports["VF Bank Reconciliation Statement"] = {
 	formatter: function (value, row, column, data, default_formatter, filter) {
 		if (column.fieldname == "payment_entry" && value == __("Cheques and Deposits incorrectly cleared")) {
 			column.link_onclick =
-				"frappe.query_reports['Bank Reconciliation Statement'].open_utility_report()";
+				"frappe.query_reports['Vf Bank Reconciliation Statement'].open_utility_report()";
 		}
 		return default_formatter(value, row, column, data);
 	},
@@ -64,4 +65,3 @@ frappe.query_reports["VF Bank Reconciliation Statement"] = {
 		frappe.set_route("query-report", "Cheques and Deposits Incorrectly cleared");
 	},
 };
-

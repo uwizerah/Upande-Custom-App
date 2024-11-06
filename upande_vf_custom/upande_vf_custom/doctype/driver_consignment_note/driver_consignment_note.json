@@ -137,8 +137,7 @@
    "fieldtype": "Link",
    "label": "Truck Warehouse",
    "mandatory_depends_on": "eval:!doc.__islocal",
-   "options": "Warehouse",
-   "reqd": 1
+   "options": "Warehouse"
   },
   {
    "fieldname": "section_break_zpntz",
@@ -220,7 +219,7 @@
    "link_fieldname": "custom_driver_consignment_note_number"
   }
  ],
- "modified": "2024-11-06 18:20:24.129315",
+ "modified": "2024-11-06 19:53:56.489811",
  "modified_by": "Administrator",
  "module": "Upande Vf Custom",
  "name": "Driver Consignment Note",

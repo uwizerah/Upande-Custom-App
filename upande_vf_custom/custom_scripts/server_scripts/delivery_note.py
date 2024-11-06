@@ -85,8 +85,7 @@ def variance_due_to_water_loss(doc):
                     if float(stck.get("qty")) - float(item.get("qty")):
                         if not variance in variance_list:
                             variance_list.append(variance)
-    print("*"*80)
-    print(variance_list)
+
     return variance_list
                         
 def move_variance_to_wh(c_no, variance_warehouse, s_warehouse, company, cost_center, variance_list):

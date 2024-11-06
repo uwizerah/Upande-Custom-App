@@ -1,6 +1,5 @@
-# Copyright (c) 2024, Upande Ltd and contributors
-# For license information, please see license.txt
-
+# Copyright (c) 2015, Frappe Technologies Pvt. Ltd. and Contributors
+# License: GNU General Public License v3. See license.txt
 
 
 import frappe
@@ -11,8 +10,6 @@ from erpnext.accounts.utils import get_balance_on
 
 
 def execute(filters=None):
-	print("*"*80)
-	print("Executing")
 	if not filters:
 		filters = {}
 
@@ -110,14 +107,11 @@ def get_columns():
 
 
 def get_entries(filters):
-	print("*"*80)
-	print("filters")
 	entries = []
-	print(entries)
 
 	for method_name in frappe.get_hooks("get_entries_for_vf_bank_reconciliation_statement"):
 		entries += frappe.get_attr(method_name)(filters) or []
-	print(entries)
+
 	return sorted(
 		entries,
 		key=lambda k: getdate(k["posting_date"]),
@@ -125,8 +119,6 @@ def get_entries(filters):
 
 
 def get_entries_for_vf_bank_reconciliation_statement(filters):
-	print("*"*80)
-	print(filters)
 	journal_entries = get_journal_entries(filters)
 
 	payment_entries = get_payment_entries(filters)

@@ -16,6 +16,8 @@
   "fetch_mpesa_accounts",
   "section_break_3b1y8",
   "items",
+  "section_break_ausa",
+  "sweep_time",
   "sweep_accounts"
  ],
  "fields": [
@@ -72,11 +74,21 @@
    "fieldtype": "Button",
    "label": "Sweep Accounts",
    "permlevel": 1
+  },
+  {
+   "fieldname": "sweep_time",
+   "fieldtype": "Datetime",
+   "label": "Sweep Time",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "section_break_ausa",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-28 20:41:23.339330",
+ "modified": "2024-11-03 01:52:08.265565",
  "modified_by": "Administrator",
  "module": "Upande Vf Custom",
  "name": "Mpesa Consolidation",

@@ -40,7 +40,11 @@ class MpesaConsolidation(Document):
         create_mpesa_sweep_journal(sweep_items)  
         
     
-def create_mpesa_to_cons_sweep_journal():  
+def mpesa_auto_sweep(consolidation_account):  
+        sweep_items = frappe.db.get_all("Mpesa Consolidation Item", filters={"account_paid_to": consolidation_account}, fields=["account_paid_from", "account_paid_to"])
+        create_mpesa_sweep_journal(sweep_items)  
+        
+def create_mpesa_to_cons_sweep_journal2():  
     sweep_items = frappe.db.get_all("Mpesa Consolidation Item", filters=None, fields=["account_paid_from", "account_paid_to"])
     create_mpesa_sweep_journal(sweep_items)  
      

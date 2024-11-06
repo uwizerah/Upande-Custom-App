@@ -90,6 +90,7 @@ def move_variance_to_wh(c_no, variance_warehouse, s_warehouse, company, cost_cen
     new_stk_entry = frappe.new_doc("Stock Entry")
     new_stk_entry.company = company
     new_stk_entry.cost_center = cost_center
+    new_stk_entry.custom_is_credit_sale = 1
     new_stk_entry.custom_consignment_note = c_no
     new_stk_entry.from_warehouse = s_warehouse
     new_stk_entry.to_warehouse = variance_warehouse

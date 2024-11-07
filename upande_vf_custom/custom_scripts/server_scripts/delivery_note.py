@@ -19,7 +19,7 @@ def create_sales_invoice(doc):
     new_sinv = frappe.new_doc("Sales Invoice")
     new_sinv.company = doc.get("company")
     new_sinv.customer = doc.get("customer")
-    new_sinv.custom_is_credit_sale = 1
+    # new_sinv.custom_is_credit_sale = 1
     new_sinv.pos_profile = doc.get("pos_profile")
     new_sinv.cost_center = doc.get("cost_center")
     

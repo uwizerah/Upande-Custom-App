@@ -19,6 +19,7 @@ def create_sales_invoice(doc):
     new_sinv = frappe.new_doc("Sales Invoice")
     new_sinv.company = doc.get("company")
     new_sinv.customer = doc.get("customer")
+    new_sinv.custom_is_credit_sale = 1
     new_sinv.pos_profile = doc.get("pos_profile")
     new_sinv.cost_center = doc.get("cost_center")
     
@@ -81,31 +82,33 @@ def variance_due_to_water_loss(doc):
                         "uom": item.get("uom"),
                         "variance": float(stck.get("qty")) - float(item.get("qty"))
                     }
-                    
-                    if not variance in variance_list:
-                        variance_list.append(variance)
+                    if float(stck.get("qty")) - float(item.get("qty")):
+                        if not variance in variance_list:
+                            variance_list.append(variance)
+
     return variance_list
                         
 def move_variance_to_wh(c_no, variance_warehouse, s_warehouse, company, cost_center, variance_list):
-    new_stk_entry = frappe.new_doc("Stock Entry")
-    new_stk_entry.company = company
-    new_stk_entry.cost_center = cost_center
-    new_stk_entry.custom_consignment_note = c_no
-    new_stk_entry.from_warehouse = s_warehouse
-    new_stk_entry.to_warehouse = variance_warehouse
-    
-    for item in variance_list:
-        if float(item.get("variance")) > 0:
-            new_stk_entry.append("items",{
-                "item_code": item.get("item_code"),
-                "qty": item.get("variance"),
-                "uom": item.get("uom")
-            })
+    if len(variance_list):
+        new_stk_entry = frappe.new_doc("Stock Entry")
+        new_stk_entry.company = company
+        new_stk_entry.cost_center = cost_center
+        new_stk_entry.custom_consignment_note = c_no
+        new_stk_entry.from_warehouse = s_warehouse
+        new_stk_entry.to_warehouse = variance_warehouse
         
-    new_stk_entry.save()
-    new_stk_entry.submit()
+        for item in variance_list:
+            if float(item.get("variance")) > 0:
+                new_stk_entry.append("items",{
+                    "item_code": item.get("item_code"),
+                    "qty": item.get("variance"),
+                    "uom": item.get("uom")
+                })
             
-    
+        new_stk_entry.save()
+        new_stk_entry.submit()
+                
+        
 
-    
-    
+        
+        

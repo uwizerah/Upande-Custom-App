@@ -1,4 +1,4 @@
-# Copyright (c) 2024, Upande Ltd and contributors
+# Copyright (c) 2020, Frappe Technologies Pvt. Ltd. and contributors
 # For license information, please see license.txt
 
 
@@ -13,7 +13,7 @@ from pypika.terms import Parameter
 
 from erpnext import get_default_cost_center
 from erpnext.accounts.doctype.bank_transaction.bank_transaction import get_total_allocated_amount
-from erpnext.accounts.report.bank_reconciliation_statement.bank_reconciliation_statement import (
+from upande_vf_custom.upande_vf_custom.report.vf_bank_reconciliation_statement.vf_bank_reconciliation_statement import (
 	get_amounts_not_reflected_in_system,
 	get_entries,
 )
@@ -21,7 +21,27 @@ from erpnext.accounts.utils import get_account_currency, get_balance_on
 from erpnext.setup.utils import get_exchange_rate
 
 
-class VFBankReconciliationTool(Document):
+class BankReconciliationTool(Document):
+	# begin: auto-generated types
+	# This code is auto-generated. Do not modify anything in this block.
+
+	from typing import TYPE_CHECKING
+
+	if TYPE_CHECKING:
+		from frappe.types import DF
+
+		account_currency: DF.Link | None
+		account_opening_balance: DF.Currency
+		bank_account: DF.Link | None
+		bank_statement_closing_balance: DF.Currency
+		bank_statement_from_date: DF.Date | None
+		bank_statement_to_date: DF.Date | None
+		company: DF.Link | None
+		filter_by_reference_date: DF.Check
+		from_reference_date: DF.Date | None
+		to_reference_date: DF.Date | None
+	# end: auto-generated types
+
 	pass
 
 
@@ -424,7 +444,13 @@ def reconcile_vouchers(bank_transaction_name, vouchers):
 	vouchers = json.loads(vouchers)
 	transaction = frappe.get_doc("Bank Transaction", bank_transaction_name)
 	transaction.add_payment_entries(vouchers)
-	return frappe.get_doc("Bank Transaction", bank_transaction_name)
+	transaction.validate_duplicate_references()
+	transaction.allocate_payment_entries()
+	transaction.update_allocated_amount()
+	transaction.set_status()
+	transaction.save()
+
+	return transaction
 
 
 @frappe.whitelist()

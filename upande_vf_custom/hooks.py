@@ -263,4 +263,8 @@ doc_events = {
 # auth_hooks = [
 #	"upande_vf_custom.auth.validate"
 # ]
+get_matching_queries = (
+	"upande_vf_custom.upande_vf_custom.doctype.vf_bank_reconciliation_tool.vf_bank_reconciliation_tool.get_matching_queries"
+)
+get_amounts_not_reflected_in_system_for_vf_bank_reconciliation_statement = "upande_vf_custom.upande_vf_custom.report.vf_bank_reconciliation_statement.vf_bank_reconciliation_statement.get_amounts_not_reflected_in_system_for_vf_bank_reconciliation_statement"
 get_entries_for_vf_bank_reconciliation_statement = "upande_vf_custom.upande_vf_custom.report.vf_bank_reconciliation_statement.vf_bank_reconciliation_statement.get_entries_for_vf_bank_reconciliation_statement"

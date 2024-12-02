@@ -10,8 +10,7 @@
   "valuation_rate",
   "consumed_quantity",
   "total_value",
-  "serial_no",
-  "serial_and_batch_bundle"
+  "serial_no"
  ],
  "fields": [
   {
@@ -55,12 +54,6 @@
    "hidden": 1,
    "label": "Serial No",
    "print_hide": 1
-  },
-  {
-   "fieldname": "serial_and_batch_bundle",
-   "fieldtype": "Link",
-   "label": "Serial and Batch Bundle",
-   "options": "Serial and Batch Bundle"
   }
  ],
  "index_web_pages_for_search": 1,

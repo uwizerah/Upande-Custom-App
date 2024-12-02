@@ -1,11 +1,12 @@
 # Copyright (c) 2024, Upande Ltd and contributors
 # For license information, please see license.txt
 
+
 # import frappe
 from frappe.model.document import Document
 
 
-class VFAssetRepairItem(Document):
+class VFAssetRepairConsumedItem(Document):
 	# begin: auto-generated types
 	# This code is auto-generated. Do not modify anything in this block.
 

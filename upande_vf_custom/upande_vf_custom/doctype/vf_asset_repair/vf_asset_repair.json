@@ -41,7 +41,8 @@
   "actions_performed",
   "department",
   "section_break_epld",
-  "downtime"
+  "downtime",
+  "amended_from"
  ],
  "fields": [
   {
@@ -207,7 +208,7 @@
    "fieldname": "repair_requirements",
    "fieldtype": "Table",
    "label": "Repair Requirements",
-   "options": "Repair Requirements"
+   "options": "VF Repair Requirements"
   },
   {
    "fieldname": "column_break_qdsg",
@@ -233,12 +234,22 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Downtime"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "VF Asset Repair",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-12-02 09:12:08.703197",
+ "modified": "2024-12-02 12:14:24.326486",
  "modified_by": "Administrator",
  "module": "Upande Vf Custom",
  "name": "VF Asset Repair",

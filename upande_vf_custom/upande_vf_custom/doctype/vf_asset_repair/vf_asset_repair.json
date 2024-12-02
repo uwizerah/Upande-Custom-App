@@ -2,51 +2,46 @@
  "actions": [],
  "allow_rename": 1,
  "autoname": "naming_series:",
- "creation": "2024-10-08 13:09:40.526185",
+ "creation": "2024-11-29 16:17:09.205789",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "asset",
   "company",
-  "column_break_4vqk",
+  "column_break_wssc",
   "asset_name",
   "naming_series",
-  "requisition_form_number",
-  "requisition_details_section",
+  "repair_details_section",
   "failure_date",
   "repair_status",
-  "column_break_iyjz",
+  "column_break_csel",
   "completion_date",
+  "requisition_form",
   "accounting_dimensions_section",
   "cost_center",
-  "column_break_jrsn",
+  "column_break_xqfj",
   "project",
-  "custom_repair_essentials_",
+  "repair_essentials_section",
   "repair_requirements",
   "accounting_details_section",
-  "repair_cost",
-  "total_repair_amount",
-  "section_break_evja",
-  "custom_purchase_invoices",
-  "section_break_aijm",
+  "purchase_invoices",
+  "section_break_iekq",
   "capitalize_repair_cost",
   "stock_consumed_during_repair",
-  "column_break_8oz1",
-  "purchase_invoice",
+  "column_break_hfgc",
+  "repair_cost",
   "stock_consumption_details_section",
   "stock_items",
   "total_repair_cost",
   "asset_depreciation_details_section",
   "increase_in_asset_lifemonths",
   "description_section",
-  "description",
-  "column_break_qiz5",
+  "error_description",
+  "column_break_qdsg",
   "actions_performed",
   "department",
-  "section_break_ctwx",
-  "downtime",
-  "column_break_ta15",
-  "amended_from"
+  "section_break_epld",
+  "downtime"
  ],
  "fields": [
   {
@@ -62,7 +57,7 @@
    "options": "Company"
   },
   {
-   "fieldname": "column_break_4vqk",
+   "fieldname": "column_break_wssc",
    "fieldtype": "Column Break"
   },
   {
@@ -77,15 +72,9 @@
    "options": "ACC-ASR-.YYYY.-"
   },
   {
-   "fieldname": "requisition_form_number",
-   "fieldtype": "Link",
-   "label": "Requisition Form Number",
-   "options": "Requisition Form"
-  },
-  {
-   "fieldname": "requisition_details_section",
+   "fieldname": "repair_details_section",
    "fieldtype": "Section Break",
-   "label": "Requisition Details"
+   "label": "Repair Details"
   },
   {
    "fieldname": "failure_date",
@@ -95,17 +84,22 @@
   {
    "fieldname": "repair_status",
    "fieldtype": "Select",
-   "label": "Repair Status",
-   "options": "Pending\nCompleted\nCancelled"
+   "label": "Repair Status"
   },
   {
-   "fieldname": "column_break_iyjz",
+   "fieldname": "column_break_csel",
    "fieldtype": "Column Break"
   },
   {
    "fieldname": "completion_date",
    "fieldtype": "Datetime",
    "label": "Completion Date"
+  },
+  {
+   "fieldname": "requisition_form",
+   "fieldtype": "Link",
+   "label": "Requisition Form",
+   "options": "Requisition Form"
   },
   {
    "fieldname": "accounting_dimensions_section",
@@ -119,7 +113,7 @@
    "options": "Cost Center"
   },
   {
-   "fieldname": "column_break_jrsn",
+   "fieldname": "column_break_xqfj",
    "fieldtype": "Column Break"
   },
   {
@@ -129,43 +123,18 @@
    "options": "Project"
   },
   {
-   "fieldname": "custom_repair_essentials_",
-   "fieldtype": "Section Break",
-   "label": "Repair Essentials"
-  },
-  {
-   "fieldname": "repair_requirements",
-   "fieldtype": "Table",
-   "label": "Repair Requirements",
-   "options": "VF Repair Requirements"
-  },
-  {
    "fieldname": "accounting_details_section",
    "fieldtype": "Section Break",
    "label": "Accounting Details"
   },
   {
-   "fieldname": "repair_cost",
-   "fieldtype": "Currency",
-   "label": "Repair Cost"
-  },
-  {
-   "fieldname": "total_repair_amount",
-   "fieldtype": "Currency",
-   "label": "Total Repair Amount"
-  },
-  {
-   "fieldname": "section_break_evja",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "custom_purchase_invoices",
+   "fieldname": "purchase_invoices",
    "fieldtype": "Table",
    "label": "Purchase Invoices",
    "options": "VF Asset Repair Purchase Invoices"
   },
   {
-   "fieldname": "section_break_aijm",
+   "fieldname": "section_break_iekq",
    "fieldtype": "Section Break"
   },
   {
@@ -181,14 +150,13 @@
    "label": "Stock Consumed During Repair"
   },
   {
-   "fieldname": "column_break_8oz1",
+   "fieldname": "column_break_hfgc",
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "purchase_invoice",
-   "fieldtype": "Link",
-   "label": "Purchase Invoice",
-   "options": "Purchase Invoice"
+   "fieldname": "repair_cost",
+   "fieldtype": "Currency",
+   "label": "Repair Cost"
   },
   {
    "fieldname": "stock_consumption_details_section",
@@ -199,12 +167,15 @@
    "fieldname": "stock_items",
    "fieldtype": "Table",
    "label": "Stock Items",
-   "options": "VF Asset Repair Item"
+   "options": "VF Asset Repair Consumed Item"
   },
   {
+   "depends_on": "eval: doc.stock_consumption && doc.total_repair_cost > 0",
+   "description": "Sum of Repair Cost and Value of Consumed Stock Items.",
    "fieldname": "total_repair_cost",
    "fieldtype": "Currency",
-   "label": "Total Repair Cost"
+   "label": "Total Repair Cost",
+   "read_only": 1
   },
   {
    "fieldname": "asset_depreciation_details_section",
@@ -212,6 +183,7 @@
    "label": "Asset Depreciation Details"
   },
   {
+   "depends_on": "eval: doc.stock_consumption && doc.total_repair_cost > 0",
    "fieldname": "increase_in_asset_lifemonths",
    "fieldtype": "Int",
    "label": "Increase In Asset Life(Months)"
@@ -222,12 +194,23 @@
    "label": "Description"
   },
   {
-   "fieldname": "description",
+   "fieldname": "error_description",
    "fieldtype": "Long Text",
    "label": "Error Description"
   },
   {
-   "fieldname": "column_break_qiz5",
+   "fieldname": "repair_essentials_section",
+   "fieldtype": "Section Break",
+   "label": "Repair Essentials"
+  },
+  {
+   "fieldname": "repair_requirements",
+   "fieldtype": "Table",
+   "label": "Repair Requirements",
+   "options": "Repair Requirements"
+  },
+  {
+   "fieldname": "column_break_qdsg",
    "fieldtype": "Column Break"
   },
   {
@@ -242,33 +225,20 @@
    "options": "Department"
   },
   {
-   "fieldname": "section_break_ctwx",
+   "fieldname": "section_break_epld",
    "fieldtype": "Section Break"
   },
   {
    "fieldname": "downtime",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Downtime"
-  },
-  {
-   "fieldname": "column_break_ta15",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "VF Asset Repair",
-   "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-10-08 16:24:53.326441",
+ "modified": "2024-12-02 09:12:08.703197",
  "modified_by": "Administrator",
  "module": "Upande Vf Custom",
  "name": "VF Asset Repair",
@@ -291,6 +261,5 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": [],
- "track_changes": 1
+ "states": []
 }

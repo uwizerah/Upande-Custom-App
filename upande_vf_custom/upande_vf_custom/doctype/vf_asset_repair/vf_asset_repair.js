@@ -59,9 +59,9 @@ frappe.ui.form.on('VF Asset Repair', {
 		}
 	},
 
-	// stock_items_on_form_rendered() {
-	// 	erpnext.setup_serial_or_batch_no();
-	// }
+	stock_items_on_form_rendered() {
+		erpnext.setup_serial_or_batch_no();
+	}
 });
 
 frappe.ui.form.on('VF Asset Repair Consumed Item', {
@@ -72,7 +72,7 @@ frappe.ui.form.on('VF Asset Repair Consumed Item', {
 			'item_code': item.item_code,
 			'warehouse': frm.doc.warehouse,
 			'qty': item.consumed_quantity,
-			// 'serial_no': item.serial_no,
+			'serial_no': item.serial_no,
 			'company': frm.doc.company
 		};
 

@@ -20,7 +20,6 @@ class VFAssetRepairConsumedItem(Document):
 		parent: DF.Data
 		parentfield: DF.Data
 		parenttype: DF.Data
-		serial_and_batch_bundle: DF.Link | None
 		serial_no: DF.SmallText | None
 		total_value: DF.Currency
 		valuation_rate: DF.Currency

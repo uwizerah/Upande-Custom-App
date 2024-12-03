@@ -9,7 +9,9 @@
  "field_order": [
   "company",
   "section_break_3b1y8",
-  "items"
+  "items",
+  "posting_date",
+  "sweep_accounts"
  ],
  "fields": [
   {
@@ -27,12 +29,22 @@
    "fieldtype": "Table",
    "label": "Items",
    "options": "Mpesa To Bank Sweep Item"
+  },
+  {
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date"
+  },
+  {
+   "fieldname": "sweep_accounts",
+   "fieldtype": "Button",
+   "label": "Sweep Accounts"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2024-10-15 00:19:18.025733",
+ "modified": "2024-12-03 14:17:17.684937",
  "modified_by": "Administrator",
  "module": "Upande Vf Custom",
  "name": "Mpesa To Bank Sweep",

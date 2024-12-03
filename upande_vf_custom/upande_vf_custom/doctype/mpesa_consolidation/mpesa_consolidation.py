@@ -37,20 +37,20 @@ class MpesaConsolidation(Document):
     @frappe.whitelist()   
     def create_mpesa_to_cons_sweep_journal(self):  
         sweep_items = frappe.db.get_all("Mpesa Consolidation Item", filters={"account_paid_to": self.consolidation_account}, fields=["account_paid_from", "account_paid_to"])
-        create_mpesa_sweep_journal(sweep_items)  
+        posting_date = self.posting_date
         
-    
-def mpesa_auto_sweep(consolidation_account):  
-        sweep_items = frappe.db.get_all("Mpesa Consolidation Item", filters={"account_paid_to": consolidation_account}, fields=["account_paid_from", "account_paid_to"])
-        create_mpesa_sweep_journal(sweep_items)  
+        create_mpesa_sweep_journal(sweep_items, self.company, posting_date)    
         
-def create_mpesa_to_cons_sweep_journal2():  
+def auto_create_mpesa_to_cons_sweep_journal():  
     sweep_items = frappe.db.get_all("Mpesa Consolidation Item", filters=None, fields=["account_paid_from", "account_paid_to"])
-    create_mpesa_sweep_journal(sweep_items)  
+    company = "Victory Farms Ltd"
+    posting_date = frappe.utils.today()
+
+    create_mpesa_sweep_journal(sweep_items, company, posting_date)  
      
-def create_mpesa_sweep_journal(sweep_items):
+def create_mpesa_sweep_journal(sweep_items, company, posting_date):
     # Fetch balances from the script
-    balances = get_account_balances(sweep_items)
+    balances = get_account_balances(sweep_items, company, posting_date)
     
     if balances:
         comb_accs = balances[0]  # Dictionary of accounts
@@ -58,12 +58,11 @@ def create_mpesa_sweep_journal(sweep_items):
         # for key, value in cum_bal.items():
         # Iterate through each key account and its corresponding debit accounts
         for debit_account, credit_accounts in comb_accs.items():
-            company = frappe.db.get_value("Account", debit_account, "company")
             # Create a new Journal Entry document for each key account
             je_doc = frappe.get_doc({
                 "doctype": "Journal Entry",
                 "company": company,
-                "posting_date": frappe.utils.today(),
+                "posting_date": posting_date,
                 "custom_mpesa_sweep": 1,
                 "voucher_type": "Journal Entry",  # Use the appropriate voucher type if different
                 "accounts": []
@@ -92,20 +91,23 @@ def create_mpesa_sweep_journal(sweep_items):
                 je_doc.save()
                 frappe.db.commit()
             
+        enque_submit()
+                
 def enque_submit():
     docs_to_submit = frappe.db.get_all("Journal Entry", filters={"custom_mpesa_sweep": 1, "docstatus": 0}, fields=["name"])
-    
     if docs_to_submit:
         for doc_name in docs_to_submit:
             doc = frappe.get_doc("Journal Entry", doc_name.get("name"))
             
             doc.submit()
+            frappe.db.commit()
+           
 
-def get_account_balances(sweep_items):
+def get_account_balances(sweep_items, company, posting_date):
     # Fetch all Mpesa Consolidation Item records
     s_docs = sweep_items
     bal_dict = {}
-
+    
     # Construct the dictionary with balances
     if s_docs:
         for s_doc in s_docs:
@@ -123,8 +125,14 @@ def get_account_balances(sweep_items):
                 FROM 
                     `tabGL Entry`
                 WHERE 
-                    account = %s AND posting_date <= %s
-            """, (account_paid_from, frappe.utils.today()), as_dict=True)
+                    account = %s AND company = %s AND posting_date = %s AND is_cancelled = 0
+            """, (account_paid_from, company, posting_date), as_dict=True)
+            
+                        # balance = frappe.db.sql("""
+            #     SELECT SUM(debit) - SUM(credit) AS balance
+            #     FROM `tabGL Entry`
+            #     WHERE account = %s AND company = %s AND posting_date = %s AND is_cancelled = 0
+            # """, (account, company, frappe.utils.today()), as_dict=True)
 
             # Extract balance value and handle NoneType
             balance = account_balance[0]["balance"] if account_balance else 0
@@ -146,4 +154,6 @@ def get_account_balances(sweep_items):
         
     # Return both the detailed balances and the sums
     return bal_dict, balance_sums
+
+# Fetch account balance using the General Ledger table
 

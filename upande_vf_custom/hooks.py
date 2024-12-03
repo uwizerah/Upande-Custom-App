@@ -177,13 +177,18 @@ doc_events = {
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-#	"all": [
-#		"upande_vf_custom.tasks.all"
-#	],
-#	"daily": [
-#		"upande_vf_custom.tasks.daily"
-#	],
+scheduler_events = {
+    "cron":{
+		"50 23 * * *": [
+			"upande_vf_custom.upande_vf_custom.doctype.mpesa_consolidation.mpesa_consolidation.auto_create_mpesa_to_cons_sweep_journal"
+		],
+		"20 0 * * *": [
+			"upande_vf_custom.upande_vf_custom.doctype.mpesa_to_bank_sweep.mpesa_to_bank_sweep.auto_create_mpesa_to_bank_sweep_journal"
+		]
+	}
+	# "daily": [
+	# 	"upande_vf_custom.tasks.daily"
+	# ],
 #	"hourly": [
 #		"upande_vf_custom.tasks.hourly"
 #	],
@@ -193,7 +198,7 @@ doc_events = {
 #	"monthly": [
 #		"upande_vf_custom.tasks.monthly"
 #	],
-# }
+}
 
 # Testing
 # -------

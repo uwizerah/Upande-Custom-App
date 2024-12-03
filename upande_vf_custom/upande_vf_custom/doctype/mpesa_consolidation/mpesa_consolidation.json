@@ -17,7 +17,7 @@
   "section_break_3b1y8",
   "items",
   "section_break_ausa",
-  "sweep_time",
+  "posting_date",
   "sweep_accounts"
  ],
  "fields": [
@@ -76,19 +76,18 @@
    "permlevel": 1
   },
   {
-   "fieldname": "sweep_time",
-   "fieldtype": "Datetime",
-   "label": "Sweep Time",
-   "permlevel": 1
-  },
-  {
    "fieldname": "section_break_ausa",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-03 01:52:08.265565",
+ "modified": "2024-12-03 15:19:07.020754",
  "modified_by": "Administrator",
  "module": "Upande Vf Custom",
  "name": "Mpesa Consolidation",

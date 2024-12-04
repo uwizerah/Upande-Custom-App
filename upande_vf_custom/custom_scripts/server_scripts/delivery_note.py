@@ -20,6 +20,7 @@ def create_sales_invoice(doc):
     new_sinv.company = doc.get("company")
     new_sinv.customer = doc.get("customer")
     new_sinv.custom_is_credit_sale = 1
+    new_sinv.selling_price_list = doc.selling_price_list
     new_sinv.set_posting_time = 1
     new_sinv.posting_date = doc.posting_date
     new_sinv.pos_profile = doc.get("pos_profile")

@@ -174,6 +174,7 @@ class DriverConsignmentNote(Document):
                 new_d_note.company = self.get("company")
                 new_d_note.set_warehouse = self.get("truck_warehouse")
                 new_d_note.customer = self.get("customer")
+                new_d_note.selling_price_list = self.selling_price_list
                 new_d_note.pos_profile = self.pos_profile
                 new_d_note.customer_name = self.get("customer_name")
                 new_d_note.cost_center = self.get("cost_center")

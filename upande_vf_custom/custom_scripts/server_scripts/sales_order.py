@@ -20,6 +20,7 @@ def create_so_onsubmit(doc):
     new_dcn.customer_name = doc.customer_name
     new_dcn.customer_address = doc.customer_address
     new_dcn.from_warehouse = doc.set_warehouse
+    new_dcn.selling_price_list = doc.selling_price_list
     new_dcn.pos_profile = doc.pos_profile
     new_dcn.cost_center = doc.cost_center
     new_dcn.delivery_date = doc.delivery_date

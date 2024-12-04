@@ -13,6 +13,7 @@
   "customer",
   "customer_name",
   "customer_address",
+  "selling_price_list",
   "column_break_5f3hx",
   "lc_manager",
   "delivery_date",
@@ -210,6 +211,13 @@
    "fieldtype": "Link",
    "label": "POS Profile",
    "options": "POS Profile"
+  },
+  {
+   "fieldname": "selling_price_list",
+   "fieldtype": "Link",
+   "label": "Selling Price List",
+   "options": "Price List",
+   "read_only": 1
   }
  ],
  "is_submittable": 1,
@@ -219,7 +227,7 @@
    "link_fieldname": "custom_driver_consignment_note_number"
   }
  ],
- "modified": "2024-11-06 19:53:56.489811",
+ "modified": "2024-12-04 13:11:29.653482",
  "modified_by": "Administrator",
  "module": "Upande Vf Custom",
  "name": "Driver Consignment Note",

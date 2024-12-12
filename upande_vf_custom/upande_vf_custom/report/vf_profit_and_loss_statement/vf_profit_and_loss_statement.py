@@ -1,7 +1,3 @@
-# Copyright (c) 2015, Frappe Technologies Pvt. Ltd. and Contributors
-# License: GNU General Public License v3. See license.txt
-
-
 import frappe
 from frappe import _
 from frappe.utils import flt
@@ -197,13 +193,13 @@ def get_budget_data(start, end):
                 pl_accs_list.append(acc.get("name"))
                 
     # for acc_name in pl_accs_list:
-    monthly_distribution = frappe.db.get_all("VF Monthly Distribution Percentage", filters={"parenttype": "Budget", "custom_start_date": [">=", start], "custom_end_date": ["<=", end]}, fields=["custom_amount", "parent", "custom_account"])
+    monthly_distribution = frappe.db.get_all("VF Monthly Distribution Percentage", filters={"parenttype": "Budget", "start_date": [">=", start], "end_date": ["<=", end]}, fields=["amount", "parent", "account"])
     if monthly_distribution:
         for md in monthly_distribution:
-            if not md.get("custom_account") in bal_dict.keys():
-                bal_dict[md.get("custom_account")] = 0
+            if not md.get("account") in bal_dict.keys():
+                bal_dict[md.get("account")] = 0
             
-            bal_dict[md.get("custom_account")] += md.get("custom_amount")
+            bal_dict[md.get("account")] += md.get("amount")
                
     return bal_dict
 
@@ -231,10 +227,10 @@ def get_data(
 
     gl_entries_by_account = {}
     for root in frappe.db.sql(
-        """select lft, rgt from tabAccount
-            where root_type=%s and ifnull(parent_account, '') = ''""",
-        root_type,
-        as_dict=1,
+		"""select lft, rgt from tabAccount
+			where root_type=%s and ifnull(parent_account, '') = ''""",
+		root_type,
+		as_dict=1,
     ):
 
         set_gl_entries_by_account(

@@ -4,14 +4,11 @@ from frappe.utils import flt
 
 from erpnext.accounts.report.financial_statements import (
     get_columns,
-    get_accounts,
     filter_accounts,
     set_gl_entries_by_account,
-    accumulate_values_into_parents,
     filter_out_zero_value_rows,
     add_total_row,
     get_appropriate_currency,
-    calculate_values,
     get_filtered_list_for_consolidated_report,
     get_period_list,
 )
@@ -66,7 +63,7 @@ def execute(filters=None):
     custom_column = {"label": "Budget", "fieldname": "budget", "fieldtype": "Currency"}
     columns.append(custom_column)
 
-    chart = get_chart_data(filters, columns, income, expense, net_profit_loss)
+    # chart = get_chart_data(filters, columns, income, expense, net_profit_loss)
 
     currency = filters.presentation_currency or frappe.get_cached_value(
         "Company", filters.company, "default_currency"
@@ -75,7 +72,7 @@ def execute(filters=None):
         period_list, filters.periodicity, income, expense, net_profit_loss, currency, filters
     )
 
-    return columns, data, None, chart, report_summary
+    return columns, data, None, None, report_summary
 
 
 def get_report_summary(
@@ -185,8 +182,7 @@ def get_budget_data(start, end):
     bal_dict = {}
     
     pl_accounts = frappe.db.get_all("Account", filters={"report_type": "Profit and Loss"}, fields=["name"])
-    # start = "01-01-2024"
-    # end = "31-12-2024"
+
     if pl_accounts:
         for acc in pl_accounts:
             if not acc.get("name") in pl_accs_list:
@@ -218,6 +214,7 @@ def get_data(
 ):
 
     accounts = get_accounts(company, root_type)
+
     if not accounts:
         return None
 
@@ -227,12 +224,13 @@ def get_data(
 
     gl_entries_by_account = {}
     for root in frappe.db.sql(
-		"""select lft, rgt from tabAccount
-			where root_type=%s and ifnull(parent_account, '') = ''""",
-		root_type,
-		as_dict=1,
+        """select lft, rgt from tabAccount
+            where root_type=%s and ifnull(parent_account, '') = ''""",
+        root_type,
+        as_dict=1,
     ):
-
+        print("g"*80)
+        print(gl_entries_by_account)
         set_gl_entries_by_account(
             company,
             period_list[0]["year_start_date"] if only_current_fiscal_year else None,
@@ -313,3 +311,64 @@ def prepare_data(accounts, balance_must_be, period_list, company_currency):
         data.append(row)
 
     return data
+
+def calculate_values(
+    accounts_by_name,
+    gl_entries_by_account,
+    period_list,
+    accumulated_values,
+    ignore_accumulated_values_for_fy,
+):
+    for entries in gl_entries_by_account.values():
+        for entry in entries:
+            d = accounts_by_name.get(entry.account)
+            if not d:
+                frappe.msgprint(
+                    _("Could not retrieve information for {0}.").format(entry.account),
+                    title="Error",
+                    raise_exception=1,
+                )
+            for period in period_list:
+                # check if posting date is within the period
+
+                if entry.posting_date <= period.to_date:
+                    if (accumulated_values or entry.posting_date >= period.from_date) and (
+                        not ignore_accumulated_values_for_fy
+                        or entry.fiscal_year == period.to_date_fiscal_year
+                    ):
+                        d[period.key] = d.get(period.key, 0.0) + flt(entry.debit) - flt(entry.credit)
+
+            if entry.posting_date < period_list[0].year_start_date:
+                d["opening_balance"] = d.get("opening_balance", 0.0) + flt(entry.debit) - flt(entry.credit)
+            
+            budget = get_budget_data(period_list[0]["from_date"], period_list[0]["to_date"])
+            for k,v in budget.items():
+                if d.get("name") == k:
+                    d["budget"] = v
+    
+def accumulate_values_into_parents(accounts, accounts_by_name, period_list):
+    """accumulate children's values in parent accounts"""
+    for d in reversed(accounts):
+        if d.parent_account:
+            for period in period_list:
+                accounts_by_name[d.parent_account][period.key] = accounts_by_name[d.parent_account].get(
+                    period.key, 0.0
+                ) + d.get(period.key, 0.0)
+                
+            accounts_by_name[d.parent_account]["opening_balance"] = accounts_by_name[d.parent_account].get(
+                "opening_balance", 0.0
+            ) + d.get("opening_balance", 0.0)
+            
+            accounts_by_name[d.parent_account]["budget"] = accounts_by_name[d.parent_account].get(
+                "budget", 0.0
+            ) + d.get("budget", 0.0)
+
+def get_accounts(company, root_type):
+	return frappe.db.sql(
+		"""
+		select name, account_number, parent_account, lft, rgt, root_type, report_type, account_name, include_in_gross, account_type, is_group, lft, rgt
+		from `tabAccount`
+		where company=%s and root_type=%s order by lft""",
+		(company, root_type),
+		as_dict=True,
+	)

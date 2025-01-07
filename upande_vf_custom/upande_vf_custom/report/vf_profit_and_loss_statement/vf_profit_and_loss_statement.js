@@ -1,3 +1,13 @@
+// Copyright (c) 2024, Upande Ltd and contributors
+// For license information, please see license.txt
+/* eslint-disable */
+
+// frappe.query_reports["New VF Profit and Loss Statement"] = {
+// 	"filters": [
+
+// 	]
+// };
+
 // Copyright (c) 2015, Frappe Technologies Pvt. Ltd. and Contributors
 // License: GNU General Public License v3. See license.txt
 

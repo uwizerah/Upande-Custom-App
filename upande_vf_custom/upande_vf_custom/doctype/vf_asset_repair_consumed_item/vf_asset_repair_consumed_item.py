@@ -1,11 +1,12 @@
 # Copyright (c) 2024, Upande Ltd and contributors
 # For license information, please see license.txt
 
+
 # import frappe
 from frappe.model.document import Document
 
 
-class VFAssetRepairItem(Document):
+class VFAssetRepairConsumedItem(Document):
 	# begin: auto-generated types
 	# This code is auto-generated. Do not modify anything in this block.
 
@@ -19,7 +20,6 @@ class VFAssetRepairItem(Document):
 		parent: DF.Data
 		parentfield: DF.Data
 		parenttype: DF.Data
-		serial_and_batch_bundle: DF.Link | None
 		serial_no: DF.SmallText | None
 		total_value: DF.Currency
 		valuation_rate: DF.Currency

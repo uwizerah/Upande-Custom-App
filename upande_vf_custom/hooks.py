@@ -165,9 +165,9 @@ doc_events = {
 	# "Journal Entry": {
 	# 	"on_submit": "upande_vf_custom.custom_scripts.server_scripts.journal_entry.on_submit"
 	# },
-  	# "Stock Entry": {
-  	# 	"before_save": "upande_vf_custom.custom_scripts.server_scripts.stock_entry.before_save"
-	# },
+  	"Stock Entry": {
+  		"after_insert": "upande_vf_custom.custom_scripts.server_scripts.stock_entry.after_insert"
+	},
 	"Purchase Invoice": {
 		"on_submit": "upande_vf_custom.custom_scripts.server_scripts.purchase_invoice.on_submit",
 	}

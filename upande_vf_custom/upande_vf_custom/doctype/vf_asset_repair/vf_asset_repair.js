@@ -17,14 +17,14 @@ frappe.ui.form.on('VF Asset Repair', {
 			};
 		};
 
-		frm.fields_dict.warehouse.get_query = function(doc) {
-			return {
-				filters: {
-					'is_group': 0,
-					'company': doc.company
-				}
-			};
-		};
+		// frm.fields_dict.warehouse.get_query = function(doc) {
+		// 	return {
+		// 		filters: {
+		// 			'is_group': 0,
+		// 			'company': doc.company
+		// 		}
+		// 	};
+		// };
 	},
 
 	refresh: function(frm) {

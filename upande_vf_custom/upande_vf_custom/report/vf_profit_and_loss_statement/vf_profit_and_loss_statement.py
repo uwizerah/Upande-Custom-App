@@ -177,26 +177,60 @@ def get_chart_data(filters, columns, income, expense, net_profit_loss):
 
     return chart
 
-def get_budget_data(start, end):
-    pl_accs_list = []
-    bal_dict = {}
+# def get_budget_data(start, end):
+#     pl_accs_list = []
+#     bal_dict = {}
     
-    pl_accounts = frappe.db.get_all("Account", filters={"report_type": "Profit and Loss"}, fields=["name"])
+#     pl_accounts = frappe.db.get_all("Account", filters={"report_type": "Profit and Loss"}, fields=["name"])
 
-    if pl_accounts:
-        for acc in pl_accounts:
-            if not acc.get("name") in pl_accs_list:
-                pl_accs_list.append(acc.get("name"))
+#     if pl_accounts:
+#         for acc in pl_accounts:
+#             if not acc.get("name") in pl_accs_list:
+#                 pl_accs_list.append(acc.get("name"))
                 
-    # for acc_name in pl_accs_list:
-    monthly_distribution = frappe.db.get_all("VF Monthly Distribution Percentage", filters={"parenttype": "Budget", "start_date": [">=", start], "end_date": ["<=", end]}, fields=["amount", "parent", "account"])
-    if monthly_distribution:
-        for md in monthly_distribution:
-            if not md.get("account") in bal_dict.keys():
-                bal_dict[md.get("account")] = 0
-            
-            bal_dict[md.get("account")] += md.get("amount")
+#     # for acc_name in pl_accs_list:
+#     monthly_distribution = frappe.db.get_all("VF Monthly Distribution Percentage", filters={"parenttype": "Budget", "start_date": [">=", start], "end_date": ["<=", end]}, fields=["amount", "parent", "account"])
+#     if monthly_distribution:
+#         for md in monthly_distribution:
+#             check_if_parent_is_closed = frappe.db.get_value("Budget", md.get("parent"), "docstatus")
+#             if check_if_parent_is_closed == 1:
+#                 if not md.get("account") in bal_dict.keys():
+#                     bal_dict[md.get("account")] = 0
+                
+#                 bal_dict[md.get("account")] += md.get("amount")
                
+#     return bal_dict
+
+def get_budget_data(start, end):
+    # Fetch monthly distributions with necessary account and parent budget details in a single query
+    monthly_distribution = frappe.db.sql(
+        """
+        SELECT 
+            md.amount,
+            md.account,
+            b.docstatus
+        FROM 
+            `tabVF Monthly Distribution Percentage` AS md
+        JOIN 
+            `tabBudget` AS b ON md.parent = b.name
+        JOIN 
+            `tabAccount` AS acc ON md.account = acc.name
+        WHERE 
+            md.parenttype = 'Budget' 
+            AND md.start_date >= %s 
+            AND md.end_date <= %s
+            AND acc.report_type = 'Profit and Loss'
+        """,
+        (start, end),
+        as_dict=True
+    )
+    
+    # Process results and aggregate amounts
+    bal_dict = {}
+    for md in monthly_distribution:
+        if md.docstatus == 1:  # Only process closed budgets
+            bal_dict[md.account] = bal_dict.get(md.account, 0) + md.amount
+
     return bal_dict
 
 
@@ -229,8 +263,7 @@ def get_data(
         root_type,
         as_dict=1,
     ):
-        print("g"*80)
-        print(gl_entries_by_account)
+
         set_gl_entries_by_account(
             company,
             period_list[0]["year_start_date"] if only_current_fiscal_year else None,
@@ -340,6 +373,7 @@ def calculate_values(
 
             if entry.posting_date < period_list[0].year_start_date:
                 d["opening_balance"] = d.get("opening_balance", 0.0) + flt(entry.debit) - flt(entry.credit)
+                d["budget"] = 0
             
             budget = get_budget_data(period_list[0]["from_date"], period_list[0]["to_date"])
             for k,v in budget.items():

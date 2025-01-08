@@ -1,18 +1,8 @@
-// Copyright (c) 2024, Upande Ltd and contributors
-// For license information, please see license.txt
-/* eslint-disable */
-
-// frappe.query_reports["New VF Profit and Loss Statement"] = {
-// 	"filters": [
-
-// 	]
-// };
-
 // Copyright (c) 2015, Frappe Technologies Pvt. Ltd. and Contributors
 // License: GNU General Public License v3. See license.txt
 
-frappe.require("assets/erpnext/js/financial_statements.js", function () {
-	frappe.query_reports["VF Profit and Loss Statement"] = $.extend({}, erpnext.financial_statements);
+frappe.require("assets/upande_vf_custom/js/financial_statements.js", function () {
+	frappe.query_reports["VF Profit and Loss Statement"] = $.extend({}, upande_vf_custom.financial_statements);
 
 	erpnext.utils.add_dimensions("VF Profit and Loss Statement", 10);
 
@@ -29,6 +19,7 @@ frappe.require("assets/erpnext/js/financial_statements.js", function () {
 		reqd: 1,
 	});
 
+	
 	frappe.query_reports["VF Profit and Loss Statement"]["filters"].push({
 		fieldname: "include_default_book_entries",
 		label: __("Include Default Book Entries"),
@@ -37,9 +28,3 @@ frappe.require("assets/erpnext/js/financial_statements.js", function () {
 	});
 });
 
-frappe.query_reports["VF Profit and Loss Statement"]["filters"].push({
-	fieldname: "include_default_book_entries",
-	label: __("Include Default FB Entries"),
-	fieldtype: "Check",
-	default: 1,
-});

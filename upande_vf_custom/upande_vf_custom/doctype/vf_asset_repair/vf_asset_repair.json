@@ -63,6 +63,7 @@
   {
    "fieldname": "asset_name",
    "fieldtype": "Read Only",
+   "in_list_view": 1,
    "label": "Asset Name"
   },
   {
@@ -79,11 +80,13 @@
   {
    "fieldname": "failure_date",
    "fieldtype": "Datetime",
+   "in_list_view": 1,
    "label": "Failure Date"
   },
   {
    "fieldname": "repair_status",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Repair Status",
    "options": "Pending\nCompleted\nCancelled"
   },
@@ -94,6 +97,7 @@
   {
    "fieldname": "completion_date",
    "fieldtype": "Datetime",
+   "in_list_view": 1,
    "label": "Completion Date"
   },
   {
@@ -149,6 +153,7 @@
    "description": "Sum of Total Purchase Cost and Value of Consumed Stock Items.",
    "fieldname": "total_repair_cost",
    "fieldtype": "Currency",
+   "in_list_view": 1,
    "label": "Total Repair Cost"
   },
   {
@@ -194,7 +199,7 @@
   {
    "fieldname": "downtime",
    "fieldtype": "Data",
-   "in_list_view": 1,
+   "hidden": 1,
    "label": "Downtime"
   },
   {
@@ -244,7 +249,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-01-07 12:59:34.817767",
+ "modified": "2025-01-08 14:57:15.166783",
  "modified_by": "Administrator",
  "module": "Upande Vf Custom",
  "name": "VF Asset Repair",

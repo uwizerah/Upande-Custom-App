@@ -294,9 +294,11 @@ def get_data(
 
 def prepare_data(accounts, balance_must_be, period_list, company_currency):
     data = []
+    print("p"*80)
+    print(period_list)
     year_start_date = period_list[0]["year_start_date"].strftime("%Y-%m-%d")
     year_end_date = period_list[-1]["year_end_date"].strftime("%Y-%m-%d")
-    budget = get_budget_data(period_list[0]["from_date"], period_list[0]["to_date"])
+    budget = get_budget_data(year_start_date, year_end_date)
     
     for k,v in budget.items():
         for acc in accounts:

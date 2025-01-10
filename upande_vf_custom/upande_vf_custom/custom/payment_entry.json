@@ -631,7 +631,7 @@
     "parent": "Payment Entry",
     "permlevel": 0,
     "read": 1,
-    "role": "Accounts User",
+    "role": "Regional Supervisor",
     "create": 1,
     "set_user_permissions": 0,
     "submit": 1,

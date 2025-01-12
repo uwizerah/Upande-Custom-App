@@ -1,6 +1,6 @@
 {
-    "custom_fields": [
-     {
+  "custom_fields": [
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -60,8 +60,8 @@
       "translatable": 0,
       "unique": 0,
       "width": null
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -121,8 +121,8 @@
       "translatable": 0,
       "unique": 0,
       "width": null
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -182,8 +182,8 @@
       "translatable": 0,
       "unique": 0,
       "width": null
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -243,8 +243,8 @@
       "translatable": 0,
       "unique": 0,
       "width": null
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -304,8 +304,8 @@
       "translatable": 0,
       "unique": 0,
       "width": null
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -365,8 +365,8 @@
       "translatable": 0,
       "unique": 0,
       "width": null
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -426,8 +426,8 @@
       "translatable": 0,
       "unique": 0,
       "width": null
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -487,8 +487,8 @@
       "translatable": 0,
       "unique": 0,
       "width": null
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -548,8 +548,8 @@
       "translatable": 0,
       "unique": 0,
       "width": null
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -609,8 +609,8 @@
       "translatable": 0,
       "unique": 0,
       "width": null
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -670,10 +670,10 @@
       "translatable": 0,
       "unique": 0,
       "width": null
-     }
-    ],
-    "custom_perms": [
-     {
+    }
+  ],
+  "custom_perms": [
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -704,68 +704,104 @@
       "share": 1,
       "submit": 1,
       "write": 1
-     },
-     {
-       "_assign": null,
-       "_comments": null,
-       "_liked_by": null,
-       "_user_tags": null,
-       "creation": "2025-10-01 19:00:41.564060",
-       "docstatus": 0,
-       "idx": 0,
-       "if_owner": 0,
-       "modified": "2025-10-01 19:00:41.564060",
-       "modified_by": "christinek@victoryfarmskenya.com",
-       "name": "Christine Kanga",
-       "owner": "christinek@victoryfarmskenya.com",
-       "parent": "Purchase Order",
-       "permlevel": 0,
-       "read": 1,
-       "role": "CEO- Kenya",
-       "set_user_permissions": 0,
-       "write": 1
-     },
-     {
-       "_assign": null,
-       "_comments": null,
-       "_liked_by": null,
-       "_user_tags": null,
-       "creation": "2025-10-01 19:00:41.564060",
-       "docstatus": 0,
-       "idx": 0,
-       "if_owner": 0,
-       "modified": "2025-10-01 19:00:41.564060",
-       "modified_by": "christinek@victoryfarmskenya.com",
-       "name": "Christine Kanga",
-       "owner": "christinek@victoryfarmskenya.com",
-       "parent": "Purchase Order",
-       "permlevel": 0,
-       "read": 1,
-       "role": "GCFO - VF",
-       "set_user_permissions": 0,
-       "write": 1
-     },
-     {
-       "_assign": null,
-       "_comments": null,
-       "_liked_by": null,
-       "_user_tags": null,
-       "creation": "2025-10-01 19:00:41.564060",
-       "docstatus": 0,
-       "idx": 0,
-       "if_owner": 0,
-       "modified": "2025-10-01 19:00:41.564060",
-       "modified_by": "christinek@victoryfarmskenya.com",
-       "name": "Christine Kanga",
-       "owner": "christinek@victoryfarmskenya.com",
-       "parent": "Purchase Order",
-       "permlevel": 0,
-       "read": 1,
-       "role": "GCAO - VF",
-       "set_user_permissions": 0,
-       "write": 1
-     },
-     {
+    },
+    {
+      "_assign": null,
+      "_comments": null,
+      "_liked_by": null,
+      "_user_tags": null,
+      "amend": 0,
+      "cancel": 0,
+      "create": 0,
+      "creation": "2023-07-12 19:00:41.784744",
+      "delete": 0,
+      "docstatus": 0,
+      "email": 0,
+      "export": 0,
+      "idx": 4,
+      "if_owner": 0,
+      "import": 0,
+      "modified": "20250-01-12 19:00:41.784744",
+      "modified_by": "christinek@victoryfarmskenya.com",
+      "name": "Christine Kanga",
+      "owner": "christinek@victoryfarmskenya.com",
+      "parent": "Purchase Order",
+      "permlevel": 1,
+      "print": 0,
+      "read": 1,
+      "report": 0,
+      "role": "CEO - VF",
+      "select": 0,
+      "set_user_permissions": 0,
+      "share": 0,
+      "submit": 0,
+      "write": 1
+    },
+    {
+      "_assign": null,
+      "_comments": null,
+      "_liked_by": null,
+      "_user_tags": null,
+      "amend": 0,
+      "cancel": 0,
+      "create": 0,
+      "creation": "2023-07-12 19:00:41.784744",
+      "delete": 0,
+      "docstatus": 0,
+      "email": 0,
+      "export": 0,
+      "idx": 4,
+      "if_owner": 0,
+      "import": 0,
+      "modified": "20250-01-12 19:00:41.784744",
+      "modified_by": "christinek@victoryfarmskenya.com",
+      "name": "Christine Kanga",
+      "owner": "christinek@victoryfarmskenya.com",
+      "parent": "Purchase Order",
+      "permlevel": 1,
+      "print": 0,
+      "read": 1,
+      "report": 0,
+      "role": "GCAO - VF",
+      "select": 0,
+      "set_user_permissions": 0,
+      "share": 0,
+      "submit": 0,
+      "write": 1
+    },
+    {
+      "_assign": null,
+      "_comments": null,
+      "_liked_by": null,
+      "_user_tags": null,
+      "amend": 0,
+      "cancel": 0,
+      "create": 0,
+      "creation": "2023-07-12 19:00:41.784744",
+      "delete": 0,
+      "docstatus": 0,
+      "email": 0,
+      "export": 0,
+      "idx": 4,
+      "if_owner": 0,
+      "import": 0,
+      "modified": "20250-01-12 19:00:41.784744",
+      "modified_by": "christinek@victoryfarmskenya.com",
+      "name": "Christine Kanga",
+      "owner": "christinek@victoryfarmskenya.com",
+      "parent": "Purchase Order",
+      "permlevel": 1,
+      "print": 0,
+      "read": 1,
+      "report": 0,
+      "role": "GCFO - VF",
+      "select": 0,
+      "set_user_permissions": 0,
+      "share": 0,
+      "submit": 0,
+      "write": 1
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -796,8 +832,8 @@
       "share": 1,
       "submit": 1,
       "write": 1
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -828,8 +864,8 @@
       "share": 0,
       "submit": 0,
       "write": 0
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -860,8 +896,8 @@
       "share": 0,
       "submit": 0,
       "write": 1
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -892,8 +928,8 @@
       "share": 0,
       "submit": 1,
       "write": 1
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -924,8 +960,8 @@
       "share": 1,
       "submit": 1,
       "write": 1
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -956,8 +992,8 @@
       "share": 1,
       "submit": 0,
       "write": 1
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -988,8 +1024,8 @@
       "share": 1,
       "submit": 1,
       "write": 0
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -1020,8 +1056,8 @@
       "share": 1,
       "submit": 1,
       "write": 0
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -1052,8 +1088,8 @@
       "share": 1,
       "submit": 1,
       "write": 1
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -1084,8 +1120,8 @@
       "share": 1,
       "submit": 1,
       "write": 1
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -1116,8 +1152,8 @@
       "share": 1,
       "submit": 1,
       "write": 1
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -1148,8 +1184,8 @@
       "share": 0,
       "submit": 0,
       "write": 1
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -1180,8 +1216,8 @@
       "share": 0,
       "submit": 0,
       "write": 0
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -1212,8 +1248,8 @@
       "share": 0,
       "submit": 0,
       "write": 0
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -1244,8 +1280,8 @@
       "share": 0,
       "submit": 0,
       "write": 0
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -1276,8 +1312,8 @@
       "share": 0,
       "submit": 0,
       "write": 0
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -1308,8 +1344,8 @@
       "share": 0,
       "submit": 0,
       "write": 0
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -1340,8 +1376,8 @@
       "share": 0,
       "submit": 0,
       "write": 0
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -1372,8 +1408,8 @@
       "share": 0,
       "submit": 0,
       "write": 1
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -1404,8 +1440,8 @@
       "share": 0,
       "submit": 0,
       "write": 1
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -1436,8 +1472,8 @@
       "share": 0,
       "submit": 1,
       "write": 1
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -1468,8 +1504,8 @@
       "share": 0,
       "submit": 1,
       "write": 1
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -1500,8 +1536,8 @@
       "share": 0,
       "submit": 0,
       "write": 1
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -1532,8 +1568,8 @@
       "share": 0,
       "submit": 0,
       "write": 1
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -1564,8 +1600,8 @@
       "share": 0,
       "submit": 0,
       "write": 1
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -1596,12 +1632,12 @@
       "share": 0,
       "submit": 0,
       "write": 1
-     }
-    ],
-    "doctype": "Purchase Order",
-    "links": [],
-    "property_setters": [
-     {
+    }
+  ],
+  "doctype": "Purchase Order",
+  "links": [],
+  "property_setters": [
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -1623,8 +1659,8 @@
       "property_type": "Check",
       "row_name": null,
       "value": "1"
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -1646,8 +1682,8 @@
       "property_type": "Data",
       "row_name": null,
       "value": "[\"workflow_state\", \"supplier_section\", \"title\", \"naming_series\", \"custom_supplier_group\", \"supplier\", \"supplier_name\", \"order_confirmation_no\", \"order_confirmation_date\", \"get_items_from_open_material_requests\", \"column_break_7\", \"transaction_date\", \"schedule_date\", \"custom_type\", \"custom_week\", \"column_break1\", \"company\", \"custom_company_abbr\", \"custom_cost_center\", \"custom_department\", \"custom_approved_by\", \"apply_tds\", \"tax_withholding_category\", \"is_subcontracted\", \"supplier_warehouse\", \"amended_from\", \"accounting_dimensions_section\", \"cost_center\", \"dimension_col_break\", \"pos_profile\", \"project\", \"currency_and_price_list\", \"currency\", \"conversion_rate\", \"cb_price_list\", \"buying_price_list\", \"price_list_currency\", \"plc_conversion_rate\", \"ignore_pricing_rule\", \"before_items_section\", \"scan_barcode\", \"set_from_warehouse\", \"items_col_break\", \"set_warehouse\", \"custom_address2\", \"custom_warehouse_address\", \"items_section\", \"items\", \"sb_last_purchase\", \"total_qty\", \"total_net_weight\", \"column_break_40\", \"base_total\", \"base_net_total\", \"column_break_26\", \"total\", \"net_total\", \"tax_withholding_net_total\", \"base_tax_withholding_net_total\", \"section_break_48\", \"pricing_rules\", \"raw_material_details\", \"set_reserve_warehouse\", \"supplied_items\", \"taxes_section\", \"tax_category\", \"taxes_and_charges\", \"column_break_53\", \"shipping_rule\", \"column_break_50\", \"incoterm\", \"named_place\", \"section_break_52\", \"taxes\", \"totals\", \"base_taxes_and_charges_added\", \"base_taxes_and_charges_deducted\", \"base_total_taxes_and_charges\", \"column_break_39\", \"taxes_and_charges_added\", \"taxes_and_charges_deducted\", \"total_taxes_and_charges\", \"totals_section\", \"base_grand_total\", \"base_rounding_adjustment\", \"base_in_words\", \"base_rounded_total\", \"column_break4\", \"grand_total\", \"rounding_adjustment\", \"rounded_total\", \"disable_rounded_total\", \"in_words\", \"advance_paid\", \"discount_section\", \"apply_discount_on\", \"base_discount_amount\", \"column_break_45\", \"additional_discount_percentage\", \"discount_amount\", \"sec_tax_breakup\", \"other_charges_calculation\", \"address_and_contact_tab\", \"section_addresses\", \"supplier_address\", \"address_display\", \"col_break_address\", \"contact_person\", \"contact_display\", \"contact_mobile\", \"contact_email\", \"shipping_address_section\", \"shipping_address\", \"column_break_99\", \"shipping_address_display\", \"company_billing_address_section\", \"billing_address\", \"column_break_103\", \"billing_address_display\", \"drop_ship\", \"customer\", \"customer_name\", \"column_break_19\", \"customer_contact_person\", \"customer_contact_display\", \"customer_contact_mobile\", \"customer_contact_email\", \"terms_tab\", \"payment_schedule_section\", \"payment_terms_template\", \"payment_schedule\", \"terms_section_break\", \"tc_name\", \"terms\", \"more_info_tab\", \"tracking_section\", \"status\", \"column_break_75\", \"per_billed\", \"per_received\", \"column_break5\", \"letter_head\", \"group_same_items\", \"column_break_86\", \"select_print_heading\", \"language\", \"subscription_section\", \"from_date\", \"to_date\", \"column_break_97\", \"auto_repeat\", \"update_auto_repeat_reference\", \"additional_info_section\", \"is_internal_supplier\", \"represents_company\", \"ref_sq\", \"column_break_74\", \"party_account_currency\", \"inter_company_order_reference\", \"is_old_subcontracting_flow\", \"connections_tab\"]"
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -1669,8 +1705,8 @@
       "property_type": "Check",
       "row_name": null,
       "value": "1"
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -1692,8 +1728,8 @@
       "property_type": "Check",
       "row_name": null,
       "value": "1"
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -1715,8 +1751,8 @@
       "property_type": "Check",
       "row_name": null,
       "value": "1"
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -1738,8 +1774,8 @@
       "property_type": "Check",
       "row_name": null,
       "value": "1"
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -1761,8 +1797,8 @@
       "property_type": "Check",
       "row_name": null,
       "value": "1"
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -1784,8 +1820,8 @@
       "property_type": "Check",
       "row_name": null,
       "value": "1"
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -1807,8 +1843,8 @@
       "property_type": "Check",
       "row_name": null,
       "value": "1"
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -1830,8 +1866,8 @@
       "property_type": "Check",
       "row_name": null,
       "value": "0"
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -1853,8 +1889,8 @@
       "property_type": "Text",
       "row_name": null,
       "value": "PO-.YY.-.#####"
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -1876,8 +1912,8 @@
       "property_type": "Text",
       "row_name": null,
       "value": "PUR-ORD-.YYYY.-\nPO-.YY.-.#####"
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -1899,8 +1935,8 @@
       "property_type": "Data",
       "row_name": null,
       "value": "eval:doc.custom_supplier_group"
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -1922,8 +1958,8 @@
       "property_type": "Data",
       "row_name": null,
       "value": "Purchase Order VF"
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -1945,8 +1981,8 @@
       "property_type": "Check",
       "row_name": null,
       "value": "0"
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -1968,8 +2004,8 @@
       "property_type": "Check",
       "row_name": null,
       "value": "1"
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -1991,8 +2027,8 @@
       "property_type": "Check",
       "row_name": null,
       "value": "0"
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -2014,8 +2050,8 @@
       "property_type": "Check",
       "row_name": null,
       "value": "0"
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -2037,8 +2073,8 @@
       "property_type": "Check",
       "row_name": null,
       "value": "0"
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -2060,8 +2096,8 @@
       "property_type": "Text",
       "row_name": null,
       "value": "0"
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -2083,8 +2119,8 @@
       "property_type": "Check",
       "row_name": null,
       "value": "0"
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -2106,8 +2142,8 @@
       "property_type": "Check",
       "row_name": null,
       "value": "0"
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -2129,8 +2165,8 @@
       "property_type": "Check",
       "row_name": null,
       "value": "1"
-     },
-     {
+    },
+    {
       "_assign": null,
       "_comments": null,
       "_liked_by": null,
@@ -2152,7 +2188,7 @@
       "property_type": "Check",
       "row_name": null,
       "value": "0"
-     }
-    ],
-    "sync_on_migrate": 1
-   }
+    }
+  ],
+  "sync_on_migrate": 1
+}
